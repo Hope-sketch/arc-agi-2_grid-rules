@@ -10,7 +10,7 @@ What this script does
   5. Prints a table of where the rules work and where they fail, and writes
      one row per task to grid_size_results.csv so you can inspect any task.
 
-Rules (from your Grid_Sizes.pdf)
+Rules 
   0 : no training examples (safety case, should not happen in ARC-AGI-2)
   1 : every pair has input size == output size
   2 : inputs differ from outputs; inputs all one size; outputs all one size
