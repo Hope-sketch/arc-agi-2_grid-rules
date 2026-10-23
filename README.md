@@ -11,6 +11,11 @@ transformations, which feed a final grid solver.
 Work in progress for ARC Prize 2026 (ARC-AGI-2 track and Paper Track).
 Results are reported honestly in the paper and in /results.
 
+## Data
+This repo does not include the ARC-AGI-2 task files.
+Download them from https://github.com/arcprize/ARC-AGI-2
+(or the Kaggle competition page) and place them in `data/`.
+Data is credited to the ARC Prize Foundation (Apache License 2.0).
 ## How to run
 1. Python version: (fill in)
 2. Install: `pip install -r requirements.txt` (if you use any packages)
