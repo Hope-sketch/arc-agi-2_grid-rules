@@ -20,8 +20,8 @@ The solver is organised into eight investigation and solving stages.
 
 | Stage | Purpose | Documentation |
 |---|---|---|
-| 1. Grid Sizes | Investigates input and output dimensions. | [Grid Sizes](grid%20sizes/README.md) |
-| 2. Grid Colours | Investigates colours added, removed, or maintained. | [Grid Colours](grid%20colours/README.md) |
+| 1. Grid Sizes | Investigates input and output dimensions. | [Grid Sizes](solver/grid sizes/README.md) |
+| 2. Grid Colours | Investigates colours added, removed, or maintained. | [Grid Colours](solver/grid colours/README.md) |
 | 3. Grid Shapes | Investigates connected regions of the same colour. | [Grid Shapes](grid%20shapes/README.md) |
 | 4. Grid Cells | Investigates individual grid cells and their properties. | [Grid Cells](grid%20cells/README.md) |
 | 5. Grid Rows and Columns | Investigates row and column patterns and changes. | [Grid Rows and Columns](grid%20rows%20and%20columns/README.md) |
