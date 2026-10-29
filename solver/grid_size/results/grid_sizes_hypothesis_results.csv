@@ -1,0 +1,1121 @@
+dataset,task_id,rule,stage,steps_used,h_hypothesis,w_hypothesis,survivors,directions,direction_flag,predicted,actual,outcome
+training,00576224,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,007bbfb7,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,009d5c81,1,rule,-,-,-,0,same|same|same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,00d62c1b,1,rule,-,-,-,0,same|same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,00dbd492,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,017c7c7b,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4,,"[(9, 3)]","[(9, 3)]",correct
+training,025d127b,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,03560426,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,045e512c,1,rule,-,-,-,0,same|same|same,,"[(21, 21)]","[(21, 21)]",correct
+training,0520fde7,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(3, 3)]","[(3, 3)]",correct
+training,05269061,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,05a7bcf2,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,05f2a901,1,rule,-,-,-,0,same|same|same,,"[(11, 10)]","[(11, 10)]",correct
+training,0607ce86,1,rule,-,-,-,0,same|same|same,,"[(24, 22)]","[(24, 22)]",correct
+training,0692e18c,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,06df4c85,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,070dd51e,1,rule,-,-,-,0,same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,08ed6ac7,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,09629e4f,1,rule,-,-,-,0,same|same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,0962bcdd,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,09c534e7,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,0a1d4ef5,4,shapes,shapes,1*big_shape_h-2,1*small_shape_cells+2,24,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(4, 3)]",wrong
+training,0a2355a6,1,rule,-,-,-,0,same|same|same|same,,"[(15, 17)]","[(15, 17)]",correct
+training,0a938d79,1,rule,-,-,-,0,same|same|same|same,,"[(11, 27)]","[(11, 27)]",correct
+training,0b148d64,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 6)]",no_prediction
+training,0b17323b,1,rule,-,-,-,0,same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,0bb8deee,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,0becf7df,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,0c786b71,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 8)]","[(6, 8)]",correct
+training,0c9aba6e,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 4)]","[(6, 4)]",correct
+training,0ca9ddb6,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,0d3d703e,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,0d87d2a6,1,rule,-,-,-,0,same|same|same,,"[(23, 25)]","[(23, 25)]",correct
+training,0e206a2e,1,rule,-,-,-,0,same|same|same,,"[(24, 19)]","[(24, 19)]",correct
+training,0e671a1a,1,rule,-,-,-,0,same|same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,0f63c0b9,1,rule,-,-,-,0,same|same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,103eff5b,1,rule,-,-,-,0,same|same,,"[(16, 26)]","[(16, 26)]",correct
+training,10fcaaa3,5,sizes,sizes,2*in_h,2*in_w,1,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 10)]","[(12, 10)]",correct
+training,11852cab,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1190bc91,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,1190e5a7,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(5, 3)]",no_prediction
+training,11dc524f,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,11e1fe23,1,rule,-,-,-,0,same|same,,"[(12, 14)]","[(12, 14)]",correct
+training,12422b43,1,rule,-,-,-,0,same|same|same|same|same,,"[(10, 7)]","[(10, 7)]",correct
+training,12997ef3,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(12, 3), (3, 12)]",no_prediction
+training,12eac192,1,rule,-,-,-,0,same|same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,13713586,1,rule,-,-,-,0,same|same|same,,"[(19, 18)]","[(19, 18)]",correct
+training,137eaa0f,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,137f0df0,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,13f06aa5,1,rule,-,-,-,0,same|same|same,,"[(15, 17)]","[(15, 17)]",correct
+training,140c817e,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,14754a24,1,rule,-,-,-,0,same|same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,1478ab18,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,14b8e18c,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,150deff5,1,rule,-,-,-,0,same|same|same,,"[(8, 11)]","[(8, 11)]",correct
+training,15113be4,1,rule,-,-,-,0,same|same|same,,"[(23, 23)]","[(23, 23)]",correct
+training,15660dd6,5,shapes,shapes,big_shape_h,1*content_w-1,9,absolutely_smaller|absolutely_smaller,,[None],"[(7, 23)]",no_prediction
+training,15663ba9,1,rule,-,-,-,0,same|same|same,,"[(15, 16)]","[(15, 16)]",correct
+training,15696249,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,17829a00,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,178fcbfb,1,rule,-,-,-,0,same|same|same,,"[(12, 11)]","[(12, 11)]",correct
+training,17b80ad2,1,rule,-,-,-,0,same|same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,17b866bd,1,rule,-,-,-,0,same|same,,"[(21, 16), (16, 16)]","[(21, 16), (16, 16)]",correct
+training,17cae0c1,1,rule,-,-,-,0,same|same|same|same,,"[(3, 9)]","[(3, 9)]",correct
+training,18286ef8,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,182e5d0f,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,18419cfa,1,rule,-,-,-,0,same|same|same,,"[(28, 26)]","[(28, 26)]",correct
+training,18447a8d,1,rule,-,-,-,0,same|same|same,,"[(17, 11)]","[(17, 11)]",correct
+training,184a9768,1,rule,-,-,-,0,same|same|same,,"[(25, 26)]","[(25, 26)]",correct
+training,195ba7dc,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(5, 6)]","[(5, 6)]",correct
+training,1990f7a8,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(7, 7)]",correct
+training,19bb5feb,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,1a07d186,1,rule,-,-,-,0,same|same|same,,"[(19, 26)]","[(19, 26)]",correct
+training,1a244afd,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,1a2e2828,3,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop|total_drop,,"[(1, 1)]","[(1, 1)]",correct
+training,1a6449f1,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(10, 10)]",no_prediction
+training,1acc24af,1,rule,-,-,-,0,same|same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,1b2d62fb,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(5, 3)]","[(5, 3)]",correct
+training,1b59e163,1,rule,-,-,-,0,same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,1b60fb0c,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1b8318e3,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,1be83260,5,shapes,shapes,content_h,content_w,90,absolutely_smaller|absolutely_smaller,,"[None, None]","[(11, 23), (23, 23)]",no_prediction
+training,1bfc4729,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1c02dbbe,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,1c0d0a4b,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,1c56ad9f,1,rule,-,-,-,0,same|same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,1c786137,5,shapes,shapes,1*big_shape_h-2,1*big_shape_w-2,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(8, 9)]","[(8, 9)]",correct
+training,1caeab9d,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1cf80156,5,shapes,shapes,big_shape_h,big_shape_w,2025,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 6)]","[(4, 6)]",correct
+training,1d0a4b61,1,rule,-,-,-,0,same|same|same,,"[(25, 25)]","[(25, 25)]",correct
+training,1d398264,1,rule,-,-,-,0,same|same|same,,"[(16, 16), (12, 12)]","[(16, 16), (12, 12)]",correct
+training,1d61978c,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,1da012fc,1,rule,-,-,-,0,same|same,,"[(19, 25)]","[(19, 25)]",correct
+training,1e0a9b12,1,rule,-,-,-,0,same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,1e32b0e9,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,1e5d6875,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,1e81d6f9,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,1efba499,1,rule,-,-,-,0,same|same|same,,"[(12, 14)]","[(12, 14)]",correct
+training,1f0c79e5,1,rule,-,-,-,0,same|same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,1f642eb9,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1f85a75f,4,shapes,shapes,big_shape_h,big_shape_w,330,absolutely_smaller|absolutely_smaller,,[None],"[(4, 4)]",no_prediction
+training,1f876c06,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,1fad071e,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(1, 5)]","[(1, 5)]",correct
+training,2013d3e2,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,2037f2c7,5,rows_cols,rows_cols,n_distinct_cols//3,ceil(n_distinct_rows/2),4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(2, 10)]",no_prediction
+training,2072aba6,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,20818e16,5,shapes,shapes,big_shape_h,big_shape_w,60,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(6, 10)]",no_prediction
+training,20981f0e,1,rule,-,-,-,0,same|same|same,,"[(17, 13)]","[(17, 13)]",correct
+training,20fb2937,2,rule,-,-,-,0,mixed_4|mixed_4,,"[(13, 11)]","[(13, 11)]",correct
+training,212895b5,1,rule,-,-,-,0,same|same|same,,"[(21, 23)]","[(21, 23)]",correct
+training,21f83797,1,rule,-,-,-,0,same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,2204b7a8,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,22168020,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,22208ba4,1,rule,-,-,-,0,same|same|same|same,,"[(7, 30)]","[(7, 30)]",correct
+training,22233c11,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,22425bda,5,colours,colours,n_colours-n_nonbg_colours,n_nonbg_colours,3,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(1, 6)]",no_prediction
+training,22806e14,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,2281f1f4,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,228f6490,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,22a4bbc2,1,rule,-,-,-,0,same|same|same|same,,"[(22, 4)]","[(22, 4)]",correct
+training,22eb0ac0,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,230f2e48,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,234bbc79,5,shapes,shapes,content_h,1*content_w-2,33,mixed_3|mixed_3|mixed_3|mixed_3,,[None],"[(3, 8)]",no_prediction
+training,23581191,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,239be575,3,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop|total_drop|total_drop,,"[(1, 1), (1, 1)]","[(1, 1), (1, 1)]",correct
+training,23b5c85d,5,shapes,shapes,small_shape_h,small_shape_w,9,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,25094a63,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,252143c9,1,rule,-,-,-,0,same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,253bf280,1,rule,-,-,-,0,same|same|same|same|same|same|same|same,,"[(12, 13)]","[(12, 13)]",correct
+training,2546ccf6,1,rule,-,-,-,0,same|same,,"[(26, 23)]","[(26, 23)]",correct
+training,256b0a75,1,rule,-,-,-,0,same|same|same,,"[(25, 26)]","[(25, 26)]",correct
+training,25c199f5,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(5, 5), (5, 5)]","[(5, 5), (5, 5)]",correct
+training,25d487eb,1,rule,-,-,-,0,same|same|same,,"[(16, 11)]","[(16, 11)]",correct
+training,25d8a9c8,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,25e02866,5,sizes,sizes,in_h//3,in_h//3,4,absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,25ff71a9,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,2601afb7,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,264363fd,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,2685904e,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,2697da3f,5,rows_cols,rows_cols,4*n_distinct_rows-1,4*n_distinct_rows-1,1,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(15, 15)]","[(17, 17)]",wrong
+training,272f95fa,1,rule,-,-,-,0,same|same,,"[(17, 15)]","[(17, 15)]",correct
+training,2753e76c,4,rows_cols,rows_cols,n_distinct_cols//3,n_distinct_rows//3,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(3, 5)]",wrong
+training,278e5215,5,shapes,shapes,big_shape_h,big_shape_w,25,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 10)]","[(7, 10)]",correct
+training,27a28665,2,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop|total_drop|total_drop|total_drop,,"[(1, 1), (1, 1), (1, 1)]","[(1, 1), (1, 1), (1, 1)]",correct
+training,27a77e38,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,27f8ce4f,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,281123b4,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 4)]","[(4, 4)]",correct
+training,28bf18c6,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 6)]","[(3, 6)]",correct
+training,28e73c20,1,rule,-,-,-,0,same|same|same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,292dd178,1,rule,-,-,-,0,same|same|same,,"[(11, 15)]","[(11, 15)]",correct
+training,29623171,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,29700607,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,29c11459,1,rule,-,-,-,0,same|same,,"[(5, 11)]","[(5, 11)]",correct
+training,2a28add5,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,2a5f8217,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,2b01abd0,1,rule,-,-,-,0,same|same|same,,"[(14, 16)]","[(14, 16)]",correct
+training,2b9ef948,1,rule,-,-,-,0,same|same|same,,"[(12, 13), (25, 20)]","[(12, 13), (25, 20)]",correct
+training,2bcee788,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,2bee17df,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,2c0b0aff,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(8, 10)]",no_prediction
+training,2c608aff,1,rule,-,-,-,0,same|same|same|same,,"[(19, 21)]","[(19, 21)]",correct
+training,2c737e39,1,rule,-,-,-,0,same|same|same,,"[(11, 10)]","[(11, 10)]",correct
+training,2ccd9fef,5,sizes,sizes,in_h//3,in_w,1,mixed_4|mixed_4,,"[(3, 25), (3, 27)]","[(11, 5), (11, 9)]",wrong
+training,2dc579da,5,sizes,sizes,in_h//2,in_h//2,4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,2dd70a9a,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,2de01db2,1,rule,-,-,-,0,same|same|same,,"[(3, 10)]","[(3, 10)]",correct
+training,2dee498d,5,sizes,sizes,in_h,in_h,4,mixed_3|mixed_3|mixed_3,,"[(5, 5)]","[(5, 5)]",correct
+training,2e65ae53,1,rule,-,-,-,0,same|same,,"[(28, 28)]","[(28, 28)]",correct
+training,2f0c5170,5,shapes,shapes,big_shape_h,big_shape_w,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 9)]","[(7, 9)]",correct
+training,2f767503,1,rule,-,-,-,0,same|same|same,,"[(9, 11)]","[(9, 11)]",correct
+training,2faf500b,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,305b1341,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,30f42897,1,rule,-,-,-,0,same|same|same,,"[(3, 14)]","[(3, 14)]",correct
+training,310f3251,5,sizes,sizes,3*in_h,3*in_h,4,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(12, 12)]",correct
+training,3194b014,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,319f2597,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,31aa019c,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,31adaf00,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,31d5ba1a,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4|mixed_4,,"[(3, 5), (3, 5)]","[(3, 5), (3, 5)]",correct
+training,320afe60,1,rule,-,-,-,0,same|same|same,,"[(22, 26), (22, 24)]","[(22, 26), (22, 24)]",correct
+training,321b1fc6,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,32597951,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,32e9702f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,33067df9,3,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(26, 26)]","[(26, 26)]",correct
+training,332202d5,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,332efdb3,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,3345333e,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,337b420f,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(5, 5), (5, 5)]","[(5, 5), (5, 5)]",correct
+training,3391f8c0,1,rule,-,-,-,0,same|same|same|same,,"[(11, 14)]","[(11, 14)]",correct
+training,33b52de3,1,rule,-,-,-,0,same|same,,"[(23, 23)]","[(23, 23)]",correct
+training,3428a4f5,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 5), (6, 5)]","[(6, 5), (6, 5)]",correct
+training,342ae2ed,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,342dd610,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,3490cc26,1,rule,-,-,-,0,same|same|same|same,,"[(22, 23)]","[(22, 23)]",correct
+training,34b99a2b,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(5, 4)]","[(5, 4)]",correct
+training,34cfa167,1,rule,-,-,-,0,same|same,,"[(19, 16), (30, 30)]","[(19, 16), (30, 30)]",correct
+training,351d6448,2,rule,-,-,-,0,mixed_4|mixed_4,,"[(3, 13)]","[(3, 13)]",correct
+training,358ba94e,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(5, 5)]",correct
+training,3618c87e,1,rule,-,-,-,0,same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,363442ee,1,rule,-,-,-,0,same|same|same,,"[(9, 13)]","[(9, 13)]",correct
+training,36d67576,1,rule,-,-,-,0,same|same|same,,"[(14, 15)]","[(14, 15)]",correct
+training,36fdfd69,1,rule,-,-,-,0,same|same|same,,"[(17, 18)]","[(17, 18)]",correct
+training,37ce87bb,1,rule,-,-,-,0,same|same|same,,"[(9, 15)]","[(9, 15)]",correct
+training,37d3e8b2,1,rule,-,-,-,0,same|same|same,,"[(17, 18)]","[(17, 18)]",correct
+training,3906de3d,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,396d80d7,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,3979b1a8,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(10, 10)]","[(10, 10)]",correct
+training,39a8645d,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,39e1d7f9,1,rule,-,-,-,0,same|same|same,,"[(29, 29)]","[(29, 29)]",correct
+training,3a301edc,1,rule,-,-,-,0,same|same|same|same|same,,"[(21, 21)]","[(21, 21)]",correct
+training,3aa6fb7a,1,rule,-,-,-,0,same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,3ac3eb23,1,rule,-,-,-,0,same|same,,"[(6, 12)]","[(6, 12)]",correct
+training,3ad05f52,1,rule,-,-,-,0,same|same|same,,"[(28, 28)]","[(28, 28)]",correct
+training,3af2c5a8,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 8)]","[(6, 8)]",correct
+training,3b4c2228,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,3bd292e8,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,3bd67248,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,3bdb4ada,1,rule,-,-,-,0,same|same,,"[(11, 20)]","[(11, 20)]",correct
+training,3befdf3e,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,3c9b0459,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,3cd86f4f,5,-,-,-,-,0,mixed_3|mixed_3|mixed_3,,[],"[(4, 4), (10, 11), (2, 5)]",no_prediction
+training,3d31c5b3,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4|mixed_4|mixed_4,,"[(3, 6)]","[(3, 6)]",correct
+training,3d588dc9,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,3d6c6e23,1,rule,-,-,-,0,same|same|same,,"[(30, 10)]","[(30, 10)]",correct
+training,3de23699,5,shapes,shapes,1*content_h-2,1*content_w-2,4,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(8, 10)]","[(8, 10)]",correct
+training,3e980e27,1,rule,-,-,-,0,same|same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,3eda0437,1,rule,-,-,-,0,same|same|same|same,,"[(4, 24)]","[(4, 24)]",correct
+training,3ee1011a,5,colours,colours,max_colour_cells,max_colour_cells,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(7, 7)]",correct
+training,3f23242b,1,rule,-,-,-,0,same|same,,"[(17, 19)]","[(17, 19)]",correct
+training,3f7978a0,5,shapes,shapes,1*big_shape_h+2,content_w-big_shape_cells,2,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(10, 5)]","[(10, 4)]",wrong
+training,4093f84a,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,40f6cd08,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,412b6263,5,-,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,[],"[(23, 7)]",no_prediction
+training,414297c0,5,shapes,shapes,big_shape_h,big_shape_w,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(9, 15)]","[(9, 15)]",correct
+training,41ace6b5,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,41e4d17e,1,rule,-,-,-,0,same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,423a55dc,1,rule,-,-,-,0,same|same|same|same|same,,"[(11, 13)]","[(11, 13)]",correct
+training,4258a5f9,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,4290ef0e,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(11, 11)]",no_prediction
+training,42918530,1,rule,-,-,-,0,same|same|same|same,,"[(25, 25)]","[(25, 25)]",correct
+training,42a15761,1,rule,-,-,-,0,same|same|same,,"[(11, 19)]","[(11, 19)]",correct
+training,42a50994,1,rule,-,-,-,0,same|same|same|same,,"[(17, 14)]","[(17, 14)]",correct
+training,42f14c03,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(7, 4)]",no_prediction
+training,42f83767,5,-,-,-,-,0,mixed_3|absolutely_bigger|absolutely_bigger,,[],"[(21, 21), (30, 30)]",no_prediction
+training,4347f46a,1,rule,-,-,-,0,same|same|same,,"[(17, 19)]","[(17, 19)]",correct
+training,4364c1c4,1,rule,-,-,-,0,same|same|same,,"[(14, 13)]","[(14, 13)]",correct
+training,444801d8,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,445eab21,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,447fd412,1,rule,-,-,-,0,same|same|same,,"[(17, 21)]","[(17, 21)]",correct
+training,44d8ac46,1,rule,-,-,-,0,same|same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,44f52bb0,2,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop|total_drop|total_drop,,"[(1, 1), (1, 1)]","[(1, 1), (1, 1)]",correct
+training,4522001f,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,456873bc,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,45737921,1,rule,-,-,-,0,same|same|same,,"[(8, 9)]","[(8, 9)]",correct
+training,458e3a53,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller,,[],"[(3, 2)]",no_prediction
+training,45bbe264,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,4612dd53,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,46442a0e,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,465b7d93,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,469497ad,4,colours,colours+sizes,in_h*n_nonbg_colours,in_h*n_nonbg_colours,16,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(25, 25)]","[(25, 25)]",correct
+training,46c35fc7,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,46f33fce,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(20, 20)]","[(20, 20)]",correct
+training,470c91de,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,47c1f68c,5,sizes,sizes,1*in_h-1,1*in_h-1,4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(12, 12)]","[(12, 12)]",correct
+training,48131b3c,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(8, 8)]","[(8, 8)]",correct
+training,484b58aa,1,rule,-,-,-,0,same|same|same,,"[(29, 29)]","[(29, 29)]",correct
+training,4852f2fa,4,colours,colours,n_colours,3*min_colour_cells,9,absolutely_smaller|mixed_4|mixed_2|mixed_4|absolutely_smaller,,"[(3, 12), (3, 6)]","[(3, 12), (3, 6)]",correct
+training,48634b99,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,48d8fb45,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,48f8583b,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,4938f0c2,1,rule,-,-,-,0,same|same|same,,"[(18, 14)]","[(18, 14)]",correct
+training,494ef9d7,1,rule,-,-,-,0,same|same|same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,496994bd,1,rule,-,-,-,0,same|same,,"[(10, 6)]","[(10, 6)]",correct
+training,49d1d64f,5,sizes,sizes,1*in_h+2,1*in_w+2,1,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(5, 4)]","[(5, 4)]",correct
+training,4a1cacc2,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,4acc7107,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,4b6b68e5,1,rule,-,-,-,0,same|same|same,,"[(26, 24)]","[(26, 24)]",correct
+training,4be741c5,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(1, 4)]",no_prediction
+training,4c177718,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(9, 15), (9, 15)]","[(9, 15), (9, 15)]",correct
+training,4c4377d9,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 4)]","[(6, 4)]",correct
+training,4c5c2cf0,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,4cd1b7b2,1,rule,-,-,-,0,same|same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,4df5b0ae,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,4e45f183,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,4e469f39,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,4e7e0eb9,1,rule,-,-,-,0,same|same|same|same,,"[(19, 29), (29, 29)]","[(19, 29), (29, 29)]",correct
+training,4f537728,1,rule,-,-,-,0,same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,4ff4c9da,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+training,5034a0b5,1,rule,-,-,-,0,same|same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,505fff84,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(5, 5)]",no_prediction
+training,506d28a5,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(4, 5)]","[(4, 5)]",correct
+training,50846271,1,rule,-,-,-,0,same|same|same|same,,"[(19, 22)]","[(19, 22)]",correct
+training,508bd3b6,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,50a16a69,1,rule,-,-,-,0,same|same|same,,"[(6, 6)]","[(6, 6)]",correct
+training,50aad11f,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(12, 4)]",no_prediction
+training,50c07299,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,50cb2852,1,rule,-,-,-,0,same|same|same,,"[(14, 13)]","[(14, 13)]",correct
+training,50f325b5,1,rule,-,-,-,0,same|same|same|same,,"[(16, 17)]","[(16, 17)]",correct
+training,5117e062,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,5168d44c,1,rule,-,-,-,0,same|same|same,,"[(7, 17)]","[(7, 17)]",correct
+training,516b51b7,1,rule,-,-,-,0,same|same|same,,"[(15, 17)]","[(15, 17)]",correct
+training,5207a7b5,1,rule,-,-,-,0,same|same|same,,"[(15, 9)]","[(15, 9)]",correct
+training,522fdd07,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,52364a65,1,rule,-,-,-,0,same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,5289ad53,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 3)]","[(2, 3)]",correct
+training,52df9849,1,rule,-,-,-,0,same|same,,"[(16, 16), (16, 16)]","[(16, 16), (16, 16)]",correct
+training,52fd389e,1,rule,-,-,-,0,same|same|same,,"[(29, 29)]","[(29, 29)]",correct
+training,538b439f,1,rule,-,-,-,0,same|same,,"[(19, 23)]","[(19, 23)]",correct
+training,539a4f51,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(10, 10)]","[(10, 10)]",correct
+training,53b68214,3,rule,-,-,-,0,mixed_4|mixed_4|mixed_4,,"[(10, 10), (10, 10)]","[(10, 10), (10, 10)]",correct
+training,543a7ed5,1,rule,-,-,-,0,same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,54d82841,1,rule,-,-,-,0,same|same|same,,"[(7, 11)]","[(7, 11)]",correct
+training,54d9e175,1,rule,-,-,-,0,same|same|same|same,,"[(7, 11)]","[(7, 11)]",correct
+training,54db823b,1,rule,-,-,-,0,same|same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,54dc2872,1,rule,-,-,-,0,same|same,,"[(12, 13)]","[(12, 13)]",correct
+training,55059096,1,rule,-,-,-,0,same|same|same,,"[(17, 13)]","[(17, 13)]",correct
+training,551d5bf1,1,rule,-,-,-,0,same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,5521c0d9,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,5582e5ca,1,rule,-,-,-,0,same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,5587a8d0,5,colours,colours,2*n_nonbg_colours-1,2*n_nonbg_colours-1,1,absolutely_smaller|absolutely_smaller|same,,"[(11, 11)]","[(11, 11)]",correct
+training,5614dbcf,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,5623160b,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,56dc2b01,1,rule,-,-,-,0,same|same|same,,"[(4, 18)]","[(4, 18)]",correct
+training,56ff96f3,1,rule,-,-,-,0,same|same|same|same,,"[(9, 8)]","[(9, 8)]",correct
+training,5751f35e,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,575b1a71,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,5783df64,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,5792cb4d,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,57aa92db,1,rule,-,-,-,0,same|same|same|same,,"[(19, 30)]","[(19, 30)]",correct
+training,57edb29d,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(9, 5)]",no_prediction
+training,5833af48,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(12, 24)]",no_prediction
+training,58743b76,1,rule,-,-,-,0,same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,58c02a16,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,58e15b12,1,rule,-,-,-,0,same|same|same,,"[(24, 20)]","[(24, 20)]",correct
+training,59341089,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(3, 12)]","[(3, 12)]",correct
+training,5a5a2103,1,rule,-,-,-,0,same|same,,"[(24, 24)]","[(24, 24)]",correct
+training,5a719d11,1,rule,-,-,-,0,same|same|same,,"[(30, 16)]","[(30, 16)]",correct
+training,5ad4f10b,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,5ad8a7c0,1,rule,-,-,-,0,same|same|same|same|same,,"[(4, 6)]","[(4, 6)]",correct
+training,5adee1b2,1,rule,-,-,-,0,same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,5af49b42,1,rule,-,-,-,0,same|same|same,,"[(17, 18)]","[(17, 18)]",correct
+training,5b37cb25,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,5b526a93,1,rule,-,-,-,0,same|same,,"[(21, 30)]","[(21, 30)]",correct
+training,5b692c0f,1,rule,-,-,-,0,same|same,,"[(24, 28)]","[(24, 28)]",correct
+training,5b6cbef5,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(16, 16)]","[(16, 16)]",correct
+training,5bd6f4ac,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,5c0a986e,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,5c2c9af4,1,rule,-,-,-,0,same|same|same,,"[(28, 28)]","[(28, 28)]",correct
+training,5d2a5c43,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(6, 4), (6, 4)]","[(6, 4), (6, 4)]",correct
+training,5d588b4d,5,-,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,[],"[(5, 16), (7, 10)]",no_prediction
+training,5daaa586,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(12, 10)]",no_prediction
+training,5e6bbc0b,1,rule,-,-,-,0,same|same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,5ecac7f7,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(5, 5), (5, 5), (5, 5)]","[(5, 5), (5, 5), (6, 6)]",wrong
+training,5ffb2104,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,60a26a3e,1,rule,-,-,-,0,same|same|same,,"[(9, 15)]","[(9, 15)]",correct
+training,60b61512,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,60c09cac,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger,,"[(10, 10)]","[(10, 10)]",correct
+training,60d73be6,1,rule,-,-,-,0,same|same|same,,"[(11, 17)]","[(11, 17)]",correct
+training,6150a2bd,1,rule,-,-,-,0,same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,6165ea8f,4,colours,colours,3*n_colours-1,3*n_colours-1,4,absolutely_smaller|absolutely_smaller|absolutely_smaller,yes,"[(23, 23), (20, 20)]","[(23, 23), (20, 20)]",correct
+training,623ea044,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,626c0bcc,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,62ab2642,1,rule,-,-,-,0,same|same|same,,"[(5, 12)]","[(5, 12)]",correct
+training,62b74c02,1,rule,-,-,-,0,same|same|same,,"[(4, 14)]","[(4, 14)]",correct
+training,62c24649,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,6350f1f4,1,rule,-,-,-,0,same|same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,63613498,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,639f5a19,1,rule,-,-,-,0,same|same,,"[(23, 23)]","[(23, 23)]",correct
+training,642248e4,1,rule,-,-,-,0,same|same|same,,"[(16, 18)]","[(16, 18)]",correct
+training,642d658d,3,rule,-,-,-,0,total_drop|total_drop|total_drop,,"[(1, 1)]","[(1, 1)]",correct
+training,6430c8c4,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(4, 4)]","[(4, 4)]",correct
+training,6455b5f5,1,rule,-,-,-,0,same|same|same|same,,"[(13, 16)]","[(13, 16)]",correct
+training,64a7c07e,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,652646ff,5,-,-,-,-,0,absolutely_smaller|mixed_1|mixed_1|mixed_1,,[],"[(24, 6)]",no_prediction
+training,662c240a,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(3, 3)]","[(3, 3)]",correct
+training,668eec9a,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 3)]","[(5, 3)]",correct
+training,66ac4c3b,1,rule,-,-,-,0,same|same,,"[(22, 22)]","[(22, 22)]",correct
+training,66e6c45b,1,rule,-,-,-,0,same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,66f2d22f,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 7)]","[(4, 7)]",correct
+training,67385a82,1,rule,-,-,-,0,same|same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,673ef223,1,rule,-,-,-,0,same|same|same,,"[(21, 12)]","[(21, 12)]",correct
+training,67636eac,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(3, 12)]",no_prediction
+training,6773b310,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,67a3c6ac,1,rule,-,-,-,0,same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,67a423a3,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,67c52801,1,rule,-,-,-,0,same|same|same|same,,"[(7, 11)]","[(7, 11)]",correct
+training,67e8384a,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,681b3aeb,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,6855a6e4,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,689c358e,1,rule,-,-,-,0,same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,68b16354,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,68b67ca3,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,68bc2e87,4,colours,colours,n_nonbg_colours,n_nonbg_colours//3,4,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 1)]","[(5, 1)]",correct
+training,692cd3b6,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,694f12f3,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,695367ec,3,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(15, 15)]","[(15, 15)]",correct
+training,696d4842,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,69889d6e,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6a11f6da,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4|mixed_4,,"[(5, 5)]","[(5, 5)]",correct
+training,6a1e5592,1,rule,-,-,-,0,same|same,,"[(10, 15)]","[(10, 15)]",correct
+training,6a980be1,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,6aa20dc0,1,rule,-,-,-,0,same|same|same,,"[(22, 22)]","[(22, 22)]",correct
+training,6ad5bdfd,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6b9890af,5,shapes,shapes,big_shape_h,big_shape_h,100,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(14, 14)]","[(14, 14)]",correct
+training,6bcdb01e,1,rule,-,-,-,0,same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,6c434453,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6ca952ad,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,6cbe9eb8,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(15, 13)]",no_prediction
+training,6cdd2623,1,rule,-,-,-,0,same|same|same,,"[(16, 19)]","[(16, 19)]",correct
+training,6cf79266,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,6d0160f0,1,rule,-,-,-,0,same|same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,6d0aefbc,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(3, 6)]","[(3, 6)]",correct
+training,6d1d5c90,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(6, 6)]","[(6, 6)]",correct
+training,6d58a25d,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,6d75e8bb,1,rule,-,-,-,0,same|same|same,,"[(9, 11)]","[(9, 11)]",correct
+training,6df30ad6,1,rule,-,-,-,0,same|same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6e02f1e3,1,rule,-,-,-,0,same|same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,6e19193c,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6e82a1ae,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,6ea4a07e,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,6ecd11f4,5,rows_cols,rows_cols,n_distinct_cols//2,n_distinct_cols//2,4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(4, 4)]",correct
+training,6f473927,5,sizes,sizes,in_h,2*in_w,1,mixed_3|mixed_3|mixed_3|mixed_3,,"[(12, 12)]","[(12, 12)]",correct
+training,6f8cd79b,1,rule,-,-,-,0,same|same|same|same,,"[(7, 6)]","[(7, 6)]",correct
+training,6fa7a44f,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 3)]","[(6, 3)]",correct
+training,6ffe8f07,1,rule,-,-,-,0,same|same|same|same,,"[(19, 19), (19, 19)]","[(19, 19), (19, 19)]",correct
+training,7039b2d7,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(3, 5)]",no_prediction
+training,705a3229,1,rule,-,-,-,0,same|same|same|same,,"[(11, 16)]","[(11, 16)]",correct
+training,712bf12e,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,72207abc,1,rule,-,-,-,0,same|same|same,,"[(3, 29)]","[(3, 29)]",correct
+training,72322fa7,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,72a961c9,1,rule,-,-,-,0,same|same|same|same,,"[(9, 11)]","[(9, 11)]",correct
+training,72ca375d,4,shapes,shapes,big_shape_h,2*n_nonsolid-2,26,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(3, 4)]",no_prediction
+training,73182012,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(4, 4)]",correct
+training,73c3b0d8,1,rule,-,-,-,0,same|same|same|same,,"[(12, 8)]","[(12, 8)]",correct
+training,73ccf9c2,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(7, 5)]",no_prediction
+training,7447852a,1,rule,-,-,-,0,same|same|same,,"[(3, 25)]","[(3, 25)]",correct
+training,7468f01a,5,shapes,shapes,big_shape_h,big_shape_w,36,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(7, 8)]",no_prediction
+training,746b3537,5,-,-,-,-,0,absolutely_smaller|mixed_4|absolutely_smaller|absolutely_smaller|mixed_3,,[],"[(1, 5)]",no_prediction
+training,74dd1130,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,753ea09b,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,758abdf0,1,rule,-,-,-,0,same|same,,"[(8, 16)]","[(8, 16)]",correct
+training,759f3fd3,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,75b8110e,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(4, 4)]",correct
+training,760b3cac,1,rule,-,-,-,0,same|same|same,,"[(6, 9)]","[(6, 9)]",correct
+training,762cd429,1,rule,-,-,-,0,same|same|same,,"[(16, 30)]","[(16, 30)]",correct
+training,770cc55f,1,rule,-,-,-,0,same|same|same|same,,"[(11, 5)]","[(11, 5)]",correct
+training,776ffc46,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,77fdfe62,5,shapes,shapes,big_shape_h,big_shape_h,361,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(6, 6)]",no_prediction
+training,780d0b14,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(3, 3)]",no_prediction
+training,782b5218,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,7837ac64,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,78e78cff,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,79369cc6,1,rule,-,-,-,0,same|same|same,,"[(16, 15)]","[(16, 15)]",correct
+training,794b24be,1,rule,-,-,-,0,same|same|same|same|same|same|same|same|same|same,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,7953d61e,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(8, 8)]","[(8, 8)]",correct
+training,79cce52d,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,7acdf6d3,1,rule,-,-,-,0,same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,7b6016b9,1,rule,-,-,-,0,same|same|same,,"[(22, 25)]","[(22, 25)]",correct
+training,7b7f7511,5,shapes,shapes,1*n_shapes8-1,n_shapes8-small_shape_w,1,mixed_3|mixed_3|mixed_4,,"[(7, 7)]","[(4, 3)]",wrong
+training,7bb29440,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 4)]",no_prediction
+training,7c008303,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,7c8af763,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,7c9b52a0,4,shapes,shapes,big_shape_h,big_shape_w,15,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 3)]","[(5, 3)]",correct
+training,7d18a6fb,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(7, 7)]",correct
+training,7d1f7ee8,1,rule,-,-,-,0,same|same|same,,"[(29, 28)]","[(29, 28)]",correct
+training,7d419a02,1,rule,-,-,-,0,same|same|same,,"[(25, 20)]","[(25, 20)]",correct
+training,7d7772cc,1,rule,-,-,-,0,same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,7ddcd7ec,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,7df24a62,1,rule,-,-,-,0,same|same|same|same,,"[(23, 23)]","[(23, 23)]",correct
+training,7e02026e,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,7e0986d6,1,rule,-,-,-,0,same|same,,"[(12, 17)]","[(12, 17)]",correct
+training,7e2bad24,1,rule,-,-,-,0,same|same|same,,"[(16, 16), (16, 16)]","[(16, 16), (16, 16)]",correct
+training,7e4d4f7c,5,shapes,shapes,1*n_forms+1,content_w,247,mixed_4|mixed_4|mixed_4|mixed_4,,[None],"[(3, 5)]",no_prediction
+training,7e576d6e,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,7ec998c9,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,7ee1c6ea,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,7f4411dc,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,7fe24cdd,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,80214e03,5,shapes,shapes,1*n_solid+2,ceil(n_nonsolid/2),5,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(4, 3)]",no_prediction
+training,80af3007,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(9, 9)]","[(9, 9)]",correct
+training,810b9b61,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,817e6c09,1,rule,-,-,-,0,same|same|same|same|same,,"[(7, 15)]","[(7, 15)]",correct
+training,81c0276b,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(4, 4)]",no_prediction
+training,825aa9e9,1,rule,-,-,-,0,same|same|same|same,,"[(10, 20)]","[(10, 20)]",correct
+training,82819916,1,rule,-,-,-,0,same|same|same|same,,"[(14, 10)]","[(14, 10)]",correct
+training,83302e8f,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+training,833966f4,1,rule,-,-,-,0,same|same,,"[(5, 1)]","[(5, 1)]",correct
+training,833dafe3,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger,,"[(16, 16)]","[(16, 16)]",correct
+training,834ec97d,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,83b6b474,5,colours,colours,nonbg_cells//3,nonbg_cells//3,1,absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,83eb0a57,4,shapes,shapes,big_shape_h,big_shape_w,3,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(10, 10)]",no_prediction
+training,8403a5d5,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,84551f4c,1,rule,-,-,-,0,same|same|same,,"[(9, 30), (3, 30)]","[(9, 30), (3, 30)]",correct
+training,845d6e51,1,rule,-,-,-,0,same|same|same,,"[(18, 17)]","[(18, 17)]",correct
+training,846bdb03,4,shapes,shapes,1*big_shape_h+2,2*big_shape_w+2,2,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 8)]","[(6, 8)]",correct
+training,84ba50d3,1,rule,-,-,-,0,same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,84db8fc4,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,84f2aca1,1,rule,-,-,-,0,same|same|same|same,,"[(13, 12)]","[(13, 12)]",correct
+training,855e0971,1,rule,-,-,-,0,same|same|same|same,,"[(17, 15)]","[(17, 15)]",correct
+training,8597cfd7,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,85b81ff1,1,rule,-,-,-,0,same|same|same|same,,"[(13, 14)]","[(13, 14)]",correct
+training,85c4e7cd,1,rule,-,-,-,0,same|same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,85fa5666,1,rule,-,-,-,0,same|same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,8618d23e,5,sizes,sizes,1*in_h+1,1*in_w+1,2,absolutely_bigger|absolutely_bigger|absolutely_bigger,,[None],"[(5, 6)]",no_prediction
+training,868de0fa,1,rule,-,-,-,0,same|same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,8719f442,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(15, 15)]","[(15, 15)]",correct
+training,8731374e,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(10, 8)]",no_prediction
+training,878187ab,5,colours,colours,3*min_colour_cells+1,3*min_colour_cells+1,1,same|absolutely_bigger,,"[(37, 37)]","[(16, 16)]",wrong
+training,87ab05b8,1,rule,-,-,-,0,same|same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,880c1354,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,88207623,1,rule,-,-,-,0,same|same,,"[(16, 18)]","[(16, 18)]",correct
+training,8886d717,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,88a10436,1,rule,-,-,-,0,same|same|same,,"[(10, 11)]","[(10, 11)]",correct
+training,88a62173,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,890034e9,1,rule,-,-,-,0,same|same|same,,"[(21, 21)]","[(21, 21)]",correct
+training,891232d6,1,rule,-,-,-,0,same|same|same|same,,"[(27, 25)]","[(27, 25)]",correct
+training,896d5239,1,rule,-,-,-,0,same|same|same,,"[(15, 18)]","[(15, 18)]",correct
+training,8a004b2b,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(14, 18)]",no_prediction
+training,8a371977,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,8a6d367c,4,shapes,shapes,big_shape_h,big_shape_w,27,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(14, 18)]",no_prediction
+training,8abad3cf,5,colours,colours,n_colours,4*n_nonbg_colours-2,6,mixed_2|mixed_2,,[None],"[(4, 9)]",no_prediction
+training,8b28cd80,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9), (9, 9)]","[(9, 9), (9, 9)]",correct
+training,8ba14f53,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,8be77c9e,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4,,"[(6, 3)]","[(6, 3)]",correct
+training,8cb8642d,1,rule,-,-,-,0,same|same|same,,"[(19, 24)]","[(19, 24)]",correct
+training,8d5021e8,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 4)]","[(9, 4)]",correct
+training,8d510a79,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,8dab14c2,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16), (16, 16), (16, 16), (16, 16)]","[(16, 16), (16, 16), (16, 16), (16, 16)]",correct
+training,8dae5dfc,1,rule,-,-,-,0,same|same|same|same,,"[(20, 19)]","[(20, 19)]",correct
+training,8e1813be,5,colours,colours,1*n_colours-2,1*n_colours-2,4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(7, 7)]",correct
+training,8e2edd66,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,8e301a54,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,8e5a5113,1,rule,-,-,-,0,same|same|same,,"[(3, 11)]","[(3, 11)]",correct
+training,8eb1be9a,1,rule,-,-,-,0,same|same,,"[(14, 13)]","[(14, 13)]",correct
+training,8ee62060,1,rule,-,-,-,0,same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,8efcae92,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(9, 10)]",no_prediction
+training,8f2ea7aa,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,8fbca751,1,rule,-,-,-,0,same|same|same,,"[(8, 12)]","[(8, 12)]",correct
+training,8fff9e47,3,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(8, 8)]",wrong
+training,902510d5,1,rule,-,-,-,0,same|same|same|same,,"[(12, 11)]","[(12, 11)]",correct
+training,90347967,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,90c28cc7,4,shapes,shapes,1*n_most_common_form+1,ceil(n_forms/2),4,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(3, 3)]",no_prediction
+training,90f3ed37,1,rule,-,-,-,0,same|same|same,,"[(15, 10)]","[(15, 10)]",correct
+training,9110e3c5,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,913fb3ed,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,91413438,4,-,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,[],"[(21, 21)]",no_prediction
+training,91714a58,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,9172f3a0,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,917bccba,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,928ad970,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,92e50de0,1,rule,-,-,-,0,same|same|same,,"[(29, 29)]","[(29, 29)]",correct
+training,9344f635,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,9356391f,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,93b4f4b3,5,sizes,sizes,in_h,ceil(in_w/2),2,mixed_3|mixed_3,,"[(17, 5)]","[(17, 5)]",correct
+training,93b581b8,1,rule,-,-,-,0,same|same|same,,"[(6, 6)]","[(6, 6)]",correct
+training,93c31fbe,1,rule,-,-,-,0,same|same|same,,"[(26, 28)]","[(26, 28)]",correct
+training,94133066,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(10, 13)]",no_prediction
+training,941d9a10,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,94414823,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,9473c6fb,1,rule,-,-,-,0,same|same|same,,"[(9, 12)]","[(9, 12)]",correct
+training,94be5b80,1,rule,-,-,-,0,same|same,,"[(18, 15)]","[(18, 15)]",correct
+training,94f9d214,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(4, 4)]","[(4, 4)]",correct
+training,952a094c,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,9565186b,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,95755ff2,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,95990924,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,95a58926,1,rule,-,-,-,0,same|same|same,,"[(22, 27)]","[(22, 27)]",correct
+training,963c33f8,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,963e52fc,5,sizes,sizes,in_h,2*in_w,1,mixed_3|mixed_3|mixed_3,,"[(5, 18)]","[(5, 18)]",correct
+training,963f59bc,1,rule,-,-,-,0,same|same|same|same,,"[(14, 16)]","[(14, 16)]",correct
+training,96a8c0cd,1,rule,-,-,-,0,same|same|same|same,,"[(13, 29)]","[(13, 29)]",correct
+training,9720b24f,1,rule,-,-,-,0,same|same|same|same,,"[(13, 12)]","[(13, 12)]",correct
+training,97239e3d,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,973e499e,5,sizes,sizes,in_area,in_area,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(25, 25), (16, 16)]","[(25, 25), (16, 16)]",correct
+training,9772c176,1,rule,-,-,-,0,same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,97999447,1,rule,-,-,-,0,same|same|same,,"[(9, 8)]","[(9, 8)]",correct
+training,97a05b5b,5,shapes,shapes,big_shape_h,big_shape_w,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(8, 12)]","[(8, 12)]",correct
+training,97c75046,1,rule,-,-,-,0,same|same|same,,"[(10, 16)]","[(10, 16)]",correct
+training,981add89,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,9841fdad,1,rule,-,-,-,0,same|same,,"[(12, 26)]","[(12, 26)]",correct
+training,984d8a3e,1,rule,-,-,-,0,same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,985ae207,1,rule,-,-,-,0,same|same|same,,"[(25, 25)]","[(25, 25)]",correct
+training,98c475bf,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,98cf29f8,1,rule,-,-,-,0,same|same|same,,"[(12, 17)]","[(12, 17)]",correct
+training,992798f6,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,99306f82,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,995c5fa3,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,9968a131,1,rule,-,-,-,0,same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,996ec1f3,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,99b1bc43,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(4, 4)]","[(4, 4)]",correct
+training,99caaf76,1,rule,-,-,-,0,same|same|same,,"[(18, 17)]","[(18, 17)]",correct
+training,99fa7670,1,rule,-,-,-,0,same|same|same|same,,"[(7, 8)]","[(7, 8)]",correct
+training,9a4bb226,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,9aec4887,5,colours,colours,1*min_colour_cells+2,1*min_colour_cells+2,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(7, 7)]",correct
+training,9af7a82c,5,colours,colours,bg_cells,n_colours,4,absolutely_bigger|mixed_4|mixed_4|mixed_4,,"[(6, 5)]","[(6, 5)]",correct
+training,9b2a60aa,1,rule,-,-,-,0,same|same|same,,"[(13, 24)]","[(13, 24)]",correct
+training,9b30e358,1,rule,-,-,-,0,same|same,,"[(10, 5)]","[(10, 5)]",correct
+training,9b365c51,1,rule,-,-,-,0,same|same|same,,"[(7, 28)]","[(7, 28)]",correct
+training,9b4c17c4,1,rule,-,-,-,0,same|same|same|same,,"[(9, 9), (10, 11)]","[(9, 9), (10, 11)]",correct
+training,9b5080bb,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+training,9ba4a9aa,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,9bebae7a,1,rule,-,-,-,0,same|same|same|same|same,,"[(11, 12)]","[(11, 12)]",correct
+training,9c1e755f,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,9c56f360,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,9caba7c3,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,9caf5b84,1,rule,-,-,-,0,same|same|same|same,,"[(6, 4)]","[(6, 4)]",correct
+training,9d9215db,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,9ddd00f0,1,rule,-,-,-,0,same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,9def23fe,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,9dfd6313,1,rule,-,-,-,0,same|same|same,,"[(6, 6)]","[(6, 6)]",correct
+training,9edfc990,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,9f236235,5,shapes,shapes,small_shape_h,small_shape_h,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(4, 4)]",wrong
+training,9f27f097,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,9f41bd9c,1,rule,-,-,-,0,same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,9f5f939b,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,9f669b64,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,9f8de559,1,rule,-,-,-,0,same|same|same|same,,"[(14, 14)]","[(14, 14)]",correct
+training,a04b2602,1,rule,-,-,-,0,same|same|same,,"[(16, 27)]","[(16, 27)]",correct
+training,a096bf4d,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,a09f6c25,1,rule,-,-,-,0,same|same|same,,"[(28, 27), (26, 27)]","[(28, 27), (26, 27)]",correct
+training,a1570a43,1,rule,-,-,-,0,same|same|same|same,,"[(10, 8)]","[(10, 8)]",correct
+training,a1aa0c1e,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 5)]","[(3, 5)]",correct
+training,a2d730bd,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,a2fd1cf0,1,rule,-,-,-,0,same|same|same,,"[(12, 14)]","[(12, 14)]",correct
+training,a3325580,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(4, 3)]",no_prediction
+training,a3f84088,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,a406ac07,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,a416b8f3,5,sizes,sizes,in_h,2*in_w,1,mixed_3|mixed_3|mixed_3,,"[(5, 8)]","[(5, 8)]",correct
+training,a416fc5b,5,-,-,-,-,0,same|same|absolutely_bigger,,[],"[(11, 11)]",no_prediction
+training,a48eeaf7,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,a5313dff,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,a57f2f04,1,rule,-,-,-,0,same|same|same,,"[(26, 22)]","[(26, 22)]",correct
+training,a59b95c0,4,colours,colours,3*n_colours,3*n_colours,25,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(12, 12)]",correct
+training,a5f85a15,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,a61ba2ce,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(4, 4)]",correct
+training,a61f2674,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,a644e277,5,shapes,shapes,ceil(n_most_common_form/2),n_shapes4//3,2,absolutely_smaller|absolutely_smaller,,[None],"[(11, 6)]",no_prediction
+training,a64e4611,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,a65b410d,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,a680ac02,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(12, 4)]",no_prediction
+training,a68b268e,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 4)]","[(4, 4)]",correct
+training,a6953f00,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,a699fb00,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,a740d043,5,shapes,shapes,content_h,content_w,3,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(2, 2)]",no_prediction
+training,a78176bb,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,a79310a0,1,rule,-,-,-,0,same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,a834deea,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,a85d4709,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,a8610ef7,1,rule,-,-,-,0,same|same|same|same,,"[(6, 6)]","[(6, 6)]",correct
+training,a87f7484,3,rule,-,-,-,0,mixed_3|mixed_3|mixed_4|mixed_4,,"[(3, 3)]","[(3, 3)]",correct
+training,a8c38be5,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller,,"[(9, 9)]","[(9, 9)]",correct
+training,a8d7556c,1,rule,-,-,-,0,same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,a934301b,1,rule,-,-,-,0,same|same|same,,"[(13, 12)]","[(13, 12)]",correct
+training,a9f96cdd,1,rule,-,-,-,0,same|same|same|same,,"[(3, 5)]","[(3, 5)]",correct
+training,aa18de87,1,rule,-,-,-,0,same|same|same|same,,"[(4, 9)]","[(4, 9)]",correct
+training,aa300dc3,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,aa62e3f4,1,rule,-,-,-,0,same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,aab50785,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(8, 4)]",no_prediction
+training,aabf363d,1,rule,-,-,-,0,same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,aaecdb9a,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 5)]",no_prediction
+training,aaef0977,1,rule,-,-,-,0,same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,aba27056,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,abbfd121,5,shapes,shapes,big_shape_h,big_shape_w,7,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(8, 9)]",no_prediction
+training,ac0a08a4,4,colours,colours,3*n_nonbg_colours,3*n_nonbg_colours,100,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(12, 12)]",correct
+training,ac0c2ac3,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,ac0c5833,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+training,ac2e8ecf,1,rule,-,-,-,0,same|same|same,,"[(16, 15)]","[(16, 15)]",correct
+training,ac3e2b04,1,rule,-,-,-,0,same|same|same|same,,"[(16, 18)]","[(16, 18)]",correct
+training,ac605cbb,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,ac6f9922,5,colours,colours,ceil(min_colour_cells/2),ceil(n_colours/2),1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(1, 4)]","[(3, 3)]",wrong
+training,ad173014,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+training,ad38a9d0,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,ad3b40cf,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,ad7e01d0,5,sizes,sizes,in_area,in_area,9,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(25, 25)]","[(25, 25)]",correct
+training,ae3edfdc,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,ae4f1146,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,ae58858e,1,rule,-,-,-,0,same|same|same|same,,"[(6, 8)]","[(6, 8)]",correct
+training,aedd82e4,1,rule,-,-,-,0,same|same|same|same,,"[(5, 4)]","[(5, 4)]",correct
+training,aee291af,5,colours,colours,min_colour_cells//3,min_colour_cells//3,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(5, 5)]",wrong
+training,af24b4cc,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(4, 5)]","[(4, 5)]",correct
+training,af726779,1,rule,-,-,-,0,same|same|same,,"[(13, 15), (21, 17), (10, 24)]","[(13, 15), (21, 17), (10, 24)]",correct
+training,af902bf9,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,afe3afe9,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 7)]",no_prediction
+training,b0722778,5,colours,colours,max_colour_cells,1*min_colour_cells+1,25,mixed_3|mixed_3,,[None],"[(8, 2)]",no_prediction
+training,b0c4d837,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,b0f4d537,5,shapes,shapes,big_shape_h,content_w-big_shape_w,100,mixed_3|mixed_3|mixed_3|mixed_3,,"[(12, 7)]","[(12, 7)]",correct
+training,b15fca0b,1,rule,-,-,-,0,same|same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,b190f7f5,5,sizes,sizes,ceil(in_area/2),ceil(in_area/2),4,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(16, 16)]","[(16, 16)]",correct
+training,b1948b0a,1,rule,-,-,-,0,same|same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,b1986d4b,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|mixed_2,,[],"[(5, 27)]",no_prediction
+training,b1fc8b8e,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5), (5, 5)]","[(5, 5), (5, 5)]",correct
+training,b20f7c8b,1,rule,-,-,-,0,same|same|same,,"[(18, 22)]","[(18, 22)]",correct
+training,b230c067,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,b25e450b,1,rule,-,-,-,0,same|same|same,,"[(18, 14)]","[(18, 14)]",correct
+training,b27ca6d3,1,rule,-,-,-,0,same|same,,"[(17, 16)]","[(17, 16)]",correct
+training,b2862040,1,rule,-,-,-,0,same|same|same|same,,"[(16, 15)]","[(16, 15)]",correct
+training,b2bc3ffd,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,b457fec5,1,rule,-,-,-,0,same|same|same,,"[(27, 23)]","[(27, 23)]",correct
+training,b4a43f3b,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(18, 18)]","[(18, 18)]",correct
+training,b527c5c6,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,b548a754,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,b5bb5719,1,rule,-,-,-,0,same|same|same|same|same|same|same,,"[(6, 12)]","[(6, 12)]",correct
+training,b60334d2,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,b6afb2da,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,b71a7747,5,colours,colours,3*n_nonbg_colours,3*n_nonbg_colours,1,absolutely_smaller|absolutely_smaller,,"[(9, 9)]","[(20, 20)]",wrong
+training,b7249182,1,rule,-,-,-,0,same|same|same,,"[(19, 9)]","[(19, 9)]",correct
+training,b7256dcd,1,rule,-,-,-,0,same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,b745798f,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,b74ca5d1,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+training,b775ac94,1,rule,-,-,-,0,same|same|same,,"[(24, 24)]","[(24, 24)]",correct
+training,b782dc8a,1,rule,-,-,-,0,same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,b7955b3c,1,rule,-,-,-,0,same|same|same,,"[(26, 22), (18, 22)]","[(26, 22), (18, 22)]",correct
+training,b7999b51,5,shapes,shapes,ceil(content_h/2),n_forms,30,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(6, 5)]",no_prediction
+training,b7cb93ac,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 4)]","[(3, 4)]",correct
+training,b7f8a4d8,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,b7fb29bc,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,b8825c91,1,rule,-,-,-,0,same|same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,b8cdaf2b,1,rule,-,-,-,0,same|same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,b91ae062,4,colours,colours,3*n_nonbg_colours,3*n_nonbg_colours,25,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(12, 12)]",correct
+training,b942fd60,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(10, 12)]","[(10, 12)]",correct
+training,b94a9452,5,colours,colours,sqrt(nonbg_cells),sqrt(nonbg_cells),1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 6)]","[(6, 6)]",correct
+training,b9630600,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,b9b7f026,3,rule,-,-,-,0,total_drop|total_drop|total_drop,,"[(1, 1)]","[(1, 1)]",correct
+training,ba1aa698,5,-,-,-,-,0,mixed_3|mixed_3|mixed_3,,[],"[(16, 7)]",no_prediction
+training,ba26e723,1,rule,-,-,-,0,same|same|same|same|same,,"[(3, 17)]","[(3, 17)]",correct
+training,ba97ae07,1,rule,-,-,-,0,same|same|same|same,,"[(11, 6)]","[(11, 6)]",correct
+training,ba9d41b8,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,bae5c565,1,rule,-,-,-,0,same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,baf41dbf,1,rule,-,-,-,0,same|same|same,,"[(16, 17)]","[(16, 17)]",correct
+training,bb43febb,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,bb52a14b,1,rule,-,-,-,0,same|same|same,,"[(22, 22)]","[(22, 22)]",correct
+training,bbb1b8b6,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 4), (4, 4)]","[(4, 4), (4, 4)]",correct
+training,bbc9ae5d,5,sizes,sizes,ceil(in_area/2),in_area,24,mixed_4|mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 12)]","[(6, 12)]",correct
+training,bc1d5164,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,bc4146bd,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 20)]","[(4, 20)]",correct
+training,bc93ec48,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,bcb3040b,1,rule,-,-,-,0,same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,bd14c3bf,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,bd283c4a,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,bd4472b8,1,rule,-,-,-,0,same|same|same,,"[(12, 5)]","[(12, 5)]",correct
+training,bd5af378,1,rule,-,-,-,0,same|same|same|same,,"[(10, 8)]","[(10, 8)]",correct
+training,bda2d7a6,1,rule,-,-,-,0,same|same|same,,"[(8, 8), (6, 6)]","[(8, 8), (6, 6)]",correct
+training,bdad9b1f,1,rule,-,-,-,0,same|same,,"[(6, 6)]","[(6, 6)]",correct
+training,be03b35f,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,be94b721,5,shapes,shapes,big_shape_h,big_shape_w,40,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(4, 3)]",no_prediction
+training,beb8660c,1,rule,-,-,-,0,same|same|same,,"[(11, 8)]","[(11, 8)]",correct
+training,bf32578f,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,bf699163,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,bf89d739,1,rule,-,-,-,0,same|same|same|same,,"[(14, 17)]","[(14, 17)]",correct
+training,c074846d,1,rule,-,-,-,0,same|same|same|same|same,,"[(9, 11), (9, 9)]","[(9, 11), (9, 9)]",correct
+training,c0f76784,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,c1990cce,5,sizes,sizes,in_area,in_area,36,mixed_4|mixed_4|mixed_4,,"[(17, 17)]","[(17, 17)]",correct
+training,c1d99e64,1,rule,-,-,-,0,same|same|same,,"[(27, 25)]","[(27, 25)]",correct
+training,c3202e5a,4,shapes,shapes,1*n_forms-1,1*n_forms-1,16,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(5, 5)]",wrong
+training,c35c1b4c,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,c3e719e8,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,c3fa4749,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+training,c444b776,1,rule,-,-,-,0,same|same,,"[(19, 29)]","[(19, 29)]",correct
+training,c48954c1,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,c4d1a9ae,1,rule,-,-,-,0,same|same,,"[(10, 8)]","[(10, 8)]",correct
+training,c59eb873,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(10, 10)]","[(10, 10)]",correct
+training,c6141b15,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,c61be7dc,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,c62e2108,1,rule,-,-,-,0,same|same|same,,"[(24, 24)]","[(24, 24)]",correct
+training,c64f1187,5,shapes,colours+shapes,2*big_shape_cells,n_solid-n_nonbg_colours,10,absolutely_smaller|absolutely_smaller,,[None],"[(11, 11)]",no_prediction
+training,c658a4bd,5,shapes,shapes,big_shape_w,big_shape_w,49,absolutely_smaller|absolutely_smaller,,[None],"[(10, 10)]",no_prediction
+training,c6e1b8da,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,c7d4e6ad,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,c803e39c,5,shapes,shapes,big_shape_cells,big_shape_cells,25,mixed_1|mixed_1|mixed_1,,"[(25, 25)]","[(25, 25)]",correct
+training,c87289bb,1,rule,-,-,-,0,same|same|same|same,,"[(10, 15)]","[(10, 15)]",correct
+training,c8b7cc0f,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,c8cbb738,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(7, 7)]",no_prediction
+training,c8f0f002,1,rule,-,-,-,0,same|same|same,,"[(3, 5)]","[(3, 5)]",correct
+training,c909285e,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(6, 6)]",wrong
+training,c920a713,5,colours,colours,2*n_nonbg_colours-1,2*n_nonbg_colours-1,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(13, 13)]","[(13, 13)]",correct
+training,c92b942c,5,sizes,sizes,3*in_h,3*in_w,1,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,c9680e90,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,c97c0139,1,rule,-,-,-,0,same|same,,"[(21, 22)]","[(21, 22)]",correct
+training,c9e6f938,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(3, 6)]","[(3, 6)]",correct
+training,c9f8e694,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,ca8de6ea,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,caa06a1f,1,rule,-,-,-,0,same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,cad67732,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(20, 20)]","[(20, 20)]",correct
+training,cb227835,1,rule,-,-,-,0,same|same|same,,"[(13, 14)]","[(13, 14)]",correct
+training,cbded52d,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,cc9053aa,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,ccd554ac,5,sizes,sizes,in_area,in_area,9,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(25, 25)]","[(25, 25)]",correct
+training,cce03e0d,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(9, 9)]","[(9, 9)]",correct
+training,cd3c21df,5,shapes,shapes,big_shape_cells-big_shape_w,big_shape_w,2,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(3, 2)]",wrong
+training,cdecee7f,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,ce039d91,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,ce22a75a,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,ce4f8723,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(4, 4)]","[(4, 4)]",correct
+training,ce602527,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(4, 3)]",no_prediction
+training,ce8d95cc,5,rows_cols,rows_cols,2*n_distinct_rows-1,2*n_distinct_cols-1,1,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 9)]","[(7, 9)]",correct
+training,ce9e57f2,1,rule,-,-,-,0,same|same|same,,"[(11, 9)]","[(11, 9)]",correct
+training,cf133acc,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,cf5fd0ad,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(12, 12)]","[(12, 12)]",correct
+training,cf98881b,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 4)]","[(4, 4)]",correct
+training,cfb2ce5a,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d017b73f,5,shapes,shapes+sizes,content_h,in_w-n_nonsolid,8,mixed_3|mixed_3|mixed_3|mixed_3,,[None],"[(3, 8)]",no_prediction
+training,d037b0a7,1,rule,-,-,-,0,same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,d06dbe63,1,rule,-,-,-,0,same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,d07ae81c,1,rule,-,-,-,0,same|same|same,,"[(17, 19)]","[(17, 19)]",correct
+training,d0f5fe59,5,shapes,shapes,n_forms,n_forms,256,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(5, 5)]",correct
+training,d10ecb37,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(2, 2)]","[(2, 2)]",correct
+training,d13f3404,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,d19f7514,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4,,"[(6, 4)]","[(6, 4)]",correct
+training,d22278a0,1,rule,-,-,-,0,same|same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,d23f8c26,1,rule,-,-,-,0,same|same|same,,"[(7, 7)]","[(7, 7)]",correct
+training,d255d7a7,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,d282b262,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,d2abd087,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d2acf2cb,1,rule,-,-,-,0,same|same|same,,"[(10, 9)]","[(10, 9)]",correct
+training,d304284e,1,rule,-,-,-,0,same|same,,"[(23, 28)]","[(23, 28)]",correct
+training,d364b489,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d37a1ef5,1,rule,-,-,-,0,same|same|same,,"[(13, 12)]","[(13, 12)]",correct
+training,d406998b,1,rule,-,-,-,0,same|same|same|same,,"[(3, 17)]","[(3, 17)]",correct
+training,d43fd935,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d4469b4b,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,d47aa2ff,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(10, 10)]","[(10, 10)]",correct
+training,d492a647,1,rule,-,-,-,0,same|same,,"[(15, 17)]","[(15, 17)]",correct
+training,d4a91cb9,1,rule,-,-,-,0,same|same|same,,"[(12, 13)]","[(12, 13)]",correct
+training,d4b1c2b1,5,colours,colours,3*n_colours,3*n_colours,25,absolutely_bigger|same|same|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(15, 15)]","[(15, 15)]",correct
+training,d4c90558,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(3, 8)]",no_prediction
+training,d4f3cd78,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d511f180,1,rule,-,-,-,0,same|same|same,,"[(4, 4)]","[(4, 4)]",correct
+training,d56f2372,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 9)]",no_prediction
+training,d5c634a2,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|mixed_2|mixed_2|absolutely_smaller|absolutely_smaller,,"[(3, 6), (3, 6)]","[(3, 6), (3, 6)]",correct
+training,d5d6de2d,1,rule,-,-,-,0,same|same|same,,"[(25, 25), (10, 10)]","[(25, 25), (10, 10)]",correct
+training,d631b094,4,colours,colours,n_nonbg_colours,max_colour_cells,110,total_drop|mixed_4|mixed_2|absolutely_smaller,,"[(1, 4)]","[(1, 5)]",wrong
+training,d6542281,1,rule,-,-,-,0,same|same|same,,"[(24, 24), (23, 23)]","[(24, 24), (23, 23)]",correct
+training,d687bc17,1,rule,-,-,-,0,same|same|same,,"[(14, 17)]","[(14, 17)]",correct
+training,d6ad076f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d6e50e54,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,d749d46f,5,-,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,[],"[(10, 15)]",no_prediction
+training,d753a70b,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,d89b689b,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d8c310e9,1,rule,-,-,-,0,same|same|same,,"[(5, 15)]","[(5, 15)]",correct
+training,d90796e8,1,rule,-,-,-,0,same|same|same,,"[(7, 9)]","[(7, 9)]",correct
+training,d931c21c,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,d93c6891,1,rule,-,-,-,0,same|same|same,,"[(16, 18)]","[(16, 18)]",correct
+training,d94c3b52,1,rule,-,-,-,0,same|same|same,,"[(17, 25)]","[(17, 25)]",correct
+training,d968ffd4,1,rule,-,-,-,0,same|same|same,,"[(22, 3), (17, 6)]","[(22, 3), (17, 6)]",correct
+training,d9f24cd1,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,d9fac9be,3,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop,,"[(1, 1)]","[(1, 1)]",correct
+training,da2b0fe3,1,rule,-,-,-,0,same|same|same,,"[(10, 10), (10, 10)]","[(10, 10), (10, 10)]",correct
+training,da6e95e5,4,shapes,shapes,big_shape_h,big_shape_w,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,dae9d2b5,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(3, 3), (3, 3)]","[(3, 3), (3, 3)]",correct
+training,db118e2a,3,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(15, 15)]","[(15, 15)]",correct
+training,db3e9e38,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,db615bd4,1,rule,-,-,-,0,same|same|same,,"[(25, 25)]","[(25, 25)]",correct
+training,db7260a4,1,rule,-,-,-,0,same|same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,db93a21d,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,dbc1a6ce,1,rule,-,-,-,0,same|same|same|same,,"[(19, 21)]","[(19, 21)]",correct
+training,dc1df850,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,dc2aa30b,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,dc2e9a9d,1,rule,-,-,-,0,same|same|same,,"[(28, 29)]","[(28, 29)]",correct
+training,dc433765,1,rule,-,-,-,0,same|same|same|same|same|same|same,,"[(3, 3), (11, 11)]","[(3, 3), (11, 11)]",correct
+training,dc46ea44,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,dce56571,1,rule,-,-,-,0,same|same|same,,"[(11, 28)]","[(11, 28)]",correct
+training,dd2401ed,1,rule,-,-,-,0,same|same|same|same,,"[(7, 15)]","[(7, 15)]",correct
+training,ddf7fa4f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,de1cd16c,3,rule,-,-,-,0,total_drop|total_drop|total_drop|total_drop,,"[(1, 1)]","[(1, 1)]",correct
+training,de493100,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(10, 2)]",no_prediction
+training,ded97339,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,df8cc377,1,rule,-,-,-,0,same|same|same,,"[(22, 26)]","[(22, 26)]",correct
+training,df978a02,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,df9fd884,1,rule,-,-,-,0,same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,e048c9ed,1,rule,-,-,-,0,same|same|same|same,,"[(10, 12)]","[(10, 12)]",correct
+training,e0fb7511,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,e133d23d,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(3, 3)]","[(3, 3)]",correct
+training,e179c5f4,1,rule,-,-,-,0,same|same|same,,"[(10, 5)]","[(10, 5)]",correct
+training,e1baa8a4,5,rows_cols,rows_cols,n_distinct_rows,n_distinct_cols,9,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 4)]","[(5, 4)]",correct
+training,e1d2900e,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,e2092e0c,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,e21a174a,1,rule,-,-,-,0,same|same|same,,"[(13, 10), (7, 7)]","[(13, 10), (7, 7)]",correct
+training,e21d9049,1,rule,-,-,-,0,same|same,,"[(20, 20)]","[(20, 20)]",correct
+training,e26a3af2,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,e345f17b,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 4), (4, 4)]","[(4, 4), (4, 4)]",correct
+training,e3497940,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(10, 4)]","[(10, 4)]",correct
+training,e39e9282,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,e3f79277,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger,,"[(16, 16)]","[(16, 16)]",correct
+training,e3fe1151,1,rule,-,-,-,0,same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,e4075551,1,rule,-,-,-,0,same|same|same,,"[(16, 15)]","[(16, 15)]",correct
+training,e40b9e2f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,e41c6fd3,1,rule,-,-,-,0,same|same|same,,"[(17, 30)]","[(17, 30)]",correct
+training,e45ef808,1,rule,-,-,-,0,same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,e4888269,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (24, 13)]","[(30, 30), (24, 13)]",correct
+training,e48d4e1a,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,e4941b18,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,e5062a87,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,e509e548,1,rule,-,-,-,0,same|same|same,,"[(14, 16)]","[(14, 16)]",correct
+training,e50d258f,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(6, 3)]",no_prediction
+training,e57337a4,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,e5790162,1,rule,-,-,-,0,same|same|same|same|same,,"[(10, 12)]","[(10, 12)]",correct
+training,e5c44e8f,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,e619ca6e,1,rule,-,-,-,0,same|same|same,,"[(29, 28)]","[(29, 28)]",correct
+training,e633a9e5,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(5, 5)]","[(5, 5)]",correct
+training,e6721834,5,shapes,shapes,big_shape_h,big_shape_w,49,mixed_3|mixed_4|mixed_3,,"[(12, 12)]","[(12, 12)]",correct
+training,e681b708,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,e69241bd,1,rule,-,-,-,0,same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,e6de6e8f,2,rule,-,-,-,0,mixed_1|mixed_1|mixed_1,,"[(8, 7)]","[(8, 7)]",correct
+training,e729b7be,1,rule,-,-,-,0,same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,e73095fd,1,rule,-,-,-,0,same|same|same,,"[(16, 18)]","[(16, 18)]",correct
+training,e734a0e8,1,rule,-,-,-,0,same|same,,"[(17, 17)]","[(17, 17)]",correct
+training,e74e1818,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,e760a62e,1,rule,-,-,-,0,same|same|same,,"[(28, 28)]","[(28, 28)]",correct
+training,e7639916,1,rule,-,-,-,0,same|same|same,,"[(14, 13)]","[(14, 13)]",correct
+training,e76a88a6,1,rule,-,-,-,0,same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,e78887d1,5,shapes,shapes,big_shape_h,content_w,4,mixed_4|mixed_4|mixed_4|mixed_4,,"[(3, 15)]","[(3, 15)]",correct
+training,e7a25a18,4,shapes,shapes,big_shape_h,big_shape_h,196,absolutely_smaller|absolutely_smaller,,"[(10, 10)]","[(10, 10)]",correct
+training,e7b06bea,1,rule,-,-,-,0,same|same|same|same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,e7dd8335,1,rule,-,-,-,0,same|same|same,,"[(9, 11)]","[(9, 11)]",correct
+training,e84fef15,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(5, 5)]",correct
+training,e8593010,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,e872b94a,5,shapes,shapes,1*n_forms+1,n_most_common_form,216,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(3, 1)]",no_prediction
+training,e88171ec,1,rule,-,-,-,0,same|same|same,,"[(21, 21)]","[(21, 21)]",correct
+training,e8dc4411,1,rule,-,-,-,0,same|same|same,,"[(18, 16)]","[(18, 16)]",correct
+training,e9614598,1,rule,-,-,-,0,same|same,,"[(10, 6), (12, 12)]","[(10, 6), (12, 12)]",correct
+training,e98196ab,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4,,"[(5, 11)]","[(5, 11)]",correct
+training,e99362f0,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 4)]","[(5, 4)]",correct
+training,e9ac8c9e,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,e9afcf9a,1,rule,-,-,-,0,same|same,,"[(2, 6)]","[(2, 6)]",correct
+training,e9b4f6fc,4,shapes,shapes,big_shape_h,big_shape_w,81,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(6, 5)]","[(6, 5)]",correct
+training,e9bb6954,1,rule,-,-,-,0,same|same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,e9c9d9a1,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,e9fc42f2,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(11, 7), (8, 11)]",no_prediction
+training,ea32f347,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,ea786f4a,1,rule,-,-,-,0,same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,ea959feb,1,rule,-,-,-,0,same|same|same,,"[(22, 25)]","[(22, 25)]",correct
+training,ea9794b1,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(5, 5)]",correct
+training,eb281b96,5,colours,colours+sizes,ceil(max_colour_cells/2),in_w*n_nonbg_colours,6,mixed_4|mixed_4,,"[(17, 17)]","[(17, 17)]",correct
+training,eb5a1d5d,5,colours,colours,2*n_colours-1,2*n_colours-1,9,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(7, 7)]","[(9, 9)]",wrong
+training,ec883f72,1,rule,-,-,-,0,same|same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+training,ecaa0ec1,1,rule,-,-,-,0,same|same|same|same,,"[(11, 11)]","[(11, 11)]",correct
+training,ecb67b6d,1,rule,-,-,-,0,same|same|same,,"[(16, 19)]","[(16, 19)]",correct
+training,ecdecbb3,1,rule,-,-,-,0,same|same|same,,"[(17, 19)]","[(17, 19)]",correct
+training,ed36ccf7,1,rule,-,-,-,0,same|same|same|same,,"[(3, 3)]","[(3, 3)]",correct
+training,ed74f2f2,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3)]","[(3, 3)]",correct
+training,ed98d772,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,edcc2ff0,1,rule,-,-,-,0,same|same|same,,"[(20, 10)]","[(20, 10)]",correct
+training,ef135b50,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,ef26cbf6,1,rule,-,-,-,0,same|same,,"[(11, 7)]","[(11, 7)]",correct
+training,f0100645,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,f0afb749,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(6, 6)]","[(6, 6)]",correct
+training,f0df5ff0,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,f0f8a26d,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,f15e1fac,1,rule,-,-,-,0,same|same|same,,"[(12, 17)]","[(12, 17)]",correct
+training,f18ec8cc,1,rule,-,-,-,0,same|same|same|same,,"[(8, 13), (7, 15)]","[(8, 13), (7, 15)]",correct
+training,f1bcbc2c,1,rule,-,-,-,0,same|same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,f1cefba8,1,rule,-,-,-,0,same|same|same,,"[(19, 18)]","[(19, 18)]",correct
+training,f21745ec,1,rule,-,-,-,0,same|same|same,,"[(23, 22)]","[(23, 22)]",correct
+training,f25fbde4,4,shapes,shapes,2*big_shape_h,2*big_shape_w,144,absolutely_smaller|absolutely_smaller|absolutely_smaller,yes,"[(6, 10)]","[(6, 10)]",correct
+training,f25ffba3,1,rule,-,-,-,0,same|same,,"[(10, 4)]","[(10, 4)]",correct
+training,f2829549,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3|mixed_3|mixed_3,,"[(4, 3)]","[(4, 3)]",correct
+training,f28a3cbb,1,rule,-,-,-,0,same|same,,"[(9, 9)]","[(9, 9)]",correct
+training,f341894c,1,rule,-,-,-,0,same|same|same,,"[(18, 18)]","[(18, 18)]",correct
+training,f35d900a,1,rule,-,-,-,0,same|same|same|same,,"[(17, 18)]","[(17, 18)]",correct
+training,f3b10344,1,rule,-,-,-,0,same|same|same,,"[(30, 29)]","[(30, 29)]",correct
+training,f3cdc58f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,f3e14006,1,rule,-,-,-,0,same|same|same|same,,"[(25, 15), (10, 10)]","[(25, 15), (10, 10)]",correct
+training,f3e62deb,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(10, 10), (10, 10)]","[(10, 10), (10, 10)]",correct
+training,f45f5ca7,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,f5aa3634,5,shapes,shapes,big_shape_w,ceil(n_nonsolid/2),20,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[None],"[(4, 3)]",no_prediction
+training,f5b8619d,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(8, 8)]","[(8, 8)]",correct
+training,f5c89df1,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+training,f76d97a5,1,rule,-,-,-,0,same|same|same,,"[(5, 5)]","[(5, 5)]",correct
+training,f823c43c,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,f83cb3f6,1,rule,-,-,-,0,same|same|same,,"[(10, 15)]","[(10, 15)]",correct
+training,f8a8fe49,1,rule,-,-,-,0,same|same|same,,"[(15, 15)]","[(15, 15)]",correct
+training,f8b3ba0a,3,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 1)]","[(3, 1)]",correct
+training,f8be4b64,1,rule,-,-,-,0,same|same|same|same,,"[(19, 19)]","[(19, 19)]",correct
+training,f8c80d96,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,f8cc533f,1,rule,-,-,-,0,same|same|same,,"[(20, 18), (22, 22)]","[(20, 18), (22, 22)]",correct
+training,f8f52ecc,1,rule,-,-,-,0,same|same|same,,"[(8, 10), (12, 12)]","[(8, 10), (12, 12)]",correct
+training,f8ff0b80,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 1)]","[(3, 1)]",correct
+training,f9012d9b,5,colours,colours,ceil(min_colour_cells/2),ceil(min_colour_cells/2),4,total_drop|absolutely_smaller|absolutely_smaller,,[None],"[(3, 3)]",no_prediction
+training,f9a67cb5,1,rule,-,-,-,0,same|same|same,,"[(15, 14)]","[(15, 14)]",correct
+training,f9d67f8b,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,fafd9572,1,rule,-,-,-,0,same|same,,"[(14, 12)]","[(14, 12)]",correct
+training,fafffa47,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_4|mixed_4,,"[(3, 3)]","[(3, 3)]",correct
+training,fb791726,5,sizes,sizes,2*in_h,2*in_h,9,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(8, 8)]","[(8, 8)]",correct
+training,fbf15a0b,5,-,-,-,-,0,mixed_4|mixed_4|mixed_4|mixed_3,,[],"[(4, 4), (10, 14)]",no_prediction
+training,fc10701f,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+training,fc4aaf52,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,fc754716,1,rule,-,-,-,0,same|same|same|same,,"[(9, 7)]","[(9, 7)]",correct
+training,fcb5c309,5,shapes,shapes,big_shape_h,big_shape_w,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(8, 8)]","[(8, 8)]",correct
+training,fcc82909,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+training,fd02da9e,1,rule,-,-,-,0,same|same|same|same,,"[(8, 8)]","[(8, 8)]",correct
+training,fd096ab6,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+training,fd4b2b02,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,fe45cba4,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+training,fe9372f3,1,rule,-,-,-,0,same|same,,"[(30, 17)]","[(30, 17)]",correct
+training,fea12743,1,rule,-,-,-,0,same|same|same,,"[(16, 11)]","[(16, 11)]",correct
+training,feca6190,4,colours,colours+sizes,in_area*n_nonbg_colours,in_area*n_nonbg_colours,64,absolutely_bigger|mixed_4|absolutely_bigger|mixed_4|absolutely_bigger,,"[(20, 20)]","[(20, 20)]",correct
+training,ff2825db,1,rule,-,-,-,0,same|same|same,,"[(10, 10), (10, 10)]","[(10, 10), (10, 10)]",correct
+training,ff28f65a,5,colours,colours,1*n_colours+1,1*n_colours+1,49,absolutely_smaller|absolutely_smaller|absolutely_smaller|same|absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(3, 3), (3, 3), (3, 3)]","[(3, 3), (3, 3), (3, 3)]",correct
+training,ff72ca3e,1,rule,-,-,-,0,same|same|same|same,,"[(30, 20)]","[(30, 20)]",correct
+training,ff805c23,2,rule,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 5)]","[(5, 5)]",correct
+evaluation,0934a4d8,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(9, 3)]",no_prediction
+evaluation,135a2760,1,rule,-,-,-,0,same|same,,"[(29, 29)]","[(29, 29)]",correct
+evaluation,136b0064,5,sizes,sizes,in_h,in_w//2,1,mixed_3|mixed_3|mixed_3,,"[(19, 7)]","[(19, 7)]",correct
+evaluation,13e47133,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+evaluation,142ca369,1,rule,-,-,-,0,same|same|same,,"[(18, 18), (20, 19)]","[(18, 18), (20, 19)]",correct
+evaluation,16b78196,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,16de56c4,1,rule,-,-,-,0,same|same|same,,"[(9, 21), (9, 21)]","[(9, 21), (9, 21)]",correct
+evaluation,1818057f,1,rule,-,-,-,0,same|same|same,,"[(22, 22)]","[(22, 22)]",correct
+evaluation,195c6913,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+evaluation,1ae2feb7,1,rule,-,-,-,0,same|same|same,,"[(10, 20), (8, 15), (8, 15)]","[(10, 20), (8, 15), (8, 15)]",correct
+evaluation,20270e3b,5,-,-,-,-,0,mixed_3|mixed_3|mixed_4|mixed_2,,[],"[(5, 10), (8, 8)]",no_prediction
+evaluation,20a9e565,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(2, 21), (8, 17)]",no_prediction
+evaluation,21897d95,5,sizes,sizes,in_w,in_h,1,mixed_2|same|mixed_2|same,,"[(30, 30), (24, 24)]","[(30, 30), (24, 24)]",correct
+evaluation,221dfab4,1,rule,-,-,-,0,same|same,,"[(25, 25), (30, 30)]","[(25, 25), (30, 30)]",correct
+evaluation,247ef758,1,rule,-,-,-,0,same|same|same,,"[(15, 20), (12, 18)]","[(15, 20), (12, 18)]",correct
+evaluation,269e22fb,3,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(20, 20), (20, 20)]","[(20, 20), (20, 20)]",correct
+evaluation,271d71e2,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+evaluation,28a6681f,1,rule,-,-,-,0,same|same|same,,"[(10, 10)]","[(10, 10)]",correct
+evaluation,291dc1e1,5,-,-,-,-,0,absolutely_smaller|mixed_3|mixed_1|mixed_1,,[],"[(18, 8)]",no_prediction
+evaluation,2b83f449,1,rule,-,-,-,0,same|same,,"[(19, 17)]","[(19, 17)]",correct
+evaluation,2ba387bc,5,shapes,shapes,4*n_most_common_form,2*big_shape_h,270,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(16, 8)]","[(16, 8)]",correct
+evaluation,2c181942,1,rule,-,-,-,0,same|same|same,,"[(24, 26)]","[(24, 26)]",correct
+evaluation,2d0172a1,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(9, 13), (14, 11)]",no_prediction
+evaluation,31f7f899,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+evaluation,332f06d7,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+evaluation,35ab12c3,1,rule,-,-,-,0,same|same|same,,"[(21, 21)]","[(21, 21)]",correct
+evaluation,36a08778,1,rule,-,-,-,0,same|same|same|same|same|same,,"[(16, 16), (30, 30)]","[(16, 16), (30, 30)]",correct
+evaluation,38007db0,3,rule,-,-,-,0,mixed_3|mixed_3,,"[(19, 7), (19, 7)]","[(29, 8), (25, 7)]",wrong
+evaluation,3a25b0d8,4,shapes,shapes,big_shape_h,big_shape_w,18,absolutely_smaller|absolutely_smaller,,"[None, None]","[(18, 13), (14, 11)]",no_prediction
+evaluation,3dc255db,1,rule,-,-,-,0,same|same|same,,"[(12, 13)]","[(12, 13)]",correct
+evaluation,3e6067c3,1,rule,-,-,-,0,same|same|same,,"[(29, 29), (30, 30)]","[(29, 29), (30, 30)]",correct
+evaluation,409aa875,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+evaluation,446ef5d2,1,rule,-,-,-,0,same|same,,"[(26, 26), (20, 20)]","[(26, 26), (20, 20)]",correct
+evaluation,45a5af55,5,sizes,sizes,2*in_h-2,2*in_h-2,1,absolutely_bigger|absolutely_bigger,,"[(26, 26)]","[(26, 26)]",correct
+evaluation,4a21e3da,1,rule,-,-,-,0,same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+evaluation,4c3d4a41,1,rule,-,-,-,0,same|same,,"[(8, 20), (8, 20)]","[(8, 20), (8, 20)]",correct
+evaluation,4c416de3,1,rule,-,-,-,0,same|same|same,,"[(19, 22)]","[(19, 22)]",correct
+evaluation,4c7dc4dd,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller,,[],"[(5, 5), (6, 6)]",no_prediction
+evaluation,4e34c42c,5,shapes,shapes,3*small_shape_cells+2,content_h-big_shape_h,9,absolutely_smaller|mixed_2,,"[None, None]","[(14, 19), (9, 19)]",no_prediction
+evaluation,53fb4810,1,rule,-,-,-,0,same|same,,"[(25, 18)]","[(25, 18)]",correct
+evaluation,5545f144,5,-,-,-,-,0,mixed_3|mixed_3|mixed_3,,[],"[(15, 15)]",no_prediction
+evaluation,581f7754,1,rule,-,-,-,0,same|same|same,,"[(14, 20), (11, 22)]","[(14, 20), (11, 22)]",correct
+evaluation,58490d8a,5,shapes,shapes,big_shape_h,big_shape_w,49,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(9, 11)]","[(9, 11)]",correct
+evaluation,58f5dbd5,5,-,-,-,-,0,mixed_3|mixed_4|absolutely_smaller,,[],"[(19, 13)]",no_prediction
+evaluation,5961cc34,1,rule,-,-,-,0,same|same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+evaluation,5dbc8537,5,-,-,-,-,0,mixed_3|mixed_4,,[],"[(10, 25), (20, 8)]",no_prediction
+evaluation,62593bfd,1,rule,-,-,-,0,same|same,,"[(25, 25), (19, 28)]","[(25, 25), (19, 28)]",correct
+evaluation,64efde09,1,rule,-,-,-,0,same|same,,"[(29, 29)]","[(29, 29)]",correct
+evaluation,65b59efc,5,shapes,shapes,big_shape_h*big_shape_w,big_shape_h*big_shape_w,4,absolutely_smaller|absolutely_smaller|absolutely_bigger,,"[(25, 25), (16, 16)]","[(25, 25), (16, 16)]",correct
+evaluation,67e490f4,4,colours,colours,min_colour_cells+n_nonbg_colours,min_colour_cells+n_nonbg_colours,1,absolutely_smaller|absolutely_smaller,,"[(16, 16)]","[(7, 30)]",wrong
+evaluation,6e453dd6,1,rule,-,-,-,0,same|same|same,,"[(25, 12)]","[(25, 12)]",correct
+evaluation,6e4f6532,1,rule,-,-,-,0,same|same,,"[(30, 28), (30, 16)]","[(30, 28), (30, 16)]",correct
+evaluation,6ffbe589,4,rows_cols,rows_cols,1*n_distinct_cols-2,1*n_distinct_cols-2,1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(10, 10)]","[(13, 13)]",wrong
+evaluation,71e489b6,1,rule,-,-,-,0,same|same|same,,"[(16, 16), (18, 19)]","[(16, 16), (18, 19)]",correct
+evaluation,7491f3cf,1,rule,-,-,-,0,same|same|same|same,,"[(7, 25)]","[(7, 25)]",correct
+evaluation,7666fa5d,1,rule,-,-,-,0,same|same,,"[(16, 16)]","[(16, 16)]",correct
+evaluation,78332cb0,5,-,-,-,-,0,mixed_1|mixed_2|mixed_1,,[],"[(5, 23), (23, 5)]",no_prediction
+evaluation,7b0280bc,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,7b3084d4,4,colours,colours,sqrt(nonbg_cells),sqrt(nonbg_cells),1,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(14, 14)]","[(14, 14)]",correct
+evaluation,7b5033c1,4,colours,colours,nonbg_cells,n_nonbg_colours//3,4,mixed_1|mixed_1,,"[(25, 1)]","[(25, 1)]",correct
+evaluation,7b80bb43,1,rule,-,-,-,0,same|same,,"[(29, 17)]","[(29, 17)]",correct
+evaluation,7c66cb00,1,rule,-,-,-,0,same|same|same,,"[(30, 24)]","[(30, 24)]",correct
+evaluation,7ed72f31,1,rule,-,-,-,0,same|same,,"[(18, 18), (28, 28)]","[(18, 18), (28, 28)]",correct
+evaluation,800d221b,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,80a900e0,1,rule,-,-,-,0,same|same,,"[(22, 21)]","[(22, 21)]",correct
+evaluation,8698868d,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller,,[],"[(14, 21)]",no_prediction
+evaluation,88bcf3b4,1,rule,-,-,-,0,same|same|same|same|same,,"[(22, 22), (27, 27)]","[(22, 22), (27, 27)]",correct
+evaluation,88e364bc,1,rule,-,-,-,0,same|same|same,,"[(20, 20), (20, 20)]","[(20, 20), (20, 20)]",correct
+evaluation,89565ca0,5,shapes,colours+shapes,n_nonbg_colours-small_shape_cells,4*small_shape_cells,27,absolutely_smaller|absolutely_smaller|absolutely_smaller,,"[(5, 4)]","[(5, 6)]",wrong
+evaluation,898e7135,5,shapes,shapes,2*big_shape_h,2*big_shape_w,1,absolutely_smaller|mixed_1,,"[(20, 20)]","[(30, 30)]",wrong
+evaluation,8b7bacbf,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30), (22, 26)]","[(30, 30), (22, 26)]",correct
+evaluation,8b9c3697,1,rule,-,-,-,0,same|same|same,,"[(23, 27)]","[(23, 27)]",correct
+evaluation,8e5c0c38,1,rule,-,-,-,0,same|same,,"[(22, 22), (22, 22)]","[(22, 22), (22, 22)]",correct
+evaluation,8f215267,1,rule,-,-,-,0,same|same|same,,"[(27, 23)]","[(27, 23)]",correct
+evaluation,8f3a5a89,1,rule,-,-,-,0,same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+evaluation,9385bd28,1,rule,-,-,-,0,same|same|same|same,,"[(19, 13), (13, 19)]","[(19, 13), (13, 19)]",correct
+evaluation,97d7923e,1,rule,-,-,-,0,same|same|same,,"[(10, 20)]","[(10, 20)]",correct
+evaluation,981571dc,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,9aaea919,1,rule,-,-,-,0,same|same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,9bbf930d,1,rule,-,-,-,0,same|same|same,,"[(23, 21)]","[(23, 21)]",correct
+evaluation,a251c730,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller,,[],"[(9, 14)]",no_prediction
+evaluation,a25697e4,1,rule,-,-,-,0,same|same|same,,"[(30, 30), (30, 25)]","[(30, 30), (30, 25)]",correct
+evaluation,a32d8b75,2,rule,-,-,-,0,mixed_3|mixed_3|mixed_3,,"[(20, 24), (20, 24)]","[(30, 20), (30, 22)]",wrong
+evaluation,a395ee82,1,rule,-,-,-,0,same|same|same,,"[(22, 22)]","[(22, 22)]",correct
+evaluation,a47bf94d,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+evaluation,a6f40cea,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(8, 10)]",no_prediction
+evaluation,aa4ec2a5,1,rule,-,-,-,0,same|same|same,,"[(26, 27)]","[(26, 27)]",correct
+evaluation,abc82100,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+evaluation,b0039139,5,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(19, 5), (5, 29)]",no_prediction
+evaluation,b10624e5,1,rule,-,-,-,0,same|same,,"[(27, 27)]","[(27, 27)]",correct
+evaluation,b5ca7ac4,1,rule,-,-,-,0,same|same|same,,"[(22, 22)]","[(22, 22)]",correct
+evaluation,b6f77b65,1,rule,-,-,-,0,same|same|same|same|same,,"[(12, 12), (12, 12)]","[(12, 12), (12, 12)]",correct
+evaluation,b99e7126,1,rule,-,-,-,0,same|same|same,,"[(29, 29)]","[(29, 29)]",correct
+evaluation,b9e38dc0,1,rule,-,-,-,0,same|same|same,,"[(15, 19)]","[(15, 19)]",correct
+evaluation,bf45cf4b,5,-,-,-,-,0,mixed_4|mixed_3|same,,[],"[(25, 25)]",no_prediction
+evaluation,c4d067a0,1,rule,-,-,-,0,same|same|same,,"[(27, 27)]","[(27, 27)]",correct
+evaluation,c7f57c3e,1,rule,-,-,-,0,same|same,,"[(28, 28)]","[(28, 28)]",correct
+evaluation,cb2d8a2c,1,rule,-,-,-,0,same|same|same|same,,"[(14, 26), (29, 16)]","[(14, 26), (29, 16)]",correct
+evaluation,cbebaa4b,1,rule,-,-,-,0,same|same,,"[(26, 26), (26, 26)]","[(26, 26), (26, 26)]",correct
+evaluation,d35bdbdc,1,rule,-,-,-,0,same|same|same,,"[(10, 10), (10, 10), (10, 10)]","[(10, 10), (10, 10), (10, 10)]",correct
+evaluation,d59b0160,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+evaluation,d8e07eb2,1,rule,-,-,-,0,same|same|same|same|same,,"[(30, 22), (30, 22)]","[(30, 22), (30, 22)]",correct
+evaluation,da515329,1,rule,-,-,-,0,same|same|same,,"[(26, 26)]","[(26, 26)]",correct
+evaluation,db0c5428,1,rule,-,-,-,0,same|same|same,,"[(17, 17)]","[(17, 17)]",correct
+evaluation,db695cfb,1,rule,-,-,-,0,same|same|same|same|same,,"[(25, 21)]","[(25, 21)]",correct
+evaluation,dbff022c,1,rule,-,-,-,0,same|same|same,,"[(13, 13)]","[(13, 13)]",correct
+evaluation,dd6b8c4b,1,rule,-,-,-,0,same|same|same,,"[(11, 11), (11, 11)]","[(11, 11), (11, 11)]",correct
+evaluation,de809cff,1,rule,-,-,-,0,same|same,,"[(30, 30)]","[(30, 30)]",correct
+evaluation,dfadab01,1,rule,-,-,-,0,same|same|same|same,,"[(20, 20)]","[(20, 20)]",correct
+evaluation,e12f9a14,1,rule,-,-,-,0,same|same|same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+evaluation,e3721c99,1,rule,-,-,-,0,same|same,,"[(30, 30), (30, 30)]","[(30, 30), (30, 30)]",correct
+evaluation,e376de54,1,rule,-,-,-,0,same|same|same,,"[(16, 16)]","[(16, 16)]",correct
+evaluation,e8686506,4,shapes,shapes,1*n_shapes8-2,3*small_shape_cells+2,40,absolutely_smaller|absolutely_smaller,,[None],"[(8, 5)]",no_prediction
+evaluation,e87109e9,2,rule,-,-,-,0,mixed_4|mixed_4|mixed_4,,"[(19, 24)]","[(24, 24)]",wrong
+evaluation,edb79dae,5,shapes,shapes,big_shape_h,big_shape_w,24,absolutely_smaller|absolutely_smaller,,[None],"[(21, 21)]",no_prediction
+evaluation,eee78d87,2,rule,-,-,-,0,absolutely_bigger|absolutely_bigger|absolutely_bigger,,"[(16, 16)]","[(16, 16)]",correct
+evaluation,f560132c,4,colours,colours,sqrt(nonbg_cells),sqrt(nonbg_cells),1,absolutely_smaller|absolutely_smaller,,"[(12, 12)]","[(12, 12)]",correct
+evaluation,f931b4a8,5,-,-,-,-,0,mixed_1|absolutely_bigger|absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(10, 8), (4, 4)]",no_prediction
+evaluation,faa9f03d,1,rule,-,-,-,0,same|same|same|same,,"[(12, 12)]","[(12, 12)]",correct
+evaluation,fc7cae8d,4,-,-,-,-,0,absolutely_smaller|absolutely_smaller|absolutely_smaller,,[],"[(20, 12)]",no_prediction
