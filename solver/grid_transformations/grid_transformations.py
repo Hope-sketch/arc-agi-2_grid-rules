@@ -1,278 +1,329 @@
 """
-Step 6: Grid Transformations (investigation only)
+Step 6: Grid transformations, version 2 (investigation only, not used to solve yet)
 
-Tests a library of whole-grid transformations against every training pair of every task:
+The transformation is LEARNED from the training pairs, never hard-coded by colour
+or shape. Which probe applies depends on what the earlier steps found:
 
-  geometric   : identity, flip, rotate, transpose
-  scale       : upscale / downscale by the size ratio seen in training
-  tile        : repeat the grid n x m times (plain or mirrored)
-  mirror join : grid + its mirror (side by side / stacked / 2x2)
-  crop        : bounding box of everything that is not background; halves
-  colour map  : any of the above followed by ONE consistent colour mapping
-                learned from the training pairs (no colour is hard-coded)
+  Probe 1  LOCAL RULE   (tasks where every training pair keeps the same size)
+      Learn what each cell becomes from its neighbourhood. Neighbourhood kinds,
+      simplest first:
+        centre      : the cell's own colour only (a colour map)
+        cross_rel   : own colour + which of the 4 side neighbours match it
+        block3_rel  : own colour + which of the 8 neighbours match it
+        cross       : own colour + the 4 side neighbours' colours
+        block3      : own colour + the 8 neighbours' colours
+      "consistent" = the same neighbourhood never gives two different outputs.
+      Test check: how many test-input cells have a neighbourhood seen in training
+      (coverage) and does the rule reproduce the public test output?
+        exact          : every cell covered and the output matches
+        exact_fallback : some cells not covered (kept as they are) and it matches
+        wrong          : it does not match
+  Probe 2  CONTAINED    (tasks where every training output fits inside its input)
+      Is the output an exact piece of the input (or a flipped / rotated piece)?
+      Also: is that piece the bounding box of everything that is not background?
+      Test check: is the test output also a piece of the test input?
+  Probe 3  WHOLE GRID   (every task, the old fixed library in whole_grid_library.py)
+      Flips, rotations, mirrors, tiling, scaling, crop, halves, with one learned
+      colour map. FOUND = reproduces every training output.
 
-A transformation counts as FOUND when it reproduces the output of EVERY training pair.
-As a sanity check against fooling ourselves, a found transformation is then applied to the
-test input and compared with the real test output (these are public, so we can check).
+Groups (size word, palette word, shape word) come from the earlier steps, so the
+tables show which kind of transformation works for which kind of task.
 
-Writes:
-  results/grid_transformations_results.csv   one row per task
+Usage
+  python solver/grid_transformations/grid_transformations.py
 
-Usage:
-  python grid_transformations.py <folder of task .json files>
+Outputs
+  * tables in the terminal
+  * solver/grid_transformations/results/grid_transformations_results.csv
 """
 
 import csv
 import json
-import os
-import sys
-from collections import Counter
+from collections import Counter, defaultdict
+from pathlib import Path
 
 import numpy as np
+from numpy.lib.stride_tricks import sliding_window_view
 
-DATA_PATH = "data/training"
-RESULTS_DIR = "results"
-SUMMARY_CSV = os.path.join(RESULTS_DIR, "grid_transformations_results.csv")
+from whole_grid_library import crop_non_background, find_whole_grid
+
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]                       # repo root (holds data/)
+DATA_DIR = ROOT / "data"
+GROUPS_CSV = ROOT / "solver" / "grid_shapes" / "results" / "grid_groups_shapes_results.csv"
+CELLS_CSV = ROOT / "solver" / "grid_cells" / "results" / "grid_cells_results.csv"
+OUT_CSV = HERE / "results" / "grid_transformations_results.csv"
+
+NEIGHBOUR_KINDS = ["centre", "cross_rel", "block3_rel", "cross", "block3"]
+
+DIHEDRAL = {
+    "same":           lambda g: g,
+    "flip_h":         lambda g: g[:, ::-1],
+    "flip_v":         lambda g: g[::-1, :],
+    "rotate_90":      lambda g: np.rot90(g, -1),
+    "rotate_180":     lambda g: np.rot90(g, 2),
+    "rotate_270":     lambda g: np.rot90(g, 1),
+    "transpose":      lambda g: g.T,
+    "anti_transpose": lambda g: np.rot90(g, 2).T,
+}
 
 
-# ----------------------------------------------------------------------------
-# LOADING
-# ----------------------------------------------------------------------------
-def load_tasks(path):
+# ----------------------------------------------------------------------
+# Load
+# ----------------------------------------------------------------------
+def load_tasks(folder):
     tasks = {}
-    for name in sorted(os.listdir(path)):
-        if name.endswith(".json"):
-            with open(os.path.join(path, name)) as f:
-                data = json.load(f)
-            if isinstance(data, dict) and "train" in data:
-                tasks[os.path.splitext(name)[0]] = data
+    for file_path in sorted(folder.glob("*.json")):
+        with file_path.open("r", encoding="utf-8") as file:
+            tasks[file_path.stem] = json.load(file)
     return tasks
 
 
-def to_np(g):
-    return np.array(g, dtype=int)
+def read_lookup(path, label):
+    if not path.exists():
+        print(f"Note: {label} not found, its columns stay empty ({path})")
+        return {}
+    with path.open("r", newline="", encoding="utf-8-sig") as file:
+        return {(r["dataset"], r["task_id"]): r for r in csv.DictReader(file)}
 
 
-def background(g):
-    vals, counts = np.unique(g, return_counts=True)
-    return vals[np.argmax(counts)]
+def to_np(grid):
+    return np.array(grid, dtype=int)
 
 
-# ----------------------------------------------------------------------------
-# TRANSFORMATION LIBRARY
-# ----------------------------------------------------------------------------
-def crop_non_background(g):
-    bg = background(g)
-    ys, xs = np.where(g != bg)
-    if len(ys) == 0:
-        return None
-    return g[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
+# ----------------------------------------------------------------------
+# Probe 1: local rule (same-size tasks)
+# ----------------------------------------------------------------------
+def neighbourhood_keys(g, kind):
+    """One key (a tuple) per cell, in row order."""
+    p = np.pad(g, 1, constant_values=-1)      # -1 = outside the grid
+    sides = [p[:-2, 1:-1], p[2:, 1:-1], p[1:-1, :-2], p[1:-1, 2:]]
+    corners = [p[:-2, :-2], p[:-2, 2:], p[2:, :-2], p[2:, 2:]]
+    if kind == "centre":
+        parts = [g]
+    elif kind == "cross_rel":
+        parts = [g] + [n == g for n in sides]
+    elif kind == "block3_rel":
+        parts = [g] + [n == g for n in sides + corners]
+    elif kind == "cross":
+        parts = [g] + sides
+    else:
+        parts = [g] + sides + corners
+    return list(zip(*[a.ravel().tolist() for a in parts]))
 
 
-def fixed_transforms():
-    """Parameter-free transformations: name -> function."""
-    t = {
-        "identity":        lambda g: g,
-        "flip_horizontal": lambda g: g[:, ::-1],
-        "flip_vertical":   lambda g: g[::-1, :],
-        "rotate_90":       lambda g: np.rot90(g, -1),
-        "rotate_180":      lambda g: np.rot90(g, 2),
-        "rotate_270":      lambda g: np.rot90(g, 1),
-        "transpose":       lambda g: g.T,
-        "anti_transpose":  lambda g: np.rot90(g, 2).T,
-        "mirror_right":    lambda g: np.hstack([g, g[:, ::-1]]),
-        "mirror_left":     lambda g: np.hstack([g[:, ::-1], g]),
-        "mirror_down":     lambda g: np.vstack([g, g[::-1, :]]),
-        "mirror_up":       lambda g: np.vstack([g[::-1, :], g]),
-        "mirror_2x2":      lambda g: np.vstack([np.hstack([g, g[:, ::-1]]),
-                                                np.hstack([g[::-1, :], g[::-1, ::-1]])]),
-        "rotate_2x2":      lambda g: np.vstack([np.hstack([g, np.rot90(g, -1)]),
-                                                np.hstack([np.rot90(g, 1), np.rot90(g, 2)])])
-                           if g.shape[0] == g.shape[1] else None,
-        "crop_non_background": crop_non_background,
-        "half_left":       lambda g: g[:, :g.shape[1] // 2],
-        "half_right":      lambda g: g[:, (g.shape[1] + 1) // 2:],
-        "half_top":        lambda g: g[:g.shape[0] // 2, :],
-        "half_bottom":     lambda g: g[(g.shape[0] + 1) // 2:, :],
-    }
-    return t
-
-
-def parameterised_transforms(first_in, first_out):
-    """Scale / tile transformations, parameters taken from the size ratio of training pair 0."""
-    t = {}
-    hi, wi = first_in.shape
-    ho, wo = first_out.shape
-    # upscale
-    if ho % hi == 0 and wo % wi == 0 and (ho // hi, wo // wi) != (1, 1):
-        ky, kx = ho // hi, wo // wi
-        t[f"upscale_{ky}x{kx}"] = lambda g, ky=ky, kx=kx: np.kron(g, np.ones((ky, kx), dtype=int))
-        t[f"tile_{ky}x{kx}"] = lambda g, ky=ky, kx=kx: np.tile(g, (ky, kx))
-        t[f"tile_mirrored_{ky}x{kx}"] = lambda g, ky=ky, kx=kx: mirrored_tile(g, ky, kx)
-    # downscale
-    if hi % ho == 0 and wi % wo == 0 and (hi // ho, wi // wo) != (1, 1):
-        ky, kx = hi // ho, wi // wo
-        t[f"downscale_{ky}x{kx}"] = lambda g, ky=ky, kx=kx: g[::ky, ::kx] if g.shape[0] % ky == 0 and g.shape[1] % kx == 0 else None
-    return t
-
-
-def mirrored_tile(g, ky, kx):
-    rows = []
-    for i in range(ky):
-        row = []
-        for j in range(kx):
-            tile = g
-            if i % 2 == 1:
-                tile = tile[::-1, :]
-            if j % 2 == 1:
-                tile = tile[:, ::-1]
-            row.append(tile)
-        rows.append(np.hstack(row))
-    return np.vstack(rows)
-
-
-# ----------------------------------------------------------------------------
-# TESTING A TRANSFORMATION
-# ----------------------------------------------------------------------------
-def safe_apply(fn, g):
-    try:
-        out = fn(g)
-    except Exception:
-        return None
-    if out is None or out.size == 0:
-        return None
-    return np.array(out)
-
-
-def learn_colour_map(predictions, targets):
-    """One colour map (a -> b) consistent over every training pair, or None."""
-    mapping = {}
-    for p, t in zip(predictions, targets):
-        if p is None or p.shape != t.shape:
-            return None
-        for a, b in zip(p.ravel(), t.ravel()):
-            if mapping.setdefault(int(a), int(b)) != int(b):
+def learn_local_rule(pairs, kind):
+    """neighbourhood -> output colour, or None if it is not consistent."""
+    rule = {}
+    for grid_in, grid_out in pairs:
+        for key, out in zip(neighbourhood_keys(grid_in, kind), grid_out.ravel().tolist()):
+            if rule.setdefault(key, out) != out:
                 return None
-    return mapping
+    return rule
 
 
-def apply_map(g, mapping):
-    out = g.copy()
-    for a in np.unique(g):
-        if int(a) not in mapping:
-            return None          # colour never seen in training: cannot map it
-        out[g == a] = mapping[int(a)]
-    return out
+def local_probe(train, tests):
+    blank = {"local_kind": "n/a", "local_rule_size": "", "local_coverage": "",
+             "local_test": "n/a"}
+    if not all(i.shape == o.shape for i, o in train):
+        return blank
+    blank["local_kind"] = "none"
+    for kind in NEIGHBOUR_KINDS:
+        rule = learn_local_rule(train, kind)
+        if rule is not None:
+            break
+    else:
+        return blank
+
+    results, coverages = [], []
+    for grid_in, grid_out in tests:
+        if grid_out is None:
+            continue
+        keys = neighbourhood_keys(grid_in, kind)
+        covered = [k in rule for k in keys]
+        coverages.append(sum(covered) / len(covered))
+        predicted = np.array([rule.get(k, c) for k, c in
+                              zip(keys, grid_in.ravel().tolist())]).reshape(grid_in.shape)
+        matches = predicted.shape == grid_out.shape and np.array_equal(predicted, grid_out)
+        results.append((matches, all(covered)))
+
+    if not results:
+        test = "n/a"
+    elif not all(m for m, _ in results):
+        test = "wrong"
+    elif all(c for _, c in results):
+        test = "exact"
+    else:
+        test = "exact_fallback"
+    return {"local_kind": kind, "local_rule_size": len(rule),
+            "local_coverage": f"{100 * min(coverages):.0f}" if coverages else "",
+            "local_test": test}
 
 
-def cell_accuracy(p, t):
-    if p is None or p.shape != t.shape:
-        return 0.0
-    return float((p == t).mean())
+# ----------------------------------------------------------------------
+# Probe 2: output is a piece of the input
+# ----------------------------------------------------------------------
+def occurs(big, small):
+    if small.shape[0] > big.shape[0] or small.shape[1] > big.shape[1]:
+        return False
+    windows = sliding_window_view(big, small.shape)
+    return bool((windows == small).all(axis=(2, 3)).any())
 
 
-def analyse_task(task_id, task):
+def contained_probe(train, tests):
+    blank = {"contained": "n/a", "contained_where": "", "contained_test": "n/a"}
+    if all(i.shape == o.shape for i, o in train):
+        return blank                                    # same-size task, probe 1's job
+    if not all(o.shape[0] <= i.shape[0] and o.shape[1] <= i.shape[1] for i, o in train):
+        return blank
+
+    common = None
+    for grid_in, grid_out in train:
+        names = {n for n, t in DIHEDRAL.items() if occurs(grid_in, t(grid_out))}
+        common = names if common is None else common & names
+    if not common:
+        blank["contained"] = "none"
+        return blank
+
+    name = next(n for n in DIHEDRAL if n in common)
+    transform = DIHEDRAL[name]
+    in_bbox = 0
+    for grid_in, grid_out in train:
+        crop = crop_non_background(grid_in)
+        if crop is not None and crop.shape == grid_out.shape and np.array_equal(crop, transform(grid_out)):
+            in_bbox += 1
+    where = "bbox_crop" if in_bbox == len(train) else "elsewhere"
+
+    checks = [occurs(grid_in, transform(grid_out)) for grid_in, grid_out in tests
+              if grid_out is not None]
+    test = "n/a" if not checks else ("holds" if all(checks) else "breaks")
+    return {"contained": name, "contained_where": where, "contained_test": test}
+
+
+# ----------------------------------------------------------------------
+# One task
+# ----------------------------------------------------------------------
+def analyse_task(task):
     train = [(to_np(p["input"]), to_np(p["output"])) for p in task["train"]]
     tests = [(to_np(p["input"]), to_np(p["output"]) if "output" in p else None)
              for p in task["test"]]
 
-    library = fixed_transforms()
-    library.update(parameterised_transforms(*train[0]))
+    row = {}
+    row.update(local_probe(train, tests))
+    row.update(contained_probe(train, tests))
+    whole = find_whole_grid(train, tests)
+    row["whole_grid"] = whole["category"]
+    row["whole_grid_choice"] = whole["chosen"]
+    row["whole_grid_test"] = whole["test_correct"]
 
-    exact, colour_map_found, scores = [], [], []
-    maps = {}
+    # Reproduces the public test output = a check on the public data, not a score.
+    row["reproduces_test"] = (row["local_test"] in ("exact", "exact_fallback")
+                              or whole["test_correct"] is True)
+    return row
 
-    for name, fn in library.items():
-        preds = [safe_apply(fn, i) for i, _ in train]
-        per_pair_exact = [p is not None and p.shape == o.shape and np.array_equal(p, o)
-                          for p, (_, o) in zip(preds, train)]
-        mean_acc = float(np.mean([cell_accuracy(p, o) for p, (_, o) in zip(preds, train)]))
-        scores.append((sum(per_pair_exact), mean_acc, name))
 
-        if all(per_pair_exact):
-            exact.append(name)
-        else:
-            m = learn_colour_map(preds, [o for _, o in train])
-            if m is not None:
-                colour_map_found.append(name)
-                maps[name] = m
+# ----------------------------------------------------------------------
+# Tables
+# ----------------------------------------------------------------------
+def pct(part, whole):
+    return f"{100 * part / whole:.0f}%" if whole else "-"
 
-    # ---- choose the answer (simplest first = library order) ----
-    chosen, kind = None, "none"
-    if exact:
-        chosen, kind = exact[0], "exact"
-    elif colour_map_found:
-        chosen, kind = colour_map_found[0], "colour_map"
 
-    # ---- sanity check on the public test pairs ----
-    test_correct = ""
-    if chosen is not None:
-        results = []
-        for ti, to in tests:
-            if to is None:
-                continue
-            p = safe_apply(library[chosen], ti)
-            if p is not None and kind == "colour_map":
-                p = apply_map(p, maps[chosen])
-            results.append(p is not None and p.shape == to.shape and np.array_equal(p, to))
-        if results:
-            test_correct = all(results)
-
-    best = max(scores, key=lambda s: (s[0], s[1]))
-    if kind == "exact":
-        category = "found_exact"
-    elif kind == "colour_map":
-        category = "found_with_colour_map"
-    elif best[0] > 0:
-        category = "partial"          # works on some training pairs but not all
-    else:
-        category = "none"
-
+def probe_counts(rows):
+    local = [r for r in rows if r["local_kind"] != "n/a"]
+    contained = [r for r in rows if r["contained"] != "n/a"]
     return {
-        "task_id": task_id,
-        "n_train_pairs": len(train),
-        "category": category,
-        "chosen_transformation": chosen or "",
-        "all_exact_transformations": "|".join(exact),
-        "colour_map_transformations": "|".join(colour_map_found),
-        "best_partial": best[2] if category == "partial" else "",
-        "best_partial_pairs_matched": best[0] if category == "partial" else "",
-        "best_mean_cell_accuracy": round(best[1], 3),
-        "test_correct": test_correct,
+        "tasks": len(rows),
+        "local_applicable": len(local),
+        "local_consistent": sum(1 for r in local if r["local_kind"] != "none"),
+        "local_exact": sum(1 for r in local if r["local_test"] == "exact"),
+        "local_fallback": sum(1 for r in local if r["local_test"] == "exact_fallback"),
+        "local_wrong": sum(1 for r in local if r["local_test"] == "wrong"),
+        "contained_applicable": len(contained),
+        "contained_all": sum(1 for r in contained if r["contained"] != "none"),
+        "contained_holds": sum(1 for r in contained if r["contained_test"] == "holds"),
+        "contained_bbox": sum(1 for r in contained if r["contained_where"] == "bbox_crop"),
+        "whole_found": sum(1 for r in rows if r["whole_grid"] in ("found_exact", "found_with_colour_map")),
+        "whole_right": sum(1 for r in rows if r["whole_grid_test"] is True),
+        "reproduces": sum(1 for r in rows if r["reproduces_test"]),
     }
 
 
+def print_overall(name, rows):
+    c = probe_counts(rows)
+    print(f"\n=== {name}: transformations ({c['tasks']} tasks) ===")
+    print(f"Probe 1 local rule   (same-size tasks: {c['local_applicable']})")
+    print(f"   consistent rule found : {c['local_consistent']:>4}  ({pct(c['local_consistent'], c['local_applicable'])})")
+    print(f"   reproduces test       : exact {c['local_exact']}, exact_fallback {c['local_fallback']}, "
+          f"wrong {c['local_wrong']}")
+    print(f"Probe 2 contained    (output fits inside input: {c['contained_applicable']})")
+    print(f"   output is a piece     : {c['contained_all']:>4}  ({pct(c['contained_all'], c['contained_applicable'])})"
+          f"   of those the bounding box of non-background: {c['contained_bbox']}")
+    print(f"   also a piece on test  : {c['contained_holds']:>4}")
+    print(f"Probe 3 whole grid   (all tasks)")
+    print(f"   fits every train pair : {c['whole_found']:>4}  ({pct(c['whole_found'], c['tasks'])}),"
+          f" right on the test pair: {c['whole_right']}")
+    print(f"Tasks where a probe reproduces the public test output: {c['reproduces']} "
+          f"({pct(c['reproduces'], c['tasks'])})")
+
+
+def print_by(title, rows, key, min_tasks=1):
+    print(f"\n{title}")
+    header = (f"{'':<14}{'Tasks':>6}{'Local ok':>10}{'Local test':>12}"
+              f"{'Contained':>11}{'Cont.test':>11}{'WholeGrid':>11}{'Any':>6}")
+    print(header)
+    print("-" * len(header))
+    by = defaultdict(list)
+    for r in rows:
+        by[r[key]].append(r)
+    for value, group_rows in sorted(by.items(), key=lambda kv: -len(kv[1])):
+        if len(group_rows) < min_tasks:
+            continue
+        c = probe_counts(group_rows)
+        local = f"{c['local_consistent']}/{c['local_applicable']}" if c["local_applicable"] else "-"
+        local_test = (f"{c['local_exact'] + c['local_fallback']}" if c["local_applicable"] else "-")
+        cont = f"{c['contained_all']}/{c['contained_applicable']}" if c["contained_applicable"] else "-"
+        cont_test = f"{c['contained_holds']}" if c["contained_applicable"] else "-"
+        print(f"{value or '(none)':<14}{c['tasks']:>6}{local:>10}{local_test:>12}"
+              f"{cont:>11}{cont_test:>11}{c['whole_found']:>11}{c['reproduces']:>6}")
+
+
+def write_csv(all_rows):
+    columns = ["dataset", "task_id", "group", "shape_word", "cell_group",
+               "local_kind", "local_rule_size", "local_coverage", "local_test",
+               "contained", "contained_where", "contained_test",
+               "whole_grid", "whole_grid_choice", "whole_grid_test", "reproduces_test"]
+    OUT_CSV.parent.mkdir(parents=True, exist_ok=True)
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(columns)
+        for row in all_rows:
+            writer.writerow([row[c] for c in columns])
+    print(f"\nPer-task results written to {OUT_CSV}")
+
+
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else DATA_PATH
-    tasks = load_tasks(path)
-    if not tasks:
-        print(f"No tasks found at: {path}")
-        return
-    os.makedirs(RESULTS_DIR, exist_ok=True)
+    groups = read_lookup(GROUPS_CSV, "grid_groups_shapes_results.csv")
+    cells = read_lookup(CELLS_CSV, "grid_cells_results.csv")
 
-    rows = [analyse_task(tid, t) for tid, t in tasks.items()]
+    all_rows = []
+    for dataset in ("training", "evaluation"):
+        rows = []
+        for task_id, task in load_tasks(DATA_DIR / dataset).items():
+            row = analyse_task(task)
+            row["dataset"] = dataset
+            row["task_id"] = task_id
+            g = groups.get((dataset, task_id), {})
+            row["group"] = g.get("group", "")
+            row["shape_word"] = g.get("shape_word", "")
+            row["cell_group"] = cells.get((dataset, task_id), {}).get("cell_group", "")
+            rows.append(row)
+        print_overall(dataset, rows)
+        print_by("By size-palette group (groups with 20+ tasks)", rows, "group", min_tasks=20)
+        print_by("By shape word", rows, "shape_word")
+        all_rows += rows
 
-    with open(SUMMARY_CSV, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(rows[0].keys()))
-        w.writeheader()
-        w.writerows(rows)
-
-    n = len(rows)
-    print(f"Tasks analysed: {n}\n")
-    print("CATEGORY")
-    for cat, c in Counter(r["category"] for r in rows).most_common():
-        print(f"  {cat:<24} {c:>5}  ({100 * c / n:.1f}%)")
-
-    found = [r for r in rows if r["category"] in ("found_exact", "found_with_colour_map")]
-    right = sum(1 for r in found if r["test_correct"] is True)
-    wrong = sum(1 for r in found if r["test_correct"] is False)
-    print(f"\nOf the {len(found)} tasks where a transformation fit ALL training pairs:")
-    print(f"  also correct on the test pair : {right}")
-    print(f"  wrong on the test pair        : {wrong}")
-    print("\nCHOSEN TRANSFORMATION")
-    for name, c in Counter(r["chosen_transformation"] for r in found).most_common():
-        print(f"  {name:<24} {c:>5}")
-    print(f"\nSaved: {SUMMARY_CSV}")
+    write_csv(all_rows)
 
 
 if __name__ == "__main__":

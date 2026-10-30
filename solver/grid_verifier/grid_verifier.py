@@ -30,7 +30,7 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-SOLVER = HERE.parent
+SOLVER = next((p for p in Path(__file__).resolve().parents if p.name == "solver"), HERE.parent)
 ROOT = SOLVER.parent
 DATA_DIR = ROOT / "data"
 SOLVER_RESULTS = SOLVER / "grid_solver" / "results"
@@ -147,7 +147,7 @@ def main():
 
     print_tables(dataset, rows)
 
-    out_dir = HERE / "results"
+    out_dir = SOLVER / "grid_verifier" / "results"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"grid_verifier_results_{dataset}.csv"
     columns = ["dataset", "task_id", "group", "solved_pairs", "test_pairs", "score",

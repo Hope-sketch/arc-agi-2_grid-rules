@@ -42,16 +42,23 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-SOLVER = HERE.parent
+SOLVER = next((p for p in Path(__file__).resolve().parents if p.name == "solver"), HERE.parent)
 ROOT = SOLVER.parent
 DATA_DIR = ROOT / "data"
-PROFILES_CSV = HERE / "results" / "grid_profiles.csv"
+OUT_DIR = SOLVER / "grid_solver" / "results"
+PROFILES_CSV = OUT_DIR / "grid_profiles.csv"
 
 sys.path.insert(0, str(SOLVER / "grid_transformations"))
-from whole_grid_library import (apply_map, background, crop_non_background,   # noqa: E402
-                                fixed_transforms, learn_colour_map,
-                                parameterised_transforms, safe_apply)
-from grid_transformations import NEIGHBOUR_KINDS, learn_local_rule, neighbourhood_keys   # noqa: E402
+try:
+    from whole_grid_library import (apply_map, background, crop_non_background,   # noqa: E402
+                                    fixed_transforms, learn_colour_map,
+                                    parameterised_transforms, safe_apply)
+    from grid_transformations import NEIGHBOUR_KINDS, learn_local_rule, neighbourhood_keys   # noqa: E402
+except (ImportError, ModuleNotFoundError) as error:
+    raise SystemExit(
+        f"Cannot load the transformations step ({error}).\n"
+        f"solver/grid_transformations/ must contain the NEW grid_transformations.py "
+        f"and whole_grid_library.py.")
 
 SIDES = [(-1, 0), (1, 0), (0, -1), (0, 1)]
 DIAGONALS = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
@@ -379,10 +386,9 @@ def main():
         if number % 200 == 0:
             print(f"  {number}/{len(tasks)} tasks")
 
-    out_dir = HERE / "results"
-    out_dir.mkdir(parents=True, exist_ok=True)
-    json_path = out_dir / f"grid_solver_predictions_{dataset}.json"
-    csv_path = out_dir / f"grid_solver_results_{dataset}.csv"
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    json_path = OUT_DIR / f"grid_solver_predictions_{dataset}.json"
+    csv_path = OUT_DIR / f"grid_solver_results_{dataset}.csv"
     with json_path.open("w", encoding="utf-8") as file:
         json.dump(predictions, file)
     with csv_path.open("w", newline="", encoding="utf-8") as file:

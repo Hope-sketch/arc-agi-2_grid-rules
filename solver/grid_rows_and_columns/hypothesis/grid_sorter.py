@@ -33,7 +33,7 @@ Outputs
   * solver/grid_solver/results/grid_profiles.csv   one row per task
 
 Usage
-  python solver/grid_solver/grid_sorter.py
+  python solver/grid_solver/grid_sorter.py     (it finds the other steps from the "solver" folder)
 """
 
 import csv
@@ -41,8 +41,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-SOLVER = HERE.parent
-OUT_CSV = HERE / "results" / "grid_profiles.csv"
+SOLVER = next((p for p in Path(__file__).resolve().parents if p.name == "solver"), HERE.parent)
+OUT_CSV = SOLVER / "grid_solver" / "results" / "grid_profiles.csv"
 
 SOURCES = {
     "groups": SOLVER / "grid_shapes" / "results" / "grid_groups_shapes_results.csv",
