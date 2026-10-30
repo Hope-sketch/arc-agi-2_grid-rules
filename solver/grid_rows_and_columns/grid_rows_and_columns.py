@@ -1,239 +1,306 @@
 """
-Step 5: Grid Rows & Columns (investigation only)
+Step 5: Grid rows & columns, version 2 (investigation only, not used to solve yet)
 
-For every training pair of every task:
-  - split input and output into ROWS, and into COLUMNS
-  - compare input row i with output row i (and input column j with output column j)
-  - sort every difference into one of three groups:
+Treats every ROW and every COLUMN as one unit and writes down how the output's
+lines relate to the input's lines. Unlike the cells step it also works when the
+size changes, as long as the lines have the same length (for rows: the same
+width, for columns: the same height).
 
-      removed : a colour was in the input at that coordinate, and is gone in the output
-                (the output has the background colour there, or the cell no longer exists)
-      changed : a colour was in the input at that coordinate, and the output has a
-                different (non-background) colour at the same coordinate
-      added   : the input had nothing (background) at that coordinate, and the output
-                now has a colour there
+Background = most frequent colour of the INPUT grid (ties: lowest colour number).
+No colour is hard-coded.
 
-Background colour = most frequent colour in the INPUT grid (no colour is hard-coded).
+For each axis (rows, columns) and each training pair:
 
-Writes:
-  results/grid_rows_columns_results.csv   one row per task (summary)
-  results/grid_rows_columns_details.csv   one row per (pair, axis, line, group) with
-                                          the colours and their coordinates
+  COUNT   how many lines: same / more / fewer
+  RATIO   same, x2, x3 ... (output is a whole multiple), /2, /3 ... (a whole fraction),
+          or other_more / other_fewer
+  STORY   how the output lines relate to the input lines
+            identical        : the same lines in the same order
+            reversed         : the same lines in the opposite order
+            kept_in_order    : every output line is an input line, in order, some removed
+            repeated         : the input lines in order, with extra copies
+            reordered        : every output line is an input line, other order
+            has_new_lines    : at least one output line is not an input line
+            length_differs   : lines have different lengths, so they cannot be compared whole
+  DETAIL  kept_in_order -> what was removed: blank (all background), duplicates
+          (the line still exists in the output), or other
+          same line count -> what changed: content_lines (the changed lines had
+          something in them), empty_lines (they were all background), mixed_lines
+  DRAWN   same line count -> uniform if every changed output line is a single colour
+          (a line was drawn or filled), partial if not
+  SPAN    same line count -> contiguous if the changed lines form one block of
+          neighbouring lines, scattered if not
 
-Usage:
-  python grid_rows_columns.py <path>
-  <path> = a folder of task .json files, or one challenges .json file
+Task level: a description counts when it is the same in EVERY training pair, otherwise
+"mixed". Test check: the public test pair is described the same way. holds = it matches
+the training description, breaks = it does not.
+
+Outputs
+  * tables in the terminal
+  * results/grid_rows_columns_results.csv   one row per task
+  * results/grid_rows_columns_details.csv   one row per (pair, axis): the story and,
+                                            for every output line, the input line it equals
+
+Usage
+  python solver/grid_rows_and_columns/grid_rows_and_columns.py
 """
 
 import csv
 import json
-import os
-import sys
-from collections import Counter
+from collections import Counter, defaultdict
+from pathlib import Path
 
-DATA_PATH = "data/arc-agi_training_challenges.json"
-RESULTS_DIR = "results"
-SUMMARY_CSV = os.path.join(RESULTS_DIR, "grid_rows_columns_results.csv")
-DETAILS_CSV = os.path.join(RESULTS_DIR, "grid_rows_columns_details.csv")
+import numpy as np
 
-GROUPS = ["removed", "changed", "added"]
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]                       # repo root (holds data/)
+DATA_DIR = ROOT / "data"
+GROUPS_CSV = ROOT / "solver" / "grid_shapes" / "results" / "grid_groups_shapes_results.csv"
+RESULTS_PATH = HERE / "results" / "grid_rows_columns_results.csv"
+DETAILS_PATH = HERE / "results" / "grid_rows_columns_details.csv"
+
+AXES = ("rows", "columns")
+FIELDS = ("count", "ratio", "story", "detail", "drawn", "span")
 
 
-def load_tasks(path):
-    """Returns {task_id: task_dict}. Accepts a folder of .json files or one .json file."""
+# ----------------------------------------------------------------------
+# Load
+# ----------------------------------------------------------------------
+def load_tasks(folder):
+    if not folder.is_dir():
+        raise SystemExit(f"Data folder not found: {folder}")
     tasks = {}
-    if os.path.isdir(path):
-        for name in sorted(os.listdir(path)):
-            if not name.endswith(".json"):
-                continue
-            with open(os.path.join(path, name), "r") as f:
-                data = json.load(f)
-            if isinstance(data, dict) and "train" in data:
-                tasks[os.path.splitext(name)[0]] = data
-            elif isinstance(data, dict):
-                for tid, t in data.items():
-                    if isinstance(t, dict) and "train" in t:
-                        tasks[tid] = t
-    else:
-        with open(path, "r") as f:
-            data = json.load(f)
-        if isinstance(data, dict) and "train" in data:
-            tasks[os.path.splitext(os.path.basename(path))[0]] = data
-        else:
-            for tid, t in data.items():
-                if isinstance(t, dict) and "train" in t:
-                    tasks[tid] = t
+    for file_path in sorted(folder.glob("*.json")):
+        with file_path.open("r", encoding="utf-8") as file:
+            tasks[file_path.stem] = json.load(file)
     return tasks
 
 
+def read_groups():
+    if not GROUPS_CSV.exists():
+        print(f"Note: {GROUPS_CSV.name} not found, the group column stays empty")
+        return {}
+    with GROUPS_CSV.open("r", newline="", encoding="utf-8-sig") as file:
+        return {(r["dataset"], r["task_id"]): r["group"] for r in csv.DictReader(file)}
+
+
 def background_colour(grid):
-    """Most frequent colour in the grid."""
-    counts = Counter(c for row in grid for c in row)
-    return counts.most_common(1)[0][0]
+    values, counts = np.unique(np.array(grid), return_counts=True)
+    return int(values[np.argmax(counts)])        # ties: lowest colour number
 
 
-def transpose(grid):
-    return [list(col) for col in zip(*grid)]
+def split_lines(grid):
+    rows = [tuple(r) for r in grid]
+    columns = [tuple(c) for c in zip(*grid)]
+    return {"rows": rows, "columns": columns}
 
 
-def compare_lines(in_lines, out_lines, bg, axis):
-    """
-    Compare input lines with output lines (lines = rows or columns).
-    axis = "row"    -> line index is the row, position inside the line is the column
-    axis = "column" -> line index is the column, position inside the line is the row
-    Coordinates are always reported as (row, col).
-    """
-    results = []
-    for i in range(max(len(in_lines), len(out_lines))):
-        a_line = in_lines[i] if i < len(in_lines) else None
-        b_line = out_lines[i] if i < len(out_lines) else None
-        len_a = len(a_line) if a_line is not None else 0
-        len_b = len(b_line) if b_line is not None else 0
-
-        found = {g: [] for g in GROUPS}
-
-        for j in range(max(len_a, len_b)):
-            ca = a_line[j] if a_line is not None and j < len_a else None
-            cb = b_line[j] if b_line is not None and j < len_b else None
-            if ca == cb:
-                continue
-
-            coord = (i, j) if axis == "row" else (j, i)
-
-            if cb is None:
-                if ca != bg:
-                    found["removed"].append((coord, ca, None))
-            elif ca is None:
-                if cb != bg:
-                    found["added"].append((coord, None, cb))
-            elif ca != bg and cb == bg:
-                found["removed"].append((coord, ca, None))
-            elif ca == bg and cb != bg:
-                found["added"].append((coord, None, cb))
-            else:
-                found["changed"].append((coord, ca, cb))
-
-        for g in GROUPS:
-            if found[g]:
-                results.append({"axis": axis, "line": i, "group": g, "cells": found[g]})
-    return results
+# ----------------------------------------------------------------------
+# Describing one axis of one pair
+# ----------------------------------------------------------------------
+def ratio_label(n_in, n_out):
+    if n_in == n_out:
+        return "same"
+    if n_out % n_in == 0:
+        return f"x{n_out // n_in}"
+    if n_in % n_out == 0:
+        return f"/{n_in // n_out}"
+    return "other_more" if n_out > n_in else "other_fewer"
 
 
-def cells_to_text(group, cells):
-    parts = []
-    for (r, c), ca, cb in cells:
-        if group == "removed":
-            parts.append(f"({r},{c}):{ca}")
-        elif group == "added":
-            parts.append(f"({r},{c}):{cb}")
+def greedy_subsequence(small, big):
+    """Positions in big that match small in order, or None."""
+    positions, start = [], 0
+    for line in small:
+        while start < len(big) and big[start] != line:
+            start += 1
+        if start == len(big):
+            return None
+        positions.append(start)
+        start += 1
+    return positions
+
+
+def removed_kind(in_lines, out_lines, used, bg):
+    removed = [in_lines[i] for i in range(len(in_lines)) if i not in set(used)]
+    if all(set(line) == {bg} for line in removed):
+        return "blank"
+    if all(line in set(out_lines) for line in removed):
+        return "duplicates"
+    return "other"
+
+
+def describe_axis(in_lines, out_lines, bg):
+    n_in, n_out = len(in_lines), len(out_lines)
+    info = {"count": "same" if n_in == n_out else "more" if n_out > n_in else "fewer",
+            "ratio": ratio_label(n_in, n_out), "story": "length_differs",
+            "detail": "", "drawn": "", "span": "", "mapping": "", "changed_pct": ""}
+    if len(in_lines[0]) != len(out_lines[0]):
+        return info
+
+    first = {}
+    for index, line in enumerate(in_lines):
+        first.setdefault(line, index)
+    mapping = [first.get(line) for line in out_lines]
+    info["mapping"] = ",".join("new" if m is None else str(m) for m in mapping)
+
+    if out_lines == in_lines:
+        info["story"] = "identical"
+    elif None in mapping:
+        info["story"] = "has_new_lines"
+    elif out_lines == in_lines[::-1]:
+        info["story"] = "reversed"
+    else:
+        used = greedy_subsequence(out_lines, in_lines)
+        if used is not None:
+            info["story"] = "kept_in_order"
+            info["detail"] = removed_kind(in_lines, out_lines, used, bg)
+        elif greedy_subsequence(in_lines, out_lines) is not None:
+            info["story"] = "repeated"
         else:
-            parts.append(f"({r},{c}):{ca}>{cb}")
-    return ";".join(parts)
+            info["story"] = "reordered"
+
+    if n_in == n_out:
+        changed = [i for i in range(n_in) if in_lines[i] != out_lines[i]]
+        info["changed_pct"] = 100 * len(changed) / n_in
+        if changed:
+            info["drawn"] = ("uniform" if all(len(set(out_lines[i])) == 1 for i in changed)
+                             else "partial")
+            info["span"] = ("contiguous" if changed == list(range(changed[0], changed[-1] + 1))
+                            else "scattered")
+        if changed and not info["detail"]:
+            has_content = [any(c != bg for c in in_lines[i]) for i in changed]
+            info["detail"] = ("content_lines" if all(has_content) else
+                              "empty_lines" if not any(has_content) else "mixed_lines")
+    return info
 
 
-def colours_of(group, cells):
-    if group == "removed":
-        return sorted({ca for _, ca, _ in cells})
-    if group == "added":
-        return sorted({cb for _, _, cb in cells})
-    return sorted({(ca, cb) for _, ca, cb in cells})
+def describe_pair(grid_in, grid_out):
+    bg = background_colour(grid_in)
+    lines_in, lines_out = split_lines(grid_in), split_lines(grid_out)
+    return {axis: describe_axis(lines_in[axis], lines_out[axis], bg) for axis in AXES}
 
 
-def pair_label(groups_present):
-    ordered = [g for g in GROUPS if g in groups_present]
-    return "+".join(ordered) if ordered else "none"
+# ----------------------------------------------------------------------
+# One task
+# ----------------------------------------------------------------------
+def task_value(values):
+    return values[0] if len(set(values)) == 1 else "mixed"
 
 
-def task_label(pair_labels):
-    return pair_labels[0] if len(set(pair_labels)) == 1 else "mixed"
+def check(flag):
+    return "n/a" if flag is None else ("holds" if flag else "breaks")
 
 
-def analyse_task(task_id, task):
-    detail_rows = []
-    row_pair_labels, col_pair_labels = [], []
-    totals = {ax: {g: 0 for g in GROUPS} for ax in ("row", "column")}
-    lines_touched = {"row": 0, "column": 0}
-    same_size_all = True
+def analyse_task(task):
+    train = [describe_pair(p["input"], p["output"]) for p in task["train"]]
+    tests = [describe_pair(p["input"], p["output"]) for p in task.get("test", [])
+             if "output" in p]
+    same_size = all(len(p["input"]) == len(p["output"]) and len(p["input"][0]) == len(p["output"][0])
+                    for p in task["train"])
 
-    for p_idx, pair in enumerate(task["train"]):
-        grid_in, grid_out = pair["input"], pair["output"]
-        bg = background_colour(grid_in)
-        if (len(grid_in), len(grid_in[0])) != (len(grid_out), len(grid_out[0])):
-            same_size_all = False
+    row = {"same_size_all": "yes" if same_size else "no", "details": []}
+    for axis in AXES:
+        task_labels = {f: task_value([pair[axis][f] for pair in train]) for f in FIELDS}
+        for f in FIELDS:
+            row[f"{axis}_{f}"] = task_labels[f]
+        pcts = [pair[axis]["changed_pct"] for pair in train if pair[axis]["changed_pct"] != ""]
+        row[f"{axis}_changed_pct"] = f"{sum(pcts) / len(pcts):.1f}" if pcts else ""
 
-        row_res = compare_lines(grid_in, grid_out, bg, "row")
-        col_res = compare_lines(transpose(grid_in), transpose(grid_out), bg, "column")
+        if task_labels["story"] == "mixed" or not tests:
+            row[f"{axis}_test"] = "n/a"
+        else:
+            row[f"{axis}_test"] = check(all(
+                all(task_labels[f] in ("mixed", t[axis][f]) for f in FIELDS) for t in tests))
 
-        for axis, res, labels in (("row", row_res, row_pair_labels),
-                                  ("column", col_res, col_pair_labels)):
-            labels.append(pair_label({r["group"] for r in res}))
-            lines_touched[axis] += len({r["line"] for r in res})
-            for r in res:
-                totals[axis][r["group"]] += len(r["cells"])
-                detail_rows.append({
-                    "task_id": task_id,
-                    "pair": p_idx,
-                    "background": bg,
-                    "axis": axis,
-                    "line_index": r["line"],
-                    "group": r["group"],
-                    "n_cells": len(r["cells"]),
-                    "colours": str(colours_of(r["group"], r["cells"])),
-                    "cells": cells_to_text(r["group"], r["cells"]),
-                })
+        for index, pair in enumerate(train, start=1):
+            info = pair[axis]
+            row["details"].append({"pair": index, "axis": axis, "lines_in": None,
+                                   "count": info["count"], "story": info["story"],
+                                   "detail": info["detail"], "mapping": info["mapping"]})
+    return row
 
-    summary = {
-        "task_id": task_id,
-        "n_train_pairs": len(task["train"]),
-        "same_size_all_pairs": same_size_all,
-        "rows_label": task_label(row_pair_labels),
-        "columns_label": task_label(col_pair_labels),
-        "rows_pair_labels": "|".join(row_pair_labels),
-        "columns_pair_labels": "|".join(col_pair_labels),
-        "rows_touched_total": lines_touched["row"],
-        "columns_touched_total": lines_touched["column"],
-    }
-    for ax, name in (("row", "rows"), ("column", "columns")):
-        for g in GROUPS:
-            summary[f"{name}_{g}_cells"] = totals[ax][g]
-    return summary, detail_rows
+
+# ----------------------------------------------------------------------
+# Tables
+# ----------------------------------------------------------------------
+def rate(holds, breaks):
+    return f"{holds / (holds + breaks):.0%}" if (holds + breaks) else "-"
+
+
+def print_table(title, rows, key, test_key):
+    print(f"\n{title}")
+    header = f"{'Group':<18}{'Tasks':>7}{'Holds':>8}{'Breaks':>8}{'n/a':>6}{'Holds (checked)':>17}"
+    print(header)
+    print("-" * len(header))
+    by = defaultdict(list)
+    for r in rows:
+        by[r[key]].append(r)
+    for name, group_rows in sorted(by.items(), key=lambda kv: -len(kv[1])):
+        h = sum(1 for r in group_rows if r[test_key] == "holds")
+        b = sum(1 for r in group_rows if r[test_key] == "breaks")
+        print(f"{name:<18}{len(group_rows):>7}{h:>8}{b:>8}{len(group_rows) - h - b:>6}{rate(h, b):>17}")
+
+
+def print_dataset(name, rows):
+    print(f"\n=== {name}: rows & columns ({len(rows)} tasks) ===")
+    for axis in AXES:
+        print_table(f"{axis.upper()}: story (does the training pattern hold on the test pair?)",
+                    rows, f"{axis}_story", f"{axis}_test")
+        print_table(f"{axis.upper()}: how the number of lines changes", rows,
+                    f"{axis}_count", f"{axis}_test")
+        for key, text in (("drawn", "changed lines drawn as one colour?"),
+                          ("span", "changed lines in one block?")):
+            filled = [r for r in rows if r[f"{axis}_{key}"] not in ("",)]
+            print_table(f"{axis.upper()}: {text} (same line count only)", filled,
+                        f"{axis}_{key}", f"{axis}_test")
+
+    print("\nROWS story x COLUMNS story (top 12 combinations)")
+    combos = Counter((r["rows_story"], r["columns_story"]) for r in rows)
+    for (row_story, col_story), n in combos.most_common(12):
+        print(f"  rows {row_story:<16} columns {col_story:<16} {n:>5}")
+
+    kept = Counter(r["rows_detail"] for r in rows if r["rows_story"] == "kept_in_order")
+    kept_c = Counter(r["columns_detail"] for r in rows if r["columns_story"] == "kept_in_order")
+    if kept or kept_c:
+        print(f"\nLines removed (kept_in_order)  rows: {dict(kept)}   columns: {dict(kept_c)}")
+
+
+def write_files(all_rows):
+    RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
+    columns = ["dataset", "task_id", "group", "same_size_all"]
+    for axis in AXES:
+        columns += [f"{axis}_{f}" for f in FIELDS] + [f"{axis}_changed_pct", f"{axis}_test"]
+    with RESULTS_PATH.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(columns)
+        for r in all_rows:
+            writer.writerow([r[c] for c in columns])
+
+    detail_columns = ["pair", "axis", "count", "story", "detail", "mapping"]
+    with DETAILS_PATH.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file)
+        writer.writerow(["dataset", "task_id"] + detail_columns)
+        for r in all_rows:
+            for d in r["details"]:
+                writer.writerow([r["dataset"], r["task_id"]] + [d[c] for c in detail_columns])
+    print(f"\nPer-task results written to {RESULTS_PATH}")
+    print(f"Per-pair details written to {DETAILS_PATH}")
 
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else DATA_PATH
-    tasks = load_tasks(path)
-    if not tasks:
-        print(f"No tasks found at: {path}")
-        return
-    os.makedirs(RESULTS_DIR, exist_ok=True)
-
-    summaries, all_details = [], []
-    for task_id, task in tasks.items():
-        s, d = analyse_task(task_id, task)
-        summaries.append(s)
-        all_details.extend(d)
-
-    with open(SUMMARY_CSV, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=list(summaries[0].keys()))
-        w.writeheader()
-        w.writerows(summaries)
-
-    detail_fields = ["task_id", "pair", "background", "axis", "line_index",
-                     "group", "n_cells", "colours", "cells"]
-    with open(DETAILS_CSV, "w", newline="") as f:
-        w = csv.DictWriter(f, fieldnames=detail_fields)
-        w.writeheader()
-        w.writerows(all_details)
-
-    print(f"Tasks analysed: {len(summaries)}\n")
-    for key, title in (("rows_label", "ROWS"), ("columns_label", "COLUMNS")):
-        counts = Counter(s[key] for s in summaries)
-        print(f"{title}: label across all training pairs")
-        for label, n in counts.most_common():
-            print(f"  {label:<24} {n:>5}  ({100 * n / len(summaries):.1f}%)")
-        print()
-    print(f"Saved: {SUMMARY_CSV}")
-    print(f"Saved: {DETAILS_CSV}")
+    groups = read_groups()
+    all_rows = []
+    for dataset in ("training", "evaluation"):
+        rows = []
+        for task_id, task in load_tasks(DATA_DIR / dataset).items():
+            row = analyse_task(task)
+            row["dataset"], row["task_id"] = dataset, task_id
+            row["group"] = groups.get((dataset, task_id), "")
+            rows.append(row)
+        print_dataset(dataset, rows)
+        all_rows += rows
+    write_files(all_rows)
 
 
 if __name__ == "__main__":
