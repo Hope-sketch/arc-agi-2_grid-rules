@@ -1,238 +1,222 @@
 """
-Step 1 - Grid Sizes (investigation step)
+Step 1: Grid sizes (investigation only)
 
 Looks ONLY at the training pairs of each task (the test input is never used to
 decide the category) and sorts the task into one of three categories:
 
-  1. Input == Output        every training pair has the same size in and out
-  2. Input != Output,       every training pair changes size, and all training
+  1  Input == Output        every training pair has the same size in and out
+  2  Input != Output,       every training pair changes size and all training
      Output == Output       outputs share one size (inputs may differ)
-  3. Nothing equal          everything else (outputs vary, or pairs are mixed)
+  3  Nothing equal          everything else (outputs vary, or pairs are mixed)
 
-Transformations report line per category:
+Report line per category (the human-readable part of the receipt):
+  1  Output grid size is the same as the input
+  2  Output grid size is the same as the output
+  3  Output grid size cannot be solved at this moment, more information required
 
-  1 -> "Output grid size is the same as the input"
-  2 -> "Output grid size is the same as the (training) outputs"
-  3 -> "Output grid size cannot be solved at this moment, more information required"
+The RECEIPT is what later steps read. Use the category code and predicted sizes,
+not the report wording:
+  {"category": "1", "detail": "...", "report": "...",
+   "test_input_sizes": [[h, w], ...], "predicted_output_sizes": [[h, w] or null, ...]}
+It never contains the test output, so nothing leaks into the solver.
 
-Usage:
-  python grid_sizes.py <challenges.json | folder_of_task_jsons> [solutions.json]
+Usage
+  python solver/grid_sizes/grid_sizes.py
 
-  Examples:
-    python grid_sizes.py arc-agi_training_challenges.json arc-agi_training_solutions.json
-    python grid_sizes.py data/training
+Outputs
+  * tables in the terminal (training, then evaluation)
+  * solver/grid_sizes/results/grid_sizes_results.csv   (one row per task)
+  * solver/grid_sizes/results/grid_sizes_receipts.json (what later steps load)
 
-Writes: results/grid_sizes_results.csv (one row per task)
+From another step
+  import sys; sys.path.insert(0, str(ROOT / "solver" / "grid_sizes"))
+  from grid_sizes import load_receipts, check_receipts
 """
 
 import csv
 import json
-import os
-import sys
 from collections import Counter
+from pathlib import Path
 
-CAT_SAME_AS_INPUT = "1"
-CAT_SAME_AS_OUTPUT = "2"
-CAT_UNSOLVED = "3"
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]                        # repo root (holds data/)
+DATA_DIR = ROOT / "data"
+RESULTS_DIR = HERE / "results"
+OUT_CSV = RESULTS_DIR / "grid_sizes_results.csv"
+OUT_JSON = RESULTS_DIR / "grid_sizes_receipts.json"
+DATASETS = ("training", "evaluation")
+
+SAME_AS_INPUT, SAME_AS_OUTPUT, UNSOLVED = "1", "2", "3"
 
 REPORT = {
-    CAT_SAME_AS_INPUT: "Output grid size is the same as the input",
-    CAT_SAME_AS_OUTPUT: "Output grid size is the same as the output",
-    CAT_UNSOLVED: "Output grid size cannot be solved at this moment, more information required",
+    SAME_AS_INPUT: "Output grid size is the same as the input",
+    SAME_AS_OUTPUT: "Output grid size is the same as the output",
+    UNSOLVED: "Output grid size cannot be solved at this moment, more information required",
 }
 
 
-# ---------------------------------------------------------------- settings
-# Option A: leave these empty and the script uses <repo>/data/<DEFAULT_DATASET>/
-#           (a folder of task JSON files), or failing that searches for
-#           *training_challenges.json / *training_solutions.json.
-# Option B: paste the full paths here, e.g.
-#   CHALLENGES_PATH = r"C:\Users\Makan\...\arc-agi_training_challenges.json"
-CHALLENGES_PATH = ""
-SOLUTIONS_PATH = ""
-
-DEFAULT_DATASET = "training"   # change to "evaluation" to sort the evaluation tasks
-
-SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-RESULTS_DIR = os.path.join(SCRIPT_DIR, "results")   # results/ next to this script
-
-
-def find_file(suffix):
-    """Search the repo (3 folders up from this script) for a file ending in suffix."""
-    root = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
-    for folder, _dirs, files in os.walk(root):
-        for name in files:
-            if name.endswith(suffix):
-                return os.path.join(folder, name)
-    return ""
-
-
-# ----------------------------------------------------------------- loading
-def load_tasks(path):
-    """Return {task_id: task_dict}. Accepts one big JSON or a folder of JSONs."""
-    if os.path.isdir(path):
-        tasks = {}
-        for name in sorted(os.listdir(path)):
-            if name.endswith(".json"):
-                with open(os.path.join(path, name)) as fh:
-                    tasks[name[:-5]] = json.load(fh)
-        return tasks
-    with open(path) as fh:
-        return json.load(fh)
-
-
-def load_solutions(path):
-    if not path:
-        return {}
-    with open(path) as fh:
-        return json.load(fh)
+# ----------------------------------------------------------------------
+# Load
+# ----------------------------------------------------------------------
+def load_tasks(folder):
+    tasks = {}
+    for file_path in sorted(folder.glob("*.json")):
+        with file_path.open("r", encoding="utf-8") as file:
+            tasks[file_path.stem] = json.load(file)
+    return tasks
 
 
 def size_of(grid):
     return (len(grid), len(grid[0]) if grid else 0)
 
 
-def fmt(sz):
-    return f"{sz[0]}x{sz[1]}"
+def fmt(size):
+    return f"{size[0]}x{size[1]}"
 
 
-# ------------------------------------------------------------ classification
-def classify(train_pairs):
-    """Return (category, detail) using training pairs only."""
-    in_sizes = [size_of(p["input"]) for p in train_pairs]
-    out_sizes = [size_of(p["output"]) for p in train_pairs]
+# ----------------------------------------------------------------------
+# Receipt (training pairs only)
+# ----------------------------------------------------------------------
+def classify(train):
+    in_sizes = [size_of(p["input"]) for p in train]
+    out_sizes = [size_of(p["output"]) for p in train]
     pair_same = [i == o for i, o in zip(in_sizes, out_sizes)]
 
-    # Category 1: every pair keeps its size
     if all(pair_same):
-        return CAT_SAME_AS_INPUT, "every training input == its output"
-
-    # Category 2: every pair changes size, and all outputs share one size
+        return SAME_AS_INPUT, "every training input == its output"
     if not any(pair_same) and len(set(out_sizes)) == 1:
         if len(set(in_sizes)) == 1:
-            return CAT_SAME_AS_OUTPUT, "inputs all same size, outputs all same size"
-        return CAT_SAME_AS_OUTPUT, "inputs vary, outputs all same size"
-
-    # Category 3: nothing usable is equal
+            return SAME_AS_OUTPUT, "inputs all same size, outputs all same size"
+        return SAME_AS_OUTPUT, "inputs vary, outputs all same size"
     if any(pair_same):
-        detail = "mixed pairs (some input == output, some not)"
-    elif len(set(in_sizes)) == 1:
-        detail = "inputs all same size, outputs vary"
+        return UNSOLVED, "mixed pairs (some input == output, some not)"
+    if len(set(in_sizes)) == 1:
+        return UNSOLVED, "inputs all same size, outputs vary"
+    return UNSOLVED, "inputs vary, outputs vary"
+
+
+def get_sizes_receipt(task):
+    """The receipt for one task. Uses the training pairs and the test INPUT sizes."""
+    train = task["train"]
+    category, detail = classify(train)
+    test_inputs = [list(size_of(t["input"])) for t in task["test"]]
+
+    if category == SAME_AS_INPUT:
+        predicted = [list(s) for s in test_inputs]
+    elif category == SAME_AS_OUTPUT:
+        shared = list(size_of(train[0]["output"]))
+        predicted = [shared for _ in test_inputs]
     else:
-        detail = "inputs vary, outputs vary"
-    return CAT_UNSOLVED, detail
+        predicted = [None for _ in test_inputs]
+
+    return {"category": category, "detail": detail, "report": REPORT[category],
+            "test_input_sizes": test_inputs, "predicted_output_sizes": predicted}
 
 
-def predict_sizes(category, train_pairs, test_inputs):
-    """Predicted output size for each test input (None when unsolved)."""
-    if category == CAT_SAME_AS_INPUT:
-        return [size_of(t["input"]) for t in test_inputs]
-    if category == CAT_SAME_AS_OUTPUT:
-        shared = size_of(train_pairs[0]["output"])
-        return [shared for _ in test_inputs]
-    return [None for _ in test_inputs]
+def check_against_test(receipt, task):
+    """yes / no / n/a (category 3) / unknown (no public test output). Verification only."""
+    if receipt["category"] == UNSOLVED:
+        return "n/a", ""
+    if not all("output" in t for t in task["test"]):
+        return "unknown", ""
+    actual = [list(size_of(t["output"])) for t in task["test"]]
+    text = ";".join(fmt(s) for s in actual)
+    return ("yes" if actual == receipt["predicted_output_sizes"] else "no"), text
 
 
-def actual_test_sizes(task_id, task, solutions):
-    """Real test output sizes if we have them (solutions file or inline outputs)."""
-    if task_id in solutions:
-        return [size_of(g) for g in solutions[task_id]]
-    if all("output" in t for t in task.get("test", [])) and task.get("test"):
-        return [size_of(t["output"]) for t in task["test"]]
-    return None
+# ----------------------------------------------------------------------
+# For the other steps
+# ----------------------------------------------------------------------
+def load_receipts(path=OUT_JSON):
+    """{dataset: {task_id: receipt}}. Stops with a clear message if the file is missing."""
+    if not Path(path).exists():
+        raise SystemExit(f"Grid sizes receipts not found: {path}\n"
+                         f"Run solver/grid_sizes/grid_sizes.py first.")
+    with Path(path).open("r", encoding="utf-8") as file:
+        return json.load(file)
 
 
-# ------------------------------------------------------------------- main
-def main():
-    challenges = sys.argv[1] if len(sys.argv) > 1 else CHALLENGES_PATH
-    solutions_path = sys.argv[2] if len(sys.argv) > 2 else SOLUTIONS_PATH
+def check_receipts(receipts, dataset, task_ids):
+    """Stop if any task has no grid sizes receipt, and say which ones."""
+    have = receipts.get(dataset, {})
+    missing = [t for t in task_ids if t not in have]
+    if missing:
+        shown = ", ".join(missing[:10]) + (" ..." if len(missing) > 10 else "")
+        raise SystemExit(f"Grid sizes receipt missing for {len(missing)} of {len(task_ids)} "
+                         f"{dataset} tasks: {shown}\nRe-run solver/grid_sizes/grid_sizes.py.")
+    print(f"Grid sizes receipts: {len(task_ids)}/{len(task_ids)} {dataset} tasks covered")
 
-    if not challenges:
-        # your layout: <repo>/data/training/<task_id>.json (folder of task files)
-        repo_root = os.path.abspath(os.path.join(SCRIPT_DIR, "..", ".."))
-        default_folder = os.path.join(repo_root, "data", DEFAULT_DATASET)
-        if os.path.isdir(default_folder):
-            challenges = default_folder
-        else:
-            challenges = find_file("training_challenges.json")
-            if challenges and not solutions_path:
-                solutions_path = find_file("training_solutions.json")
 
-    if not challenges or not os.path.exists(challenges):
-        print("Could not find the ARC data file.")
-        print("Set CHALLENGES_PATH (and SOLUTIONS_PATH) at the top of grid_sizes.py,")
-        print("or run:  python grid_sizes.py <challenges.json> [solutions.json]")
-        sys.exit(1)
-
-    print(f"Challenges: {challenges}")
-    print(f"Solutions:  {solutions_path or '(none, sizes will not be checked)'}")
-
-    tasks = load_tasks(challenges)
-    solutions = load_solutions(solutions_path)
-
-    rows = []
-    for task_id, task in tasks.items():
-        train = task["train"]
-        test = task.get("test", [])
-        category, detail = classify(train)
-        predicted = predict_sizes(category, train, test)
-        actual = actual_test_sizes(task_id, task, solutions)
-
-        if category == CAT_UNSOLVED:
-            size_correct = "n/a"          # grid sizes does not try to solve these
-        elif actual is None:
-            size_correct = "unknown"      # no answers available to check against
-        else:
-            size_correct = "yes" if predicted == actual else "no"
-
-        rows.append({
-            "task_id": task_id,
-            "n_train_pairs": len(train),
-            "train_input_sizes": ";".join(fmt(size_of(p["input"])) for p in train),
-            "train_output_sizes": ";".join(fmt(size_of(p["output"])) for p in train),
-            "category": category,
-            "detail": detail,
-            "report": REPORT[category],
-            "test_input_sizes": ";".join(fmt(size_of(t["input"])) for t in test),
-            "predicted_output_sizes": ";".join(fmt(s) if s else "" for s in predicted),
-            "actual_output_sizes": ";".join(fmt(s) for s in actual) if actual else "",
-            "size_correct": size_correct,
-        })
-
-    # ---- write the per-task CSV
-    os.makedirs(RESULTS_DIR, exist_ok=True)
-    out_path = os.path.join(RESULTS_DIR, "grid_sizes_results.csv")
-    with open(out_path, "w", newline="") as fh:
-        writer = csv.DictWriter(fh, fieldnames=list(rows[0].keys()))
-        writer.writeheader()
-        writer.writerows(rows)
-
-    # ---- summary table
+# ----------------------------------------------------------------------
+# Tables
+# ----------------------------------------------------------------------
+def print_summary(dataset, rows):
     total = len(rows)
-    counts = Counter(r["category"] for r in rows)
-    details = Counter((r["category"], r["detail"]) for r in rows)
-
-    print(f"\nGrid sizes: {total} tasks\n")
-    print(f"{'Category':<10}{'Tasks':>7}{'Share':>8}{'Size right':>12}{'Size wrong':>12}{'Unknown':>9}")
-    for cat in (CAT_SAME_AS_INPUT, CAT_SAME_AS_OUTPUT, CAT_UNSOLVED):
+    print(f"\n=== {dataset}: grid sizes ({total} tasks) ===")
+    header = f"{'Category':<10}{'Tasks':>7}{'Share':>8}{'Right':>8}{'Wrong':>8}{'Unknown':>9}"
+    print(header)
+    print("-" * len(header))
+    for cat in (SAME_AS_INPUT, SAME_AS_OUTPUT, UNSOLVED):
         in_cat = [r for r in rows if r["category"] == cat]
-        yes = sum(r["size_correct"] == "yes" for r in in_cat)
-        no = sum(r["size_correct"] == "no" for r in in_cat)
-        unk = sum(r["size_correct"] == "unknown" for r in in_cat)
-        right, wrong, unknown = (str(yes), str(no), str(unk)) if cat != CAT_UNSOLVED else ("-", "-", "-")
-        share = f"{100 * counts[cat] / total:.1f}%" if total else "0%"
-        print(f"{cat:<10}{counts[cat]:>7}{share:>8}{right:>12}{wrong:>12}{unknown:>9}")
+        share = f"{100 * len(in_cat) / total:.1f}%" if total else "-"
+        if cat == UNSOLVED:
+            print(f"{cat:<10}{len(in_cat):>7}{share:>8}{'-':>8}{'-':>8}{'-':>9}")
+        else:
+            count = lambda word: sum(r["size_correct"] == word for r in in_cat)
+            print(f"{cat:<10}{len(in_cat):>7}{share:>8}{count('yes'):>8}{count('no'):>8}{count('unknown'):>9}")
 
-    print("\nBreakdown:")
-    for (cat, detail), n in sorted(details.items()):
-        print(f"  Category {cat} | {detail}: {n}")
+    print("Breakdown:")
+    for (cat, detail), n in sorted(Counter((r["category"], r["detail"]) for r in rows).items()):
+        print(f"  {cat} | {detail}: {n}")
 
-    solvable = [r for r in rows if r["category"] != CAT_UNSOLVED and r["size_correct"] in ("yes", "no")]
-    if solvable:
-        hits = sum(r["size_correct"] == "yes" for r in solvable)
-        print(f"\nSize prediction on categories 1-2: {hits}/{len(solvable)} "
-              f"({100 * hits / len(solvable):.1f}%)")
-    print(f"\nPer-task results written to {out_path}")
+    checked = [r for r in rows if r["size_correct"] in ("yes", "no")]
+    if checked:
+        hits = sum(r["size_correct"] == "yes" for r in checked)
+        print(f"Size right on categories 1-2: {hits}/{len(checked)} ({100 * hits / len(checked):.1f}%)")
+
+
+def main():
+    columns = ["dataset", "task_id", "n_train_pairs", "train_input_sizes", "train_output_sizes",
+               "category", "detail", "report", "test_input_sizes", "predicted_output_sizes",
+               "actual_output_sizes", "size_correct"]
+    all_rows, receipts = [], {}
+
+    for dataset in DATASETS:
+        folder = DATA_DIR / dataset
+        if not folder.is_dir():
+            print(f"Note: {folder} not found, skipping {dataset}")
+            continue
+        rows, receipts[dataset] = [], {}
+        for task_id, task in load_tasks(folder).items():
+            receipt = get_sizes_receipt(task)
+            receipts[dataset][task_id] = receipt
+            size_correct, actual = check_against_test(receipt, task)
+            train = task["train"]
+            rows.append({
+                "dataset": dataset, "task_id": task_id, "n_train_pairs": len(train),
+                "train_input_sizes": ";".join(fmt(size_of(p["input"])) for p in train),
+                "train_output_sizes": ";".join(fmt(size_of(p["output"])) for p in train),
+                "category": receipt["category"], "detail": receipt["detail"],
+                "report": receipt["report"],
+                "test_input_sizes": ";".join(fmt(s) for s in receipt["test_input_sizes"]),
+                "predicted_output_sizes": ";".join(fmt(s) if s else "" for s in receipt["predicted_output_sizes"]),
+                "actual_output_sizes": actual, "size_correct": size_correct,
+            })
+        print_summary(dataset, rows)
+        all_rows += rows
+
+    if not all_rows:
+        raise SystemExit(f"No tasks found under {DATA_DIR}. Expected data/training and data/evaluation.")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=columns)
+        writer.writeheader()
+        writer.writerows(all_rows)
+    with OUT_JSON.open("w", encoding="utf-8") as file:
+        json.dump(receipts, file)
+    print(f"\nPer-task results written to {OUT_CSV}")
+    print(f"Receipts for later steps written to {OUT_JSON}")
 
 
 if __name__ == "__main__":
