@@ -26,8 +26,8 @@ closest are kept as "partial" (how many training pairs they reproduce exactly).
 Also stored: size_ratio when output/input size is a constant ratio in every pair.
 
 The Grid Solver predicts with these two functions:
-  specs = find_transformations(train_pairs)       # train_pairs: [(input, output), ...]
-  prediction, coverage = apply_transformation(specs[0], test_input)
+  specs, partial = find_transformations(train_pairs)   # train_pairs: [(input, output), ...]
+  prediction, coverage = apply_transformation(specs[0], test_input)   # if specs is not empty
 The receipt JSON holds the compact description of each candidate; the learned local
 rule itself lives in memory (it is rebuilt by find_transformations).
 
