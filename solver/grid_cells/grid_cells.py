@@ -1,72 +1,98 @@
 """
-Step 4: Grid cells, version 2 (investigation only, not used to solve yet)
+Step 4: Grid cells (investigation only)
 
-Compares every training input with its output cell by cell and writes down
-WHAT IS DIFFERENT, so the transformations step knows what it has to explain.
-Only possible when input and output have the same height x width; tasks where a
-training pair changes size are "not_same_size" (the sizes step handles those).
+How alike are the grids? Compares every training input with its output (and the
+training outputs with each other) cell by cell. Height x width is the first clue:
 
-Background = most frequent colour of the INPUT grid (ties: lowest colour number).
-No colour is hard-coded.
+  * same size    : cells are compared position by position
+  * different    : the smaller grid is slid over the bigger one and the best fit
+                   is used (the output can be a piece of the input, or the reverse)
 
-For every pair the changed cells are described by four things:
+Similarity word per training pair (share of cells that are the same):
+  very_similar      60% or more   (grids extremely similar, minor changes)
+  somewhat_similar  50% to 59.9%  (not that similar)
+  not_similar       under 50%     (not similar)
+The share uses the bigger grid's area, so a small piece of a big grid is not
+"similar"; the piece itself is reported separately (OUTPUT_IS_PIECE_OF_INPUT).
 
-  KIND     how cells change
-             identical / added_only (background -> colour) / removed_only (colour ->
-             background) / recoloured_only (colour -> other colour) / mixed
-  TO       where the new colour of the changed cells comes from
-             to_background : every changed cell becomes background
-             fixed:<c>     : every changed cell becomes the same colour c
-             neighbour     : the new colour is the colour of a side neighbour in the input
-             line          : the new colour is a colour found in the same row or column
-             other
-  WHERE    what the changed cells have in common (true for 95%+ of them)
-             enclosed        : colour on the left, right, above and below (in the input)
-             touches_content : a side neighbour that is not background
-             shares_line     : another non-background cell in the same row or column
-             inside_content  : inside the bounding box of the input's non-background cells
-             on_border       : on the outer edge of the grid
-  BLOBS    how many separate groups the changed cells form (side by side)
+Receipt flags (true in EVERY training pair; "sometimes" = true in some pairs)
+  Similarity   CELLS_VERY_SIMILAR / CELLS_SOMEWHAT_SIMILAR / CELLS_NOT_SIMILAR / CELLS_MIXED
+  Size         SAME_SIZE / OUTPUT_BIGGER / OUTPUT_SMALLER / MIXED_SIZE / SIZE_VARIES
+  Events       GRID_IDENTICAL                  output is a copy of the input
+               CELLS_ADDED                     background cells become coloured
+               CELLS_ERASED                    coloured cells become background
+               CELLS_RECOLOURED                coloured cells change colour
+               OUTPUT_IS_PIECE_OF_INPUT        output is an exact piece of the input
+               INPUT_IS_PIECE_OF_OUTPUT        input is an exact piece of the output
+               SIMILAR_AFTER_FLIP_OR_ROTATION  a flip / rotation of the input is 90%+ the output
+               SIMILARITY_FROM_BACKGROUND      60%+ alike, but under 50% of the
+                                               non-background cells match (the
+                                               background is doing the work)
+The receipt also holds output-vs-output similarity (when all training outputs share
+a size) and never contains the test output. The public test output is only used for
+the "holds on test" checks in the CSV and tables.
 
-Task level: a description counts when it is the same in EVERY training pair.
-Test check: the public test pair is described the same way. holds = it matches the
-training description, breaks = it does not.
-
-Outputs
-  * tables in the terminal
-  * results/grid_cells_results.csv   one row per task
-  * results/grid_cells_details.csv   one row per (pair, kind of change): the colours,
-                                     the number of cells, their bounding box and coordinates
+Background comes from find_background() in solver/grid_colours/grid_colours.py.
 
 Usage
   python solver/grid_cells/grid_cells.py
+
+Outputs
+  * tables in the terminal (training, then evaluation)
+  * solver/grid_cells/results/grid_cells_results.csv    (one row per task)
+  * solver/grid_cells/results/grid_cells_receipts.json  (what later steps load)
+
+From another step
+  import sys; sys.path.insert(0, str(ROOT / "solver" / "grid_cells"))
+  from grid_cells import load_cells_receipts, check_cells_receipts
 """
 
 import csv
 import json
+import sys
 from collections import Counter, defaultdict
+from itertools import combinations
 from pathlib import Path
 
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-ROOT = HERE.parents[1]                       # repo root (holds data/)
+ROOT = HERE.parents[1]                        # repo root (holds data/)
 DATA_DIR = ROOT / "data"
-GROUPS_CSV = ROOT / "solver" / "grid_shapes" / "results" / "grid_groups_shapes_results.csv"
-RESULTS_PATH = HERE / "results" / "grid_cells_results.csv"
-DETAILS_PATH = HERE / "results" / "grid_cells_details.csv"
+RESULTS_DIR = HERE / "results"
+OUT_CSV = RESULTS_DIR / "grid_cells_results.csv"
+OUT_JSON = RESULTS_DIR / "grid_cells_receipts.json"
+DATASETS = ("training", "evaluation")
 
-WHERE_ORDER = ["enclosed", "touches_content", "on_border", "shares_line", "inside_content"]
-SHARE_NEEDED = 0.95          # share of the changed cells a "where" test must cover
-MAX_COORDS = 40              # coordinates written per row in the details file
+sys.path.insert(0, str(ROOT / "solver" / "grid_colours"))
+try:
+    from grid_colours import find_background
+except ImportError:
+    raise SystemExit("grid_cells.py needs find_background() from "
+                     "solver/grid_colours/grid_colours.py. Put the new grid_colours.py there first.")
+
+VERY_SIMILAR_MIN = 60.0          # percent
+SOMEWHAT_SIMILAR_MIN = 50.0      # percent
+SYMMETRY_MIN = 90.0              # percent, for SIMILAR_AFTER_FLIP_OR_ROTATION
+
+SIMILARITY_FLAG = {"very_similar": "CELLS_VERY_SIMILAR", "somewhat_similar": "CELLS_SOMEWHAT_SIMILAR",
+                   "not_similar": "CELLS_NOT_SIMILAR", "mixed": "CELLS_MIXED"}
+SIZE_FLAG = {"same": "SAME_SIZE", "output_bigger": "OUTPUT_BIGGER", "output_smaller": "OUTPUT_SMALLER",
+             "mixed_size": "MIXED_SIZE", "varies": "SIZE_VARIES"}
+EVENTS = ["GRID_IDENTICAL", "CELLS_ADDED", "CELLS_ERASED", "CELLS_RECOLOURED",
+          "OUTPUT_IS_PIECE_OF_INPUT", "INPUT_IS_PIECE_OF_OUTPUT",
+          "SIMILAR_AFTER_FLIP_OR_ROTATION", "SIMILARITY_FROM_BACKGROUND"]
+
+SYMMETRIES = {"flip_h": lambda g: g[:, ::-1], "flip_v": lambda g: g[::-1, :],
+              "rotate_90": lambda g: np.rot90(g, -1), "rotate_180": lambda g: np.rot90(g, 2),
+              "rotate_270": lambda g: np.rot90(g, 1), "transpose": lambda g: g.T,
+              "anti_transpose": lambda g: np.rot90(g, 2).T}
 
 
 # ----------------------------------------------------------------------
 # Load
 # ----------------------------------------------------------------------
 def load_tasks(folder):
-    if not folder.is_dir():
-        raise SystemExit(f"Data folder not found: {folder}")
     tasks = {}
     for file_path in sorted(folder.glob("*.json")):
         with file_path.open("r", encoding="utf-8") as file:
@@ -74,308 +100,289 @@ def load_tasks(folder):
     return tasks
 
 
-def read_groups():
-    if not GROUPS_CSV.exists():
-        print(f"Note: {GROUPS_CSV.name} not found, the group column stays empty")
-        return {}
-    with GROUPS_CSV.open("r", newline="", encoding="utf-8-sig") as file:
-        return {(r["dataset"], r["task_id"]): r["group"] for r in csv.DictReader(file)}
-
-
 def to_np(grid):
     return np.array(grid, dtype=int)
 
 
-def background_colour(grid):
-    values, counts = np.unique(grid, return_counts=True)
-    return int(values[np.argmax(counts)])        # ties: lowest colour number
+# ----------------------------------------------------------------------
+# Comparing two grids
+# ----------------------------------------------------------------------
+def similarity_label(percent):
+    if percent >= VERY_SIMILAR_MIN:
+        return "very_similar"
+    return "somewhat_similar" if percent >= SOMEWHAT_SIMILAR_MIN else "not_similar"
+
+
+def size_relation(a, b):
+    (ha, wa), (hb, wb) = a.shape, b.shape
+    if (ha, wa) == (hb, wb):
+        return "same"
+    if ha <= hb and wa <= wb:
+        return "output_bigger"
+    if ha >= hb and wa >= wb:
+        return "output_smaller"
+    return "mixed_size"
+
+
+def non_background(window, background):
+    return np.ones(window.shape, dtype=bool) if background is None else window != background
+
+
+def align(a, b, bg_a, bg_b):
+    """Slide the smaller grid over the bigger one (per side). Best fit wins."""
+    (ha, wa), (hb, wb) = a.shape, b.shape
+    ch, cw = min(ha, hb), min(wa, wb)
+    rows = ([(i, 0) for i in range(ha - hb + 1)] if ha > hb else
+            [(0, i) for i in range(hb - ha + 1)] if hb > ha else [(0, 0)])
+    cols = ([(i, 0) for i in range(wa - wb + 1)] if wa > wb else
+            [(0, i) for i in range(wb - wa + 1)] if wb > wa else [(0, 0)])
+    best, exact = None, False
+    for ra, rb in rows:
+        for ca, cb in cols:
+            win_a, win_b = a[ra:ra + ch, ca:ca + cw], b[rb:rb + ch, cb:cb + cw]
+            equal = win_a == win_b
+            union = non_background(win_a, bg_a) | non_background(win_b, bg_b)
+            raw, nb_match, nb_total = int(equal.sum()), int((equal & union).sum()), int(union.sum())
+            exact = exact or raw == ch * cw
+            if best is None or (nb_match, raw) > (best[0], best[1]):
+                best = (nb_match, raw, nb_total, ra, ca, rb, cb)
+    nb_match, raw, nb_total, ra, ca, rb, cb = best
+    return {"raw": raw, "window": ch * cw, "nb_match": nb_match, "nb_total": nb_total,
+            "exact_piece": exact, "offset_in": [ra, ca], "offset_out": [rb, cb]}
+
+
+def compare_pair(grid_in, grid_out):
+    a, b = to_np(grid_in), to_np(grid_out)
+    bg_a, bg_b = find_background(grid_in), find_background(grid_out)
+    relation = size_relation(a, b)
+    fit = align(a, b, bg_a, bg_b)
+    bigger = max(a.size, b.size)
+
+    overall = 100 * fit["raw"] / bigger
+    aligned = 100 * fit["raw"] / fit["window"]
+    non_bg = 100 * fit["nb_match"] / fit["nb_total"] if fit["nb_total"] else 100.0
+    label = similarity_label(overall)
+
+    ev = set()
+    changed = added = erased = recoloured = 0
+    if relation == "same":
+        changed = int((a != b).sum())
+        if changed == 0:
+            ev.add("GRID_IDENTICAL")
+        if bg_a is not None and bg_b is not None:
+            added = int(((a == bg_a) & (b != bg_b)).sum())
+            erased = int(((a != bg_a) & (b == bg_b)).sum())
+            recoloured = int(((a != bg_a) & (b != bg_b) & (a != b)).sum())
+            if added: ev.add("CELLS_ADDED")
+            if erased: ev.add("CELLS_ERASED")
+            if recoloured: ev.add("CELLS_RECOLOURED")
+    elif fit["exact_piece"]:
+        ev.add("OUTPUT_IS_PIECE_OF_INPUT" if relation == "output_smaller" else "INPUT_IS_PIECE_OF_OUTPUT")
+
+    best_name, best_share = "", 0.0
+    for name, transform in SYMMETRIES.items():
+        t = transform(a)
+        if t.shape == b.shape:
+            share = 100 * float((t == b).mean())
+            if share > best_share:
+                best_name, best_share = name, share
+    if best_share >= SYMMETRY_MIN and best_share > overall + 10:
+        ev.add("SIMILAR_AFTER_FLIP_OR_ROTATION")
+    if overall >= VERY_SIMILAR_MIN and non_bg < SOMEWHAT_SIMILAR_MIN:
+        ev.add("SIMILARITY_FROM_BACKGROUND")
+
+    return {"size_relation": relation,
+            "input_size": list(a.shape), "output_size": list(b.shape),
+            "area_ratio": round(b.size / a.size, 3),
+            "overall_share": round(overall, 1), "aligned_share": round(aligned, 1),
+            "non_background_share": round(non_bg, 1), "similarity_label": label,
+            "changed_cells": changed, "cells_added": added, "cells_erased": erased,
+            "cells_recoloured": recoloured,
+            "best_symmetry": best_name, "best_symmetry_share": round(best_share, 1),
+            "events": [e for e in EVENTS if e in ev]}
 
 
 # ----------------------------------------------------------------------
-# Describing one same-size pair
+# Receipt (training pairs only)
 # ----------------------------------------------------------------------
-def kind_of(grid_in, grid_out, bg, changed):
-    if not changed.any():
-        return "identical"
-    was, now = grid_in[changed], grid_out[changed]
-    kinds = set()
-    kinds.update(["added"] if (was == bg).any() else [])
-    kinds.update(["removed"] if (now == bg).any() else [])
-    kinds.update(["recoloured"] if ((was != bg) & (now != bg)).any() else [])
-    return f"{next(iter(kinds))}_only" if len(kinds) == 1 else "mixed"
+def task_word(labels, allowed, fallback):
+    first = labels[0]
+    return first if all(l == first for l in labels) and first in allowed else fallback
 
 
-def to_label(grid_in, grid_out, bg, changed):
-    """Where the new colour of the changed cells comes from."""
-    rows, cols = np.where(changed)
-    new = grid_out[changed]
-    if (new == bg).all():
-        return "to_background"
-    if len(set(new.tolist())) == 1:
-        return f"fixed:{int(new[0])}"
-
-    padded = np.pad(grid_in, 1, constant_values=-1)
-    sides = [padded[:-2, 1:-1], padded[2:, 1:-1], padded[1:-1, :-2], padded[1:-1, 2:]]
-    from_side = np.zeros(grid_in.shape, dtype=bool)
-    for s in sides:
-        from_side |= (s == grid_out) & (s != bg)
-    if from_side[changed].mean() >= SHARE_NEEDED:
-        return "neighbour"
-
-    on_line = 0
-    for r, c, colour in zip(rows, cols, new.tolist()):
-        line = set(grid_in[r, :].tolist()) | set(grid_in[:, c].tolist())
-        on_line += colour in line and colour != bg
-    return "line" if on_line / len(rows) >= SHARE_NEEDED else "other"
+def output_vs_output(outputs):
+    """Mean cell match between training outputs, when they all share one size."""
+    arrays = [to_np(o) for o in outputs]
+    if len(arrays) < 2:
+        return {"word": "n/a", "share": None}
+    if len({a.shape for a in arrays}) != 1:
+        return {"word": "n/a", "share": None}
+    shares = [100 * float((x == y).mean()) for x, y in combinations(arrays, 2)]
+    mean = sum(shares) / len(shares)
+    return {"word": similarity_label(mean), "share": round(mean, 1)}
 
 
-def where_tests(grid_in, bg):
-    """For every cell: does it pass each 'where' test? (dict of boolean grids)"""
-    content = grid_in != bg
-    padded = np.pad(content, 1)
-    touches = padded[:-2, 1:-1] | padded[2:, 1:-1] | padded[1:-1, :-2] | padded[1:-1, 2:]
+def get_cells_receipt(task):
+    pairs = [compare_pair(p["input"], p["output"]) for p in task["train"]]
+    shares = [p["overall_share"] for p in pairs]
 
-    def before(a, axis):         # any content strictly before each cell along the axis
-        acc = np.logical_or.accumulate(a, axis=axis)
-        out = np.zeros_like(a)
-        if axis == 1:
-            out[:, 1:] = acc[:, :-1]
-        else:
-            out[1:, :] = acc[:-1, :]
-        return out
+    similarity_word = task_word([p["similarity_label"] for p in pairs],
+                                {"very_similar", "somewhat_similar", "not_similar"}, "mixed")
+    size_word = task_word([p["size_relation"] for p in pairs],
+                          {"same", "output_bigger", "output_smaller", "mixed_size"}, "varies")
+    flags = [SIMILARITY_FLAG[similarity_word], SIZE_FLAG[size_word]]
+    flags += [e for e in EVENTS if all(e in p["events"] for p in pairs)]
+    sometimes = [e for e in EVENTS if any(e in p["events"] for p in pairs) and e not in flags]
 
-    left, up = before(content, 1), before(content, 0)
-    right = before(content[:, ::-1], 1)[:, ::-1]
-    down = before(content[::-1, :], 0)[::-1, :]
-    enclosed = left & right & up & down
-
-    row_count = content.sum(axis=1)[:, None] - content
-    col_count = content.sum(axis=0)[None, :] - content
-    shares_line = (row_count > 0) | (col_count > 0)
-
-    inside = np.zeros_like(content)
-    if content.any():
-        ys, xs = np.where(content)
-        inside[ys.min():ys.max() + 1, xs.min():xs.max() + 1] = True
-
-    border = np.zeros_like(content)
-    border[0, :] = border[-1, :] = border[:, 0] = border[:, -1] = True
-
-    return {"enclosed": enclosed, "touches_content": touches, "on_border": border,
-            "shares_line": shares_line, "inside_content": inside}
+    return {"flags": flags, "sometimes": sometimes,
+            "similarity_word": similarity_word, "size_word": size_word,
+            "mean_share": round(sum(shares) / len(shares), 1),
+            "min_share": min(shares), "max_share": max(shares),
+            "output_vs_output": output_vs_output([p["output"] for p in task["train"]]),
+            "pairs": pairs,
+            "test_input_sizes": [[len(t["input"]), len(t["input"][0])] for t in task["test"]]}
 
 
-def where_label(grid_in, bg, changed):
-    """The set of 'where' tests that cover 95%+ of the changed cells."""
-    if not changed.any():
-        return set()
-    tests = where_tests(grid_in, bg)
-    return {name for name, mask in tests.items()
-            if mask[changed].mean() >= SHARE_NEEDED}
-
-
-def blob_count(changed):
-    """Separate groups of changed cells (side by side)."""
-    seen = np.zeros_like(changed)
-    groups = 0
-    height, width = changed.shape
-    for r, c in zip(*np.where(changed)):
-        if seen[r, c]:
-            continue
-        groups += 1
-        stack = [(r, c)]
-        seen[r, c] = True
-        while stack:
-            y, x = stack.pop()
-            for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
-                ny, nx = y + dy, x + dx
-                if 0 <= ny < height and 0 <= nx < width and changed[ny, nx] and not seen[ny, nx]:
-                    seen[ny, nx] = True
-                    stack.append((ny, nx))
-    return groups
-
-
-def describe_pair(grid_in, grid_out):
-    bg = background_colour(grid_in)
-    changed = grid_in != grid_out
-    return {"kind": kind_of(grid_in, grid_out, bg, changed),
-            "to": to_label(grid_in, grid_out, bg, changed) if changed.any() else "none",
-            "where": where_label(grid_in, bg, changed),
-            "blobs": blob_count(changed),
-            "changed_pct": 100 * changed.mean(),
-            "bg": bg, "changed": changed}
+def check_on_public_test(receipt, task):
+    """Do the training words also describe the public test pair? Verification only."""
+    if not all("output" in t for t in task["test"]):
+        return None
+    test_pairs = [compare_pair(t["input"], t["output"]) for t in task["test"]]
+    word = receipt["similarity_word"]
+    similarity = ("n/a" if word == "mixed"
+                  else "yes" if all(p["similarity_label"] == word for p in test_pairs) else "no")
+    size_word = receipt["size_word"]
+    size = ("n/a" if size_word == "varies"
+            else "yes" if all(p["size_relation"] == size_word for p in test_pairs) else "no")
+    events = [set(p["events"]) for p in test_pairs]
+    event_flags = [f for f in receipt["flags"] if f in EVENTS]
+    holding = [f for f in event_flags if all(f in e for e in events)]
+    return {"similarity": similarity, "size": size, "holding": holding,
+            "failing": [f for f in event_flags if f not in holding]}
 
 
 # ----------------------------------------------------------------------
-# One task
+# For the other steps
 # ----------------------------------------------------------------------
-def to_group(labels):
-    """Task-level 'to' description from the per-pair labels."""
-    unique = set(labels)
-    if len(unique) == 1:
-        label = next(iter(unique))
-        return "fixed" if label.startswith("fixed:") else label
-    if all(label.startswith("fixed:") for label in labels):
-        return "fixed_per_pair"
-    return "mixed"
+def load_cells_receipts(path=OUT_JSON):
+    """{dataset: {task_id: receipt}}. Stops with a clear message if the file is missing."""
+    if not Path(path).exists():
+        raise SystemExit(f"Grid cells receipts not found: {path}\n"
+                         f"Run solver/grid_cells/grid_cells.py first.")
+    with Path(path).open("r", encoding="utf-8") as file:
+        return json.load(file)
 
 
-def to_matches(group, task_labels, test_label):
-    if group == "fixed":
-        return test_label == task_labels[0]
-    if group == "fixed_per_pair":
-        return test_label.startswith("fixed:")
-    return test_label == group
-
-
-def check(flag):
-    return "n/a" if flag is None else ("holds" if flag else "breaks")
-
-
-def analyse_task(task):
-    train = [(to_np(p["input"]), to_np(p["output"])) for p in task.get("train", [])]
-    tests = [(to_np(p["input"]), to_np(p["output"])) for p in task.get("test", [])
-             if "output" in p]
-    blank = {"applicable": "no", "kind": "not_same_size", "kind_test": "n/a",
-             "to": "n/a", "to_test": "n/a", "where_holds": "", "where_tightest": "n/a",
-             "where_test": "n/a", "blobs": "n/a", "blobs_test": "n/a",
-             "avg_changed_pct": "", "details": []}
-    if not train or not all(i.shape == o.shape for i, o in train):
-        return blank
-
-    pairs = [describe_pair(i, o) for i, o in train]
-    test_pairs = [describe_pair(i, o) if i.shape == o.shape else None for i, o in tests]
-    row = dict(blank, applicable="yes")
-
-    # KIND
-    kinds = [p["kind"] for p in pairs]
-    row["kind"] = kinds[0] if len(set(kinds)) == 1 else "other"
-    row["kind_test"] = ("n/a" if row["kind"] == "other" or not test_pairs else
-                        check(all(t is not None and t["kind"] == row["kind"] for t in test_pairs)))
-
-    # Nothing changed in any pair: nothing more to describe
-    changed_pairs = [p for p in pairs if p["kind"] != "identical"]
-    if changed_pairs:
-        labels = [p["to"] for p in changed_pairs]
-        row["to"] = to_group(labels)
-        row["to_test"] = ("n/a" if row["to"] == "mixed" or not test_pairs else check(
-            all(t is not None and t["to"] != "none" and to_matches(row["to"], labels, t["to"])
-                for t in test_pairs)))
-
-        holds = set.intersection(*[p["where"] for p in changed_pairs])
-        row["where_holds"] = "|".join(w for w in WHERE_ORDER if w in holds)
-        row["where_tightest"] = next((w for w in WHERE_ORDER if w in holds), "none")
-        row["where_test"] = ("n/a" if not holds or not test_pairs else check(
-            all(t is not None and holds <= t["where"] for t in test_pairs)))
-
-        counts = {p["blobs"] for p in changed_pairs}
-        row["blobs"] = f"constant:{next(iter(counts))}" if len(counts) == 1 else "varies"
-        row["blobs_test"] = ("n/a" if len(counts) != 1 or not test_pairs else check(
-            all(t is not None and t["blobs"] == next(iter(counts)) for t in test_pairs)))
-
-    row["avg_changed_pct"] = f"{sum(p['changed_pct'] for p in pairs) / len(pairs):.1f}"
-    row["details"] = pair_details(train, pairs)
-    return row
-
-
-def pair_details(train, pairs):
-    """One entry per (pair, kind of change, from colour, to colour)."""
-    details = []
-    for index, ((grid_in, grid_out), p) in enumerate(zip(train, pairs), start=1):
-        bg, changed = p["bg"], p["changed"]
-        groups = defaultdict(list)
-        for r, c in zip(*np.where(changed)):
-            was, now = int(grid_in[r, c]), int(grid_out[r, c])
-            kind = "added" if was == bg else "removed" if now == bg else "changed"
-            groups[(kind, was, now)].append((int(r), int(c)))
-        for (kind, was, now), cells in sorted(groups.items()):
-            rs, cs = [r for r, _ in cells], [c for _, c in cells]
-            coords = ";".join(f"{r},{c}" for r, c in cells[:MAX_COORDS])
-            details.append({"pair": index, "group": kind, "from_colour": was,
-                            "to_colour": now, "cells": len(cells),
-                            "bbox": f"rows {min(rs)}-{max(rs)}, cols {min(cs)}-{max(cs)}",
-                            "coordinates": coords + (";..." if len(cells) > MAX_COORDS else "")})
-    return details
+def check_cells_receipts(receipts, dataset, task_ids):
+    """Stop if any task has no grid cells receipt, and say which ones."""
+    have = receipts.get(dataset, {})
+    missing = [t for t in task_ids if t not in have]
+    if missing:
+        shown = ", ".join(missing[:10]) + (" ..." if len(missing) > 10 else "")
+        raise SystemExit(f"Grid cells receipt missing for {len(missing)} of {len(task_ids)} "
+                         f"{dataset} tasks: {shown}\nRe-run solver/grid_cells/grid_cells.py.")
+    print(f"Grid cells receipts: {len(task_ids)}/{len(task_ids)} {dataset} tasks covered")
 
 
 # ----------------------------------------------------------------------
-# Tables
+# Tables and CSV
 # ----------------------------------------------------------------------
-def rate(holds, breaks):
-    return f"{holds / (holds + breaks):.0%}" if (holds + breaks) else "-"
+def csv_row(dataset, task_id, task, receipt, check):
+    pairs = receipt["pairs"]
+    each = lambda key: ";".join(str(p[key]) for p in pairs)
+    oo = receipt["output_vs_output"]
+    return {
+        "dataset": dataset, "task_id": task_id, "n_train_pairs": len(task["train"]),
+        # kept so grid_transformations.py (which reads a "cell_group" column) still finds one
+        "cell_group": f"{receipt['size_word']}/{receipt['similarity_word']}",
+        "similarity_word": receipt["similarity_word"], "size_word": receipt["size_word"],
+        "flags": "|".join(receipt["flags"]), "sometimes": "|".join(receipt["sometimes"]),
+        "mean_share": receipt["mean_share"], "min_share": receipt["min_share"],
+        "max_share": receipt["max_share"],
+        "size_relation": each("size_relation"), "area_ratio": each("area_ratio"),
+        "overall_share": each("overall_share"), "aligned_share": each("aligned_share"),
+        "non_background_share": each("non_background_share"),
+        "changed_cells": each("changed_cells"), "cells_added": each("cells_added"),
+        "cells_erased": each("cells_erased"), "cells_recoloured": each("cells_recoloured"),
+        "best_symmetry": each("best_symmetry"),
+        "output_vs_output_word": oo["word"], "output_vs_output_share": "" if oo["share"] is None else oo["share"],
+        "test_input_sizes": ";".join(f"{h}x{w}" for h, w in receipt["test_input_sizes"]),
+        "holds_similarity": "unknown" if check is None else check["similarity"],
+        "holds_size": "unknown" if check is None else check["size"],
+        "events_holding_on_test": "unknown" if check is None else "|".join(check["holding"]),
+        "events_failing_on_test": "unknown" if check is None else "|".join(check["failing"]),
+    }
 
 
-def print_table(title, rows, key, test_key, order=None):
-    print(f"\n{title}")
-    header = f"{'Group':<18}{'Tasks':>7}{'Holds':>8}{'Breaks':>8}{'n/a':>6}{'Holds (checked)':>17}"
+def print_summary(dataset, rows):
+    total = len(rows)
+    print(f"\n=== {dataset}: grid cells ({total} tasks) ===")
+
+    print("\nSimilarity of input and output")
+    header = f"{'Word':<20}{'Tasks':>7}{'Share':>8}{'Holds on test':>16}"
     print(header)
     print("-" * len(header))
-    by = defaultdict(list)
-    for r in rows:
-        by[r[key]].append(r)
-    names = order or [k for k, _ in sorted(by.items(), key=lambda kv: -len(kv[1]))]
-    for name in names:
-        group_rows = by.get(name, [])
-        if not group_rows:
+    for word in ("very_similar", "somewhat_similar", "not_similar", "mixed"):
+        group = [r for r in rows if r["similarity_word"] == word]
+        checked = [r for r in group if r["holds_similarity"] in ("yes", "no")]
+        holds = f"{sum(r['holds_similarity'] == 'yes' for r in checked)}/{len(checked)}" if checked else "-"
+        print(f"{word:<20}{len(group):>7}{100 * len(group) / total:>7.1f}%{holds:>16}")
+
+    print("\nSize relation x similarity (tasks)")
+    words = ("very_similar", "somewhat_similar", "not_similar", "mixed")
+    header = f"{'':<16}" + "".join(f"{w:>18}" for w in words) + f"{'Total':>8}"
+    print(header)
+    print("-" * len(header))
+    for size in ("same", "output_bigger", "output_smaller", "mixed_size", "varies"):
+        group = [r for r in rows if r["size_word"] == size]
+        if not group:
             continue
-        h = sum(1 for r in group_rows if r[test_key] == "holds")
-        b = sum(1 for r in group_rows if r[test_key] == "breaks")
-        print(f"{name:<18}{len(group_rows):>7}{h:>8}{b:>8}{len(group_rows) - h - b:>6}{rate(h, b):>17}")
+        print(f"{size:<16}" + "".join(f"{sum(r['similarity_word'] == w for r in group):>18}" for w in words)
+              + f"{len(group):>8}")
 
+    print("\nOutput vs output (outputs all the same size)")
+    oo = Counter(r["output_vs_output_word"] for r in rows)
+    print("  " + ", ".join(f"{w}: {oo[w]}" for w in ("very_similar", "somewhat_similar", "not_similar", "n/a")))
 
-def print_dataset(name, rows):
-    applicable = [r for r in rows if r["applicable"] == "yes"]
-    changed = [r for r in applicable if r["to"] != "n/a"]
-    print(f"\n=== {name}: cells ({len(rows)} tasks, {len(applicable)} with same-size pairs) ===")
-    print_table("KIND: how cells change", rows, "kind", "kind_test",
-                ["identical", "added_only", "removed_only", "recoloured_only", "mixed",
-                 "other", "not_same_size"])
-    print_table("TO: where the new colour comes from", changed, "to", "to_test")
-    print_table("WHERE: the tightest thing the changed cells have in common",
-                changed, "where_tightest", "where_test")
-    print_table("BLOBS: separate groups of changed cells", changed,
-                "blobs", "blobs_test")
-    pcts = sorted(float(r["avg_changed_pct"]) for r in applicable)
-    if pcts:
-        print(f"\nCells changed per task (same-size tasks): median {pcts[len(pcts) // 2]:.1f}%,"
-              f" mean {sum(pcts) / len(pcts):.1f}%")
-
-
-def write_files(all_rows):
-    RESULTS_PATH.parent.mkdir(parents=True, exist_ok=True)
-    columns = ["dataset", "task_id", "group", "applicable", "kind", "kind_test",
-               "to", "to_test", "where_holds", "where_tightest", "where_test",
-               "blobs", "blobs_test", "avg_changed_pct"]
-    with RESULTS_PATH.open("w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        writer.writerow(columns)
-        for r in all_rows:
-            writer.writerow([r[c] for c in columns])
-
-    detail_columns = ["pair", "group", "from_colour", "to_colour", "cells", "bbox", "coordinates"]
-    with DETAILS_PATH.open("w", newline="", encoding="utf-8") as file:
-        writer = csv.writer(file)
-        writer.writerow(["dataset", "task_id"] + detail_columns)
-        for r in all_rows:
-            for d in r["details"]:
-                writer.writerow([r["dataset"], r["task_id"]] + [d[c] for c in detail_columns])
-    print(f"\nPer-task results written to {RESULTS_PATH}")
-    print(f"Per-pair details written to {DETAILS_PATH}")
+    print("\nEvents")
+    header = f"{'Event':<34}{'In every pair':>14}{'Holds on test':>16}{'Sometimes':>11}"
+    print(header)
+    print("-" * len(header))
+    for event in EVENTS:
+        flagged = [r for r in rows if event in r["flags"].split("|")]
+        sometimes = sum(event in r["sometimes"].split("|") for r in rows)
+        checked = [r for r in flagged if r["events_holding_on_test"] != "unknown"]
+        holds = sum(event in r["events_holding_on_test"].split("|") for r in checked)
+        print(f"{event:<34}{len(flagged):>14}{(f'{holds}/{len(checked)}' if checked else '-'):>16}{sometimes:>11}")
 
 
 def main():
-    groups = read_groups()
-    all_rows = []
-    for dataset in ("training", "evaluation"):
-        rows = []
-        for task_id, task in load_tasks(DATA_DIR / dataset).items():
-            row = analyse_task(task)
-            row["dataset"], row["task_id"] = dataset, task_id
-            row["group"] = groups.get((dataset, task_id), "")
-            rows.append(row)
-        print_dataset(dataset, rows)
+    all_rows, receipts = [], {}
+    for dataset in DATASETS:
+        folder = DATA_DIR / dataset
+        if not folder.is_dir():
+            print(f"Note: {folder} not found, skipping {dataset}")
+            continue
+        rows, receipts[dataset] = [], {}
+        for task_id, task in load_tasks(folder).items():
+            receipt = get_cells_receipt(task)
+            receipts[dataset][task_id] = receipt
+            rows.append(csv_row(dataset, task_id, task, receipt, check_on_public_test(receipt, task)))
+        print_summary(dataset, rows)
         all_rows += rows
-    write_files(all_rows)
+
+    if not all_rows:
+        raise SystemExit(f"No tasks found under {DATA_DIR}. Expected data/training and data/evaluation.")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=list(all_rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(all_rows)
+    with OUT_JSON.open("w", encoding="utf-8") as file:
+        json.dump(receipts, file)
+    print(f"\nPer-task results written to {OUT_CSV}")
+    print(f"Receipts for later steps written to {OUT_JSON}")
 
 
 if __name__ == "__main__":
