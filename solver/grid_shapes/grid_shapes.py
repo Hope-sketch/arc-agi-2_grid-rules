@@ -1,61 +1,106 @@
 """
-Step 3: Grid shapes (investigation only, not used to solve yet)
+Step 3: Grid shapes (investigation only)
 
-What counts as a shape
-  A shape is a group of cells of the SAME colour joined side by side
-  (up, down, left, right). Diagonal cells do NOT join.
-  The background colour is not a shape.
-  A cell with no same-coloured side neighbour is a shape on its own (size 1).
-  Two shapes of the same colour that do not touch by a side are two shapes.
+A shape is a group of cells of ONE colour joined through their sides (up, down,
+left, right = 4-connectivity). A single cell is a shape. The background is never a
+shape (it comes from find_background() in solver/grid_colours/grid_colours.py, so
+there is one place to improve it; with no background every cell is in a shape).
 
-Form
-  The form of a shape is its cell layout with the position removed.
-  Colour is NOT part of the form (colour belongs to the colours step).
+For every training pair the shapes of the input are matched to the shapes of the
+output, strongest evidence first:
+  exact     same cells, same place
+  form      same colour, same form, moved
+  recolour  same form (colour changed), moved or in place
+  rotated   same colour, same form after a rotation / flip
+  overlap   same-size grids only: the output shape sits on top of the input shape
+            (it grew, shrank, or changed form)
+Input shapes left unmatched are REMOVED, output shapes left unmatched are ADDED.
 
-Rule A: shape COUNT   (per training pair, compare shapes in input vs output)
-      added    : the output has more shapes than the input
-      removed  : the output has fewer shapes
-      same     : equal counts
-  Task group: every pair the same -> that group, anything else -> "other".
+Events (true or false per training pair)
+   1 SHAPES_ADDED               an output shape has no input shape
+   2 SHAPES_REMOVED             an input shape has no output shape
+   3 SHAPES_MAINTAINED          at least one shape exists in input and output
+   4 SHAPE_SIZE_ADDED           a matched shape has more cells in the output
+   5 SHAPE_SIZE_REDUCED         a matched shape has fewer cells
+   6 SHAPE_SIZE_MAINTAINED      a matched shape has the same number of cells
+   7 SHAPE_STRUCTURE_MAINTAINED a matched shape keeps exactly the same form
+   8 SHAPE_STRUCTURE_REMOVED    a matched shape stays but its form changes
+   9 SHAPE_HAS_0_HOLES          input: no shape has a hole
+  10 SHAPE_HAS_1_HOLE           input: the most holes in one shape is 1
+  11 SHAPE_HAS_2_PLUS_HOLES     input: some shape has 2 or more holes
+  12 SHAPE_HOLES_MAINTAINED     a matched shape keeps its holes
+  13 SHAPE_HOLES_REMOVED        a matched shape loses holes (opened up), not filled
+  14 SHAPE_HOLES_FILLED_IN      empty hole cells of the input become non-background
+  15 SHAPE_MOVED_POSITIVE_X     a shape moved right  (columns increase)
+  16 SHAPE_MOVED_NEGATIVE_X     a shape moved left
+  17 SHAPE_MOVED_POSITIVE_Y     a shape moved down   (rows increase)
+  18 SHAPE_MOVED_NEGATIVE_Y     a shape moved up
+  Extras
+     SHAPE_COUNT_MORE / FEWER / SAME   more, fewer or equally many shapes in the output
+     SHAPE_RECOLOURED                  a matched shape has the same form, another colour
+     SHAPE_ROTATED_OR_FLIPPED          a shape comes back rotated or flipped
+     NO_SHAPES                         neither grid has a shape
 
-Rule B: shape FORMS   (per training pair, compare the SET of forms)
-      same_forms : input and output contain exactly the same forms
-      kept_some  : not equal, but they share at least one form
-      none_shared: no form in common
-  Task group: every pair the same -> that group, anything else -> "other".
-  Also recorded: forms that appear in EVERY training input and output.
+A hole is a region of cells enclosed by one shape (the outside is reached through
+corners too, so a diagonal gap is not a hole). Movement is only measured on
+same-size grids, and when several identical shapes exist the nearest ones are
+paired, so movement is a best guess.
 
-Test check (this is the "where does it fail" part)
-  Groups come from the training pairs only. Afterwards the public test
-  answers are used to ask whether the same thing also happens in the test
-  pair: holds = yes, breaks = no, n/a = group is "other" / "none".
-
-Test input check
-  The number of shapes in each test input is compared with the number of
-  shapes in the training inputs: within the training range, more, or fewer.
-
-Background
-  Background = the most frequent colour in a grid. If two colours tie, the
-  tied colour whose biggest connected region is largest is used, and the
-  grid is counted in "bg_ties" so you can see how often this happens.
+Receipt: "flags" = events true in EVERY training pair, "sometimes" = events true in
+some pairs but not all. The receipt never contains the test output; the public test
+output is only used for the "holds on test" check in the CSV and tables.
 
 Usage
-  python solver/grid_shapes.py
+  python solver/grid_shapes/grid_shapes.py
 
 Outputs
-  * tables in the terminal
-  * results/grid_shapes_results.csv  (one row per task)
+  * tables in the terminal (training, then evaluation)
+  * solver/grid_shapes/results/grid_shapes_results.csv    (one row per task)
+  * solver/grid_shapes/results/grid_shapes_receipts.json  (what later steps load)
+
+From another step
+  import sys; sys.path.insert(0, str(ROOT / "solver" / "grid_shapes"))
+  from grid_shapes import load_shapes_receipts, check_shapes_receipts
 """
 
 import csv
 import json
+import sys
 from collections import Counter, defaultdict
+from functools import lru_cache
 from pathlib import Path
 
-DATA_DIR = Path("data")
-RESULTS_PATH = Path("results") / "grid_shapes_results.csv"
+HERE = Path(__file__).resolve().parent
+ROOT = HERE.parents[1]                        # repo root (holds data/)
+DATA_DIR = ROOT / "data"
+RESULTS_DIR = HERE / "results"
+OUT_CSV = RESULTS_DIR / "grid_shapes_results.csv"
+OUT_JSON = RESULTS_DIR / "grid_shapes_receipts.json"
+DATASETS = ("training", "evaluation")
 
-SIDE_NEIGHBOURS = [(-1, 0), (1, 0), (0, -1), (0, 1)]  # no diagonals
+sys.path.insert(0, str(ROOT / "solver" / "grid_colours"))
+try:
+    from grid_colours import find_background
+except ImportError:
+    raise SystemExit("grid_shapes.py needs find_background() from "
+                     "solver/grid_colours/grid_colours.py. Put the new grid_colours.py there first.")
+
+EVENTS = [
+    "SHAPES_ADDED", "SHAPES_REMOVED", "SHAPES_MAINTAINED",
+    "SHAPE_SIZE_ADDED", "SHAPE_SIZE_REDUCED", "SHAPE_SIZE_MAINTAINED",
+    "SHAPE_STRUCTURE_MAINTAINED", "SHAPE_STRUCTURE_REMOVED",
+    "SHAPE_HAS_0_HOLES", "SHAPE_HAS_1_HOLE", "SHAPE_HAS_2_PLUS_HOLES",
+    "SHAPE_HOLES_MAINTAINED", "SHAPE_HOLES_REMOVED", "SHAPE_HOLES_FILLED_IN",
+    "SHAPE_MOVED_POSITIVE_X", "SHAPE_MOVED_NEGATIVE_X",
+    "SHAPE_MOVED_POSITIVE_Y", "SHAPE_MOVED_NEGATIVE_Y",
+    "SHAPE_COUNT_MORE", "SHAPE_COUNT_FEWER", "SHAPE_COUNT_SAME",
+    "SHAPE_RECOLOURED", "SHAPE_ROTATED_OR_FLIPPED", "NO_SHAPES",
+]
+
+TRANSFORMS = [lambda y, x: (y, x), lambda y, x: (y, -x), lambda y, x: (-y, x),
+              lambda y, x: (-y, -x), lambda y, x: (x, y), lambda y, x: (x, -y),
+              lambda y, x: (-x, y), lambda y, x: (-x, -y)]
+NEIGHBOURS_8 = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
 
 
 # ----------------------------------------------------------------------
@@ -70,267 +115,356 @@ def load_tasks(folder):
 
 
 # ----------------------------------------------------------------------
-# Shapes
+# Shapes in one grid
 # ----------------------------------------------------------------------
-def find_regions(grid):
-    """Every same-colour region joined by sides, background included."""
-    height = len(grid)
-    width = len(grid[0])
-    seen = [[False] * width for _ in range(height)]
-    regions = []
+class Shape:
+    __slots__ = ("colour", "cells", "cellset", "size", "top", "left", "bottom", "right",
+                 "form", "holes", "hole_cells")
 
+
+@lru_cache(maxsize=None)
+def canonical(form):
+    """The form with rotations and flips ignored."""
+    best = None
+    for transform in TRANSFORMS:
+        points = [transform(y, x) for y, x in form]
+        min_y = min(p[0] for p in points)
+        min_x = min(p[1] for p in points)
+        normal = tuple(sorted((y - min_y, x - min_x) for y, x in points))
+        if best is None or normal < best:
+            best = normal
+    return best
+
+
+def find_holes(cellset, top, left, bottom, right):
+    """(number of holes, their cells). Outside is reached through corners too."""
+    height, width = bottom - top + 3, right - left + 3
+    blocked = [[False] * width for _ in range(height)]
+    for y, x in cellset:
+        blocked[y - top + 1][x - left + 1] = True
+
+    def flood(start, allowed):
+        stack, seen = [start], {start}
+        while stack:
+            y, x = stack.pop()
+            for dy, dx in NEIGHBOURS_8:
+                ny, nx = y + dy, x + dx
+                if 0 <= ny < height and 0 <= nx < width and (ny, nx) not in seen and allowed(ny, nx):
+                    seen.add((ny, nx))
+                    stack.append((ny, nx))
+        return seen
+
+    outside = flood((0, 0), lambda y, x: not blocked[y][x])
+    enclosed = {(y, x) for y in range(height) for x in range(width)
+                if not blocked[y][x] and (y, x) not in outside}
+    count, left_over = 0, set(enclosed)
+    while left_over:
+        region = flood(next(iter(left_over)), lambda y, x: (y, x) in enclosed)
+        left_over -= region
+        count += 1
+    return count, sorted((y + top - 1, x + left - 1) for y, x in enclosed)
+
+
+def make_shape(colour, cells):
+    shape = Shape()
+    shape.colour = colour
+    shape.cells = cells
+    shape.cellset = frozenset(cells)
+    shape.size = len(cells)
+    shape.top = min(y for y, _ in cells)
+    shape.left = min(x for _, x in cells)
+    shape.bottom = max(y for y, _ in cells)
+    shape.right = max(x for _, x in cells)
+    shape.form = tuple(sorted((y - shape.top, x - shape.left) for y, x in cells))
+    if shape.size >= 8:                      # the smallest possible ring has 8 cells
+        shape.holes, shape.hole_cells = find_holes(shape.cellset, shape.top, shape.left,
+                                                   shape.bottom, shape.right)
+    else:
+        shape.holes, shape.hole_cells = 0, []
+    return shape
+
+
+def extract_shapes(grid, background):
+    height, width = len(grid), len(grid[0])
+    seen = [[False] * width for _ in range(height)]
+    shapes = []
     for r in range(height):
         for c in range(width):
-            if seen[r][c]:
-                continue
             colour = grid[r][c]
-            stack = [(r, c)]
+            if seen[r][c] or colour == background:
+                continue
+            cells, stack = [], [(r, c)]
             seen[r][c] = True
-            cells = []
             while stack:
-                cr, cc = stack.pop()
-                cells.append((cr, cc))
-                for dr, dc in SIDE_NEIGHBOURS:
-                    nr, nc = cr + dr, cc + dc
-                    if (0 <= nr < height and 0 <= nc < width
-                            and not seen[nr][nc] and grid[nr][nc] == colour):
-                        seen[nr][nc] = True
-                        stack.append((nr, nc))
-            regions.append({"colour": colour, "cells": cells})
-    return regions
+                y, x = stack.pop()
+                cells.append((y, x))
+                for ny, nx in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+                    if 0 <= ny < height and 0 <= nx < width and not seen[ny][nx] and grid[ny][nx] == colour:
+                        seen[ny][nx] = True
+                        stack.append((ny, nx))
+            shapes.append(make_shape(colour, cells))
+    return shapes
 
 
-def background_colour(grid, regions):
-    """Most frequent colour. Returns (colour, was_tie)."""
-    ranked = Counter(cell for row in grid for cell in row).most_common()
-    top = ranked[0][1]
-    tied = [colour for colour, n in ranked if n == top]
-    if len(tied) == 1:
-        return tied[0], False
-    # Tie: pick the tied colour with the biggest single connected region.
-    best = max(tied, key=lambda col: max(len(reg["cells"]) for reg in regions
-                                         if reg["colour"] == col))
-    return best, True
-
-
-def form_of(cells):
-    """Cell layout with the position removed (so it can be compared)."""
-    min_r = min(r for r, _ in cells)
-    min_c = min(c for _, c in cells)
-    return tuple(sorted((r - min_r, c - min_c) for r, c in cells))
-
-
-def find_shapes(grid):
-    """Returns (shapes, was_tie). Each shape: colour, size, form."""
-    if not grid or not grid[0]:
-        return [], False
-    regions = find_regions(grid)
-    bg, was_tie = background_colour(grid, regions)
-    shapes = [{"colour": reg["colour"],
-               "size": len(reg["cells"]),
-               "form": form_of(reg["cells"])}
-              for reg in regions if reg["colour"] != bg]
-    return shapes, was_tie
+def hole_class(shapes):
+    if not shapes:
+        return "none"
+    most = max(s.holes for s in shapes)
+    return "0" if most == 0 else "1" if most == 1 else "2+"
 
 
 # ----------------------------------------------------------------------
-# Pair level
+# Matching input shapes to output shapes
 # ----------------------------------------------------------------------
-def count_change(shapes_in, shapes_out):
-    if len(shapes_out) > len(shapes_in):
-        return "added"
-    if len(shapes_out) < len(shapes_in):
-        return "removed"
-    return "same"
+def match_shapes(sin, sout, same_size):
+    """List of (input index, output index, how). The rest are removed / added."""
+    matches = []
+    free_in, free_out = set(range(len(sin))), set(range(len(sout)))
 
+    def take(i, j, how):
+        matches.append((i, j, how))
+        free_in.discard(i)
+        free_out.discard(j)
 
-def form_change(shapes_in, shapes_out):
-    forms_in = {s["form"] for s in shapes_in}
-    forms_out = {s["form"] for s in shapes_out}
-    if forms_in == forms_out:
-        return "same_forms"
-    if forms_in & forms_out:
-        return "kept_some"
-    return "none_shared"
+    # exact: same cells in the same place
+    by_cells = {sout[j].cellset: j for j in free_out}
+    for i in sorted(free_in):
+        j = by_cells.get(sin[i].cellset)
+        if j is not None:
+            take(i, j, "exact")
+
+    def by_corner(a, b):
+        return abs(a.top - b.top) + abs(a.left - b.left)
+
+    def by_centre(a, b):
+        return abs(a.top + a.bottom - b.top - b.bottom) + abs(a.left + a.right - b.left - b.right)
+
+    def group_match(key, how, distance):
+        groups_in, groups_out = defaultdict(list), defaultdict(list)
+        for i in free_in:
+            groups_in[key(sin[i])].append(i)
+        for j in free_out:
+            groups_out[key(sout[j])].append(j)
+        for k, ins in groups_in.items():
+            outs = groups_out.get(k)
+            if not outs:
+                continue
+            used_in, used_out = set(), set()
+            for _, i, j in sorted((distance(sin[i], sout[j]), i, j) for i in ins for j in outs):
+                if i not in used_in and j not in used_out:
+                    used_in.add(i)
+                    used_out.add(j)
+                    take(i, j, how)
+
+    group_match(lambda s: (s.colour, s.form), "form", by_corner)
+    group_match(lambda s: s.form, "recolour", by_corner)
+    group_match(lambda s: (s.colour, canonical(s.form)), "rotated", by_centre)
+
+    if same_size and free_in and free_out:
+        out_at = {cell: j for j in free_out for cell in sout[j].cells}
+        candidates = []
+        for i in free_in:
+            for j, n in Counter(out_at[c] for c in sin[i].cells if c in out_at).items():
+                candidates.append((-n, sin[i].colour != sout[j].colour, i, j))
+        for _, _, i, j in sorted(candidates):
+            if i in free_in and j in free_out:
+                take(i, j, "overlap")
+    return matches, free_in, free_out
 
 
 # ----------------------------------------------------------------------
-# Task level
+# One pair
 # ----------------------------------------------------------------------
-def group_of(kinds):
-    unique = set(kinds)
-    if len(unique) == 1:
-        return next(iter(unique)), "same_in_every_pair"
-    return "other", "pairs_disagree"
+def shape_record(s):
+    return [s.colour, s.size, s.holes, s.top, s.left, s.bottom - s.top + 1, s.right - s.left + 1]
 
 
-def test_check(group, test_kinds):
-    if group in ("other", "none") or not test_kinds:
-        return "n/a"
-    return "holds" if set(test_kinds) == {group} else "breaks"
+def describe_pair(grid_in, grid_out):
+    bg_in, bg_out = find_background(grid_in), find_background(grid_out)
+    sin, sout = extract_shapes(grid_in, bg_in), extract_shapes(grid_out, bg_out)
+    same_size = (len(grid_in), len(grid_in[0])) == (len(grid_out), len(grid_out[0]))
+    matches, removed, added = match_shapes(sin, sout, same_size)
+
+    ev = set()
+    if added: ev.add("SHAPES_ADDED")
+    if removed: ev.add("SHAPES_REMOVED")
+    if matches: ev.add("SHAPES_MAINTAINED")
+
+    klass = hole_class(sin)
+    if klass == "0": ev.add("SHAPE_HAS_0_HOLES")
+    elif klass == "1": ev.add("SHAPE_HAS_1_HOLE")
+    elif klass == "2+": ev.add("SHAPE_HAS_2_PLUS_HOLES")
+
+    match_list = []
+    for i, j, how in matches:
+        a, b = sin[i], sout[j]
+        dy, dx = b.top - a.top, b.left - a.left
+        match_list.append([i, j, how, dy, dx])
+
+        if b.size > a.size: ev.add("SHAPE_SIZE_ADDED")
+        elif b.size < a.size: ev.add("SHAPE_SIZE_REDUCED")
+        else: ev.add("SHAPE_SIZE_MAINTAINED")
+
+        if how in ("exact", "form", "recolour"):
+            ev.add("SHAPE_STRUCTURE_MAINTAINED")
+        elif how == "overlap" and a.form != b.form:
+            ev.add("SHAPE_STRUCTURE_REMOVED")
+        if how == "recolour" or (how == "exact" and a.colour != b.colour):
+            ev.add("SHAPE_RECOLOURED")
+        if how == "rotated":
+            ev.add("SHAPE_ROTATED_OR_FLIPPED")
+
+        if same_size and how in ("form", "recolour"):
+            if dx > 0: ev.add("SHAPE_MOVED_POSITIVE_X")
+            if dx < 0: ev.add("SHAPE_MOVED_NEGATIVE_X")
+            if dy > 0: ev.add("SHAPE_MOVED_POSITIVE_Y")
+            if dy < 0: ev.add("SHAPE_MOVED_NEGATIVE_Y")
+
+        if a.holes > 0 and how != "rotated":
+            shift_y, shift_x = (dy, dx) if how in ("form", "recolour") else (0, 0)
+            filled = False
+            if bg_in is not None and bg_out is not None:
+                for y, x in a.hole_cells:
+                    ny, nx = y + shift_y, x + shift_x
+                    if (grid_in[y][x] == bg_in and 0 <= ny < len(grid_out)
+                            and 0 <= nx < len(grid_out[0]) and grid_out[ny][nx] != bg_out):
+                        filled = True
+                        break
+            if filled: ev.add("SHAPE_HOLES_FILLED_IN")
+            elif b.holes == a.holes: ev.add("SHAPE_HOLES_MAINTAINED")
+            elif b.holes < a.holes: ev.add("SHAPE_HOLES_REMOVED")
+
+    if len(sout) > len(sin): ev.add("SHAPE_COUNT_MORE")
+    elif len(sout) < len(sin): ev.add("SHAPE_COUNT_FEWER")
+    else: ev.add("SHAPE_COUNT_SAME")
+    if not sin and not sout: ev.add("NO_SHAPES")
+
+    return {"events": [e for e in EVENTS if e in ev],
+            "shapes_in": len(sin), "shapes_out": len(sout),
+            "matched": len(matches), "added": len(added), "removed": len(removed),
+            "input_hole_class": klass, "output_hole_class": hole_class(sout),
+            "input_background": bg_in, "output_background": bg_out,
+            "input_shapes": [shape_record(s) for s in sin],
+            "output_shapes": [shape_record(s) for s in sout],
+            "matches": match_list}
 
 
-def shared_forms_check(shared, test_has_shared):
-    if not shared or not test_has_shared:
-        return "n/a"
-    return "holds" if all(test_has_shared) else "breaks"
+# ----------------------------------------------------------------------
+# Receipt (training pairs only)
+# ----------------------------------------------------------------------
+def get_shapes_receipt(task):
+    pairs = [describe_pair(p["input"], p["output"]) for p in task["train"]]
+    flags = [e for e in EVENTS if all(e in p["events"] for p in pairs)]
+    sometimes = [e for e in EVENTS if any(e in p["events"] for p in pairs) and e not in flags]
+
+    tests = []
+    for t in task["test"]:
+        bg = find_background(t["input"])
+        shapes = extract_shapes(t["input"], bg)
+        tests.append({"background": bg, "shape_count": len(shapes),
+                      "hole_class": hole_class(shapes), "shapes": [shape_record(s) for s in shapes]})
+    return {"flags": flags, "sometimes": sometimes, "pairs": pairs, "test_inputs": tests}
 
 
-def test_input_vs_training(train_input_counts, test_input_counts):
-    """Is the number of shapes in the test input within, above or below the training inputs?"""
-    if not test_input_counts:
-        return "n/a"
-    low, high = min(train_input_counts), max(train_input_counts)
-    labels = set()
-    for n in test_input_counts:
-        labels.add("more" if n > high else "fewer" if n < low else "within")
-    return labels.pop() if len(labels) == 1 else "mixed"
+def check_on_public_test(receipt, task):
+    """Which flags also hold on the public test pair(s)? Verification only."""
+    if not all("output" in t for t in task["test"]):
+        return None
+    test_events = [set(describe_pair(t["input"], t["output"])["events"]) for t in task["test"]]
+    holding = [f for f in receipt["flags"] if all(f in e for e in test_events)]
+    failing = [f for f in receipt["flags"] if f not in holding]
+    return {"holding": holding, "failing": failing}
 
 
-def empty_result(reason):
-    return {"count_group": "none", "count_reason": reason, "count_test": "n/a",
-            "form_group": "none", "form_reason": reason, "form_test": "n/a",
-            "shared_forms": 0, "shared_forms_in_test": "n/a",
-            "per_pair_counts": "", "test_input_shapes": "",
-            "test_vs_train_inputs": "n/a", "bg_ties": 0}
+# ----------------------------------------------------------------------
+# For the other steps
+# ----------------------------------------------------------------------
+def load_shapes_receipts(path=OUT_JSON):
+    """{dataset: {task_id: receipt}}. Stops with a clear message if the file is missing."""
+    if not Path(path).exists():
+        raise SystemExit(f"Grid shapes receipts not found: {path}\n"
+                         f"Run solver/grid_shapes/grid_shapes.py first.")
+    with Path(path).open("r", encoding="utf-8") as file:
+        return json.load(file)
 
 
-def analyse_task(task):
-    train = task.get("train", [])
-    if not train:
-        return empty_result("no_training_examples")
+def check_shapes_receipts(receipts, dataset, task_ids):
+    """Stop if any task has no grid shapes receipt, and say which ones."""
+    have = receipts.get(dataset, {})
+    missing = [t for t in task_ids if t not in have]
+    if missing:
+        shown = ", ".join(missing[:10]) + (" ..." if len(missing) > 10 else "")
+        raise SystemExit(f"Grid shapes receipt missing for {len(missing)} of {len(task_ids)} "
+                         f"{dataset} tasks: {shown}\nRe-run solver/grid_shapes/grid_shapes.py.")
+    print(f"Grid shapes receipts: {len(task_ids)}/{len(task_ids)} {dataset} tasks covered")
 
-    # Training pairs
-    ties = 0
-    pair_info = []
-    for pair in train:
-        s_in, tie_in = find_shapes(pair["input"])
-        s_out, tie_out = find_shapes(pair["output"])
-        ties += int(tie_in) + int(tie_out)
-        pair_info.append((s_in, s_out))
 
-    count_group, count_reason = group_of([count_change(a, b) for a, b in pair_info])
-    form_group, form_reason = group_of([form_change(a, b) for a, b in pair_info])
-
-    # Forms that appear in EVERY training input and EVERY training output.
-    form_sets = []
-    for s_in, s_out in pair_info:
-        form_sets.append({s["form"] for s in s_in})
-        form_sets.append({s["form"] for s in s_out})
-    shared = set.intersection(*form_sets)
-
-    # Test pairs (only the ones with a public answer)
-    test_count_kinds, test_form_kinds, test_has_shared = [], [], []
-    for t in task.get("test", []):
-        if "output" not in t:
-            continue
-        s_in, _ = find_shapes(t["input"])
-        s_out, _ = find_shapes(t["output"])
-        test_count_kinds.append(count_change(s_in, s_out))
-        test_form_kinds.append(form_change(s_in, s_out))
-        test_has_shared.append(bool(shared & {s["form"] for s in s_in})
-                               and bool(shared & {s["form"] for s in s_out}))
-
-    # Test inputs (do not need an answer)
-    test_input_counts = [len(find_shapes(t["input"])[0])
-                         for t in task.get("test", []) if "input" in t]
-
+# ----------------------------------------------------------------------
+# Tables and CSV
+# ----------------------------------------------------------------------
+def csv_row(dataset, task_id, task, receipt, check):
+    pairs = receipt["pairs"]
     return {
-        "count_group": count_group, "count_reason": count_reason,
-        "count_test": test_check(count_group, test_count_kinds),
-        "form_group": form_group, "form_reason": form_reason,
-        "form_test": test_check(form_group, test_form_kinds),
-        "shared_forms": len(shared),
-        "shared_forms_in_test": shared_forms_check(shared, test_has_shared),
-        "per_pair_counts": " | ".join(f"{len(a)}>{len(b)}" for a, b in pair_info),
-        "test_input_shapes": " | ".join(str(n) for n in test_input_counts),
-        "test_vs_train_inputs": test_input_vs_training(
-            [len(a) for a, _ in pair_info], test_input_counts),
-        "bg_ties": ties,
+        "dataset": dataset, "task_id": task_id, "n_train_pairs": len(task["train"]),
+        "flags": "|".join(receipt["flags"]),
+        "sometimes": "|".join(receipt["sometimes"]),
+        "shapes_in": ";".join(str(p["shapes_in"]) for p in pairs),
+        "shapes_out": ";".join(str(p["shapes_out"]) for p in pairs),
+        "matched": ";".join(str(p["matched"]) for p in pairs),
+        "added": ";".join(str(p["added"]) for p in pairs),
+        "removed": ";".join(str(p["removed"]) for p in pairs),
+        "input_hole_class": ";".join(p["input_hole_class"] for p in pairs),
+        "output_hole_class": ";".join(p["output_hole_class"] for p in pairs),
+        "test_shape_count": ";".join(str(t["shape_count"]) for t in receipt["test_inputs"]),
+        "flags_holding_on_test": "unknown" if check is None else "|".join(check["holding"]),
+        "flags_failing_on_test": "unknown" if check is None else "|".join(check["failing"]),
     }
 
 
-def analyse_dataset(tasks):
-    results = []
-    for task_id, task in tasks.items():
-        row = analyse_task(task)
-        row["task_id"] = task_id
-        results.append(row)
-    return results
-
-
-# ----------------------------------------------------------------------
-# Tables
-# ----------------------------------------------------------------------
-def rate_text(holds, breaks):
-    return f"{holds / (holds + breaks):.1%}" if (holds + breaks) else "-"
-
-
-def print_group_table(title, results, group_key, test_key, order):
-    print(f"\n{title}")
-    header = f"{'Group':<14}{'Tasks':>7}{'Holds':>8}{'Breaks':>8}{'n/a':>6}{'Holds (when checked)':>24}"
+def print_summary(dataset, rows):
+    total = len(rows)
+    print(f"\n=== {dataset}: grid shapes ({total} tasks) ===")
+    header = f"{'Event':<30}{'In every pair':>14}{'Holds on test':>16}{'Sometimes':>11}"
     print(header)
     print("-" * len(header))
-    by_group = defaultdict(list)
-    for r in results:
-        by_group[r[group_key]].append(r)
-    for group in order:
-        rows = by_group.get(group, [])
-        if not rows:
-            continue
-        holds = sum(1 for r in rows if r[test_key] == "holds")
-        breaks = sum(1 for r in rows if r[test_key] == "breaks")
-        print(f"{group:<14}{len(rows):>7}{holds:>8}{breaks:>8}"
-              f"{len(rows) - holds - breaks:>6}{rate_text(holds, breaks):>24}")
+    for event in EVENTS:
+        flagged = [r for r in rows if event in r["flags"].split("|")]
+        sometimes = sum(event in r["sometimes"].split("|") for r in rows)
+        checked = [r for r in flagged if r["flags_holding_on_test"] != "unknown"]
+        holds = sum(event in r["flags_holding_on_test"].split("|") for r in checked)
+        holds_text = f"{holds}/{len(checked)}" if checked else "-"
+        print(f"{event:<30}{len(flagged):>14}{holds_text:>16}{sometimes:>11}")
+    no_flags = sum(1 for r in rows if not r["flags"])
+    print(f"\nTasks with no flag true in every pair: {no_flags}/{total}")
 
 
-def print_dataset(name, results):
-    print(f"\n=== {name}: shapes ({len(results)} tasks) ===")
-    print_group_table("Rule A: shape count (does the training pattern hold on the test pair?)",
-                      results, "count_group", "count_test",
-                      ["added", "removed", "same", "other"])
-    print_group_table("Rule B: shape forms (does the training pattern hold on the test pair?)",
-                      results, "form_group", "form_test",
-                      ["same_forms", "kept_some", "none_shared", "other"])
-
-    with_shared = [r for r in results if r["shared_forms"] > 0]
-    holds = sum(1 for r in with_shared if r["shared_forms_in_test"] == "holds")
-    breaks = sum(1 for r in with_shared if r["shared_forms_in_test"] == "breaks")
-    print(f"\nTasks with a form present in every training input and output: "
-          f"{len(with_shared)}/{len(results)}")
-    print(f"  Same kind of shape also in the test pair: holds {holds}, "
-          f"breaks {breaks} ({rate_text(holds, breaks)})")
-
-    where = Counter(r["test_vs_train_inputs"] for r in results)
-    print("\nShapes in the test input vs the training inputs: "
-          + ", ".join(f"{k} {where[k]}" for k in ("within", "more", "fewer", "mixed", "n/a")))
-    print(f"Grids with a tied background (training pairs): "
-          f"{sum(r['bg_ties'] for r in results)}")
-
-
-def write_csv(all_results):
-    columns = ["dataset", "task_id", "count_group", "count_reason", "count_test",
-               "form_group", "form_reason", "form_test", "shared_forms",
-               "shared_forms_in_test", "per_pair_counts", "test_input_shapes",
-               "test_vs_train_inputs", "bg_ties"]
-    RESULTS_PATH.parent.mkdir(exist_ok=True)
-    with RESULTS_PATH.open("w", newline="", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(columns)
-        for dataset, results in all_results.items():
-            for r in results:
-                row = dict(r, dataset=dataset)
-                writer.writerow([row[c] for c in columns])
-    print(f"\nPer-task results written to {RESULTS_PATH}")
-
-
-# ----------------------------------------------------------------------
 def main():
-    all_results = {}
-    for name in ("training", "evaluation"):
-        all_results[name] = analyse_dataset(load_tasks(DATA_DIR / name))
-        print_dataset(name, all_results[name])
-    write_csv(all_results)
+    all_rows, receipts = [], {}
+    for dataset in DATASETS:
+        folder = DATA_DIR / dataset
+        if not folder.is_dir():
+            print(f"Note: {folder} not found, skipping {dataset}")
+            continue
+        rows, receipts[dataset] = [], {}
+        for task_id, task in load_tasks(folder).items():
+            receipt = get_shapes_receipt(task)
+            receipts[dataset][task_id] = receipt
+            rows.append(csv_row(dataset, task_id, task, receipt, check_on_public_test(receipt, task)))
+        print_summary(dataset, rows)
+        all_rows += rows
+
+    if not all_rows:
+        raise SystemExit(f"No tasks found under {DATA_DIR}. Expected data/training and data/evaluation.")
+
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=list(all_rows[0].keys()))
+        writer.writeheader()
+        writer.writerows(all_rows)
+    with OUT_JSON.open("w", encoding="utf-8") as file:
+        json.dump(receipts, file)
+    print(f"\nPer-task results written to {OUT_CSV}")
+    print(f"Receipts for later steps written to {OUT_JSON}")
 
 
 if __name__ == "__main__":
