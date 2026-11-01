@@ -1,36 +1,46 @@
 """
-Step 7 (part 2): the Grid Solver
+Step 7: Grid solver
 
-Predicts the test output of every task using ONLY the training pairs and the test
-input. The test answers are never read here (grid_verifier.py checks them later).
+Reads the receipt of every task from grid_transformations (which already holds the
+flags of steps 1-5) and acts on what the receipt states. Every task, and every test
+input in it, gets TWO attempts (attempt_1, attempt_2). It never leaves a task empty.
 
-How it connects the steps
-  1. SORT      the task's group name (size, palette, shape, detail) comes from
-               grid_sorter.py's profiles when the task is known there.
-  2. LEARN     three methods each try to learn a transformation from the training
-               pairs. A method only counts when it reproduces EVERY training output.
-                 whole_grid    : a flip / rotation / mirror / tile / scale / crop (and one
-                                 colour map), from the transformations step
-                 select_piece  : the output is a piece of the input; learns WHICH piece
-                                 (largest, smallest, topmost, unique form, unique colour ...)
-                 local_rule    : what each cell becomes from its neighbourhood (same-size
-                                 tasks), from the transformations step
-  3. RANK      every learned method gives a candidate prediction with a confidence:
-                 whole_grid 3.0 (2.8 with a colour map), select_piece 2.5 and below,
-                 local_rule 1.0 + the share of test cells whose neighbourhood was seen
-               plus a small bonus (up to 0.5) from the group: the share of TRAINING tasks
-               in the same group where that kind of method fitted. The task itself is left
-               out of its own bonus.
-  4. ATTEMPTS  attempt_1 and attempt_2 are the two best DIFFERENT predictions. If fewer than
-               two methods fit, simple fallbacks fill in (the input itself, or its crop).
-
-Usage
-  python solver/grid_solver/grid_solver.py evaluation      (or training, or a folder path)
+How it solves
+  1. Strategies are switched on by the receipt:
+       transform:<name>      the candidates that fit every training pair (best first)
+       partial:<name>        the closest library functions when nothing fits
+       shift_consistent      the receipt says every pair moves its colours by the same shift
+       fill_enclosed         the receipt says holes are filled in
+       colour_map_input      same-size tasks: the colour change learned from training
+       soft_local_<kind>     same-size tasks: neighbourhood rule by majority vote
+       majority_output       all training outputs share a size: cell-by-cell majority
+       resize_input          the sizes step predicted an output size
+       copy_input            always on, the guaranteed answer
+  2. Every strategy is judged on the TRAINING pairs only. Strategies that learn
+     something are judged leave-one-out (learn on the other pairs, predict the one
+     held back), so a rule that merely memorises scores badly.
+  3. Score of a prediction = 0.55 x pairs reproduced exactly
+                           + 0.35 x share of cells right
+                           + 0.10 x size check (1 = the size the sizes step predicted,
+                                    0 = a different size, 0.5 = no size predicted)
+                           + 0.03 for each other strategy that proposed the same grid
+     (training evidence only; the test output is never looked at).
+  4. attempt_1 = best scoring grid, attempt_2 = best scoring DIFFERENT grid. If only
+     one grid exists, a fallback (majority output, blank grid, flipped input) fills in.
 
 Outputs
-  * results/grid_solver_predictions_<name>.json   submission format:
-        {task_id: [{"attempt_1": grid, "attempt_2": grid}, ...one per test input]}
-  * results/grid_solver_results_<name>.csv        one row per task: group and methods used
+  * solver/grid_solver/results/grid_solver_submission_<dataset>.json
+        {task_id: [{"attempt_1": grid, "attempt_2": grid}, ...]}  (one per test input;
+        the Kaggle submission layout)
+  * solver/grid_solver/results/grid_solver_receipts.json   which strategy made which
+        attempt, with its training evidence (no grids), for the Grid Verifier
+  * solver/grid_solver/results/grid_solver_results.csv     one row per task
+  * tables in the terminal. The public test outputs are used ONLY to fill the
+    "correct" columns and tables (a check, not part of solving).
+
+Usage
+  python solver/grid_solver/grid_solver.py
+  (run steps 1-6 first, this step reads the receipts they write)
 """
 
 import csv
@@ -42,368 +52,457 @@ from pathlib import Path
 import numpy as np
 
 HERE = Path(__file__).resolve().parent
-SOLVER = next((p for p in Path(__file__).resolve().parents if p.name == "solver"), HERE.parent)
-ROOT = SOLVER.parent
+ROOT = HERE.parents[1]                        # repo root (holds data/)
 DATA_DIR = ROOT / "data"
-OUT_DIR = SOLVER / "grid_solver" / "results"
-PROFILES_CSV = OUT_DIR / "grid_profiles.csv"
+RESULTS_DIR = HERE / "results"
+OUT_CSV = RESULTS_DIR / "grid_solver_results.csv"
+OUT_RECEIPTS = RESULTS_DIR / "grid_solver_receipts.json"
+DATASETS = ("training", "evaluation")
 
-sys.path.insert(0, str(SOLVER / "grid_transformations"))
+sys.path.insert(0, str(ROOT / "solver" / "grid_transformations"))
 try:
-    from whole_grid_library import (apply_map, background, crop_non_background,   # noqa: E402
-                                    fixed_transforms, learn_colour_map,
-                                    parameterised_transforms, safe_apply)
-    from grid_transformations import NEIGHBOUR_KINDS, learn_local_rule, neighbourhood_keys   # noqa: E402
-except (ImportError, ModuleNotFoundError) as error:
-    raise SystemExit(
-        f"Cannot load the transformations step ({error}).\n"
-        f"solver/grid_transformations/ must contain the NEW grid_transformations.py "
-        f"and whole_grid_library.py.")
+    from grid_transformations import (load_transformations_receipts, check_transformations_receipts,
+                                      find_transformations, apply_transformation, REGISTRY, shift,
+                                      learn_local_rule, neighbourhood_keys, background_of)
+except (ImportError, SystemExit) as error:
+    raise SystemExit(f"Could not import grid_transformations ({error}).\n"
+                     "Steps 1-6 must be in their solver/ folders.")
 
-SIDES = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-DIAGONALS = [(-1, -1), (-1, 1), (1, -1), (1, 1)]
-MAX_SELECT_CANDIDATES = 4
+W_EXACT, W_CELL, W_SIZE, W_VOTE, VOTE_CAP = 0.55, 0.35, 0.10, 0.03, 0.06
+MAX_TRANSFORM_CANDIDATES = 6
 
 
 # ----------------------------------------------------------------------
 # Load
 # ----------------------------------------------------------------------
+def load_tasks(folder):
+    tasks = {}
+    for file_path in sorted(folder.glob("*.json")):
+        with file_path.open("r", encoding="utf-8") as file:
+            tasks[file_path.stem] = json.load(file)
+    return tasks
+
+
 def to_np(grid):
     return np.array(grid, dtype=int)
 
 
-def load_tasks(folder):
-    """Training pairs and TEST INPUTS only. Test outputs are dropped on purpose."""
-    if not folder.is_dir():
-        raise SystemExit(f"Data folder not found: {folder}")
-    tasks = {}
-    for file_path in sorted(folder.glob("*.json")):
-        with file_path.open("r", encoding="utf-8") as file:
-            raw = json.load(file)
-        tasks[file_path.stem] = {
-            "train": [(to_np(p["input"]), to_np(p["output"])) for p in raw["train"]],
-            "test_inputs": [to_np(p["input"]) for p in raw["test"]],
-        }
-    return tasks
+def valid(pred):
+    return (isinstance(pred, np.ndarray) and pred.ndim == 2 and pred.size > 0
+            and pred.shape[0] <= 30 and pred.shape[1] <= 30
+            and int(pred.min()) >= 0 and int(pred.max()) <= 9)
 
 
-def load_profiles():
-    if not PROFILES_CSV.exists():
-        print(f"Note: {PROFILES_CSV.name} not found (run grid_sorter.py): no group bonus, groups left empty")
-        return {}, {}
-    with PROFILES_CSV.open("r", newline="", encoding="utf-8-sig") as file:
-        rows = list(csv.DictReader(file))
-    profiles = {(r["dataset"], r["task_id"]): r for r in rows}
-    by_group = defaultdict(list)
-    for r in rows:
-        if r["dataset"] == "training" and int(r["backoff_level"]) > 0:
-            by_group[r[f"level{r['backoff_level']}"]].append(r)
-    return profiles, by_group
-
-
-def group_of(profile):
-    level = int(profile["backoff_level"])
-    return profile[f"level{level}"] if level > 0 else ""
-
-
-FITTED = {
-    "whole_grid": lambda r: r["whole_grid"] in ("found_exact", "found_with_colour_map"),
-    "select_piece": lambda r: r["contained"] not in ("", "n/a", "none"),
-    "local_rule": lambda r: r["local_kind"] not in ("", "n/a", "none"),
-}
-
-
-def group_bonus(family, group, by_group, dataset, task_id):
-    rows = [r for r in by_group.get(group, [])
-            if not (dataset == "training" and r["task_id"] == task_id)]
-    if not rows:
-        return 0.0
-    return 0.5 * sum(1 for r in rows if FITTED[family](r)) / len(rows)
+def safe_apply(fn, train, g, target):
+    try:
+        pred = fn(train, g, target)
+    except Exception:
+        return None
+    if pred is None:
+        return None
+    pred = np.asarray(pred, dtype=int)
+    return pred if valid(pred) else None
 
 
 # ----------------------------------------------------------------------
-# Method 1: whole-grid transformations
+# Strategies: fn(train, grid, target_shape) -> grid or None
 # ----------------------------------------------------------------------
-def whole_grid_candidates(train, test_inputs):
-    library = fixed_transforms()
-    library.update(parameterised_transforms(*train[0]))
-    found = []
-    for name, fn in library.items():
-        preds = [safe_apply(fn, i) for i, _ in train]
-        exact = all(p is not None and p.shape == o.shape and np.array_equal(p, o)
-                    for p, (_, o) in zip(preds, train))
-        mapping = None
-        if not exact:
-            mapping = learn_colour_map(preds, [o for _, o in train])
-            if mapping is None:
-                continue
-        outputs = []
-        for grid in test_inputs:
-            p = safe_apply(fn, grid)
-            if p is not None and mapping is not None:
-                p = apply_map(p, mapping)
-            if p is None:
-                break
-            outputs.append(p)
-        else:
-            label = f"whole_grid:{name}" + ("+colour_map" if mapping else "")
-            found.append({"family": "whole_grid", "method": label,
-                          "confidence": 2.8 if mapping else 3.0, "predictions": outputs})
-    return found
+def all_same_shape(train):
+    return all(a.shape == b.shape for a, b in train)
 
 
-# ----------------------------------------------------------------------
-# Method 2: select a piece of the input
-# ----------------------------------------------------------------------
-FAMILIES = ["object8", "object4", "shape4", "bbox_all"]
-VARIANTS = ["raw", "masked"]
-
-PROPERTIES = {
-    "cells": lambda c, g: len(c["cells"]),
-    "box_area": lambda c, g: (c["box"][2] - c["box"][0] + 1) * (c["box"][3] - c["box"][1] + 1),
-    "colours": lambda c, g: len({int(g[y, x]) for y, x in c["cells"]}),
-    "top": lambda c, g: c["box"][0],
-    "left": lambda c, g: c["box"][1],
-    "bottom": lambda c, g: c["box"][2],
-    "right": lambda c, g: c["box"][3],
-}
-FLAGS = ["unique_form", "unique_colour", "touches_border", "symmetric"]
-SELECTORS = ([("max", p) for p in PROPERTIES] + [("min", p) for p in PROPERTIES]
-             + [("flag_true", f) for f in FLAGS] + [("flag_false", f) for f in FLAGS])
+def copy_input_fn(train, g, target):
+    return g
 
 
-def components(grid, bg, family):
-    height, width = grid.shape
-    seen = np.zeros(grid.shape, dtype=bool)
-    steps = SIDES + DIAGONALS if family == "object8" else SIDES
-    comps = []
-    for r in range(height):
-        for c in range(width):
-            if seen[r, c] or grid[r, c] == bg:
-                continue
-            colour = grid[r, c]
-            stack, cells = [(r, c)], []
-            seen[r, c] = True
-            while stack:
-                y, x = stack.pop()
-                cells.append((y, x))
-                for dy, dx in steps:
-                    ny, nx = y + dy, x + dx
-                    if (0 <= ny < height and 0 <= nx < width and not seen[ny, nx]
-                            and grid[ny, nx] != bg
-                            and (family != "shape4" or grid[ny, nx] == colour)):
-                        seen[ny, nx] = True
-                        stack.append((ny, nx))
-            comps.append(cells)
-    return comps
+def colour_map_fn(train, g, target):
+    if not all_same_shape(train):
+        return None
+    votes = defaultdict(Counter)
+    for a, b in train:
+        for src, dst in zip(a.ravel().tolist(), b.ravel().tolist()):
+            votes[src][dst] += 1
+    mapping = {s: c.most_common(1)[0][0] for s, c in votes.items()}
+    return np.array([[mapping.get(c, c) for c in row] for row in g.tolist()])
 
 
-def make_candidates(grid, family):
-    bg = int(background(grid))
-    if family == "bbox_all":
-        cells = [(int(y), int(x)) for y, x in zip(*np.where(grid != bg))]
-        comps = [cells] if cells else []
-    else:
-        comps = components(grid, bg, family)
-    candidates = []
-    for cells in comps:
-        ys, xs = [y for y, _ in cells], [x for _, x in cells]
-        candidates.append({"cells": cells, "box": (min(ys), min(xs), max(ys), max(xs))})
-    return candidates, bg
+def soft_local_fn(kind):
+    def fn(train, g, target):
+        if not all_same_shape(train):
+            return None
+        votes = defaultdict(Counter)
+        for a, b in train:
+            for key, out in zip(neighbourhood_keys(a, kind), b.ravel().tolist()):
+                votes[key][out] += 1
+        rule = {k: c.most_common(1)[0][0] for k, c in votes.items()}
+        keys = neighbourhood_keys(g, kind)
+        return np.array([rule.get(k, c) for k, c in zip(keys, g.ravel().tolist())]).reshape(g.shape)
+    return fn
 
 
-def crop(grid, cand, variant, bg):
-    r0, c0, r1, c1 = cand["box"]
-    if variant == "raw":
-        return grid[r0:r1 + 1, c0:c1 + 1]
-    out = np.full((r1 - r0 + 1, c1 - c0 + 1), bg, dtype=int)
-    for y, x in cand["cells"]:
-        out[y - r0, x - c0] = grid[y, x]
+def strict_local_fn(kind):
+    def fn(train, g, target):
+        rule = learn_local_rule(train, kind) if all_same_shape(train) else None
+        if rule is None:
+            return None
+        keys = neighbourhood_keys(g, kind)
+        return np.array([rule.get(k, c) for k, c in zip(keys, g.ravel().tolist())]).reshape(g.shape)
+    return fn
+
+
+def majority_output_fn(train, g, target):
+    outputs = [b for _, b in train]
+    if len({o.shape for o in outputs}) != 1:
+        return None
+    stack = np.stack(outputs)
+    counts = np.stack([(stack == c).sum(0) for c in range(10)]).astype(float)
+    counts += 0.5 * np.stack([outputs[0] == c for c in range(10)])      # ties go to the first output
+    return counts.argmax(0)
+
+
+def resize_input_fn(train, g, target):
+    if target is None:
+        return None
+    bg = background_of(g)
+    out = np.full(tuple(target), 0 if bg is None else bg, dtype=int)
+    h, w = min(g.shape[0], out.shape[0]), min(g.shape[1], out.shape[1])
+    out[:h, :w] = g[:h, :w]
     return out
 
 
-def flag_values(grid, candidates, bg):
-    height, width = grid.shape
-    forms = [frozenset((y - c["box"][0], x - c["box"][1]) for y, x in c["cells"]) for c in candidates]
-    dominant = [Counter(int(grid[y, x]) for y, x in c["cells"]).most_common(1)[0][0]
-                for c in candidates]
-    form_count, colour_count = Counter(forms), Counter(dominant)
-    symmetric = []
-    for c in candidates:
-        piece = crop(grid, c, "raw", bg)
-        symmetric.append(bool(np.array_equal(piece, piece[:, ::-1]) or np.array_equal(piece, piece[::-1])))
-    return {
-        "unique_form": [form_count[f] == 1 for f in forms],
-        "unique_colour": [colour_count[d] == 1 for d in dominant],
-        "touches_border": [c["box"][0] == 0 or c["box"][1] == 0 or c["box"][2] == height - 1
-                           or c["box"][3] == width - 1 for c in candidates],
-        "symmetric": symmetric,
+def enclosed_background(g):
+    """(background colour, mask of background cells that cannot reach the border)."""
+    bg = background_of(g)
+    if bg is None:
+        return None, None
+    h, w = g.shape
+    reached = np.zeros(g.shape, bool)
+    stack = [(y, x) for y in range(h) for x in range(w)
+             if (y in (0, h - 1) or x in (0, w - 1)) and g[y, x] == bg]
+    for y, x in stack:
+        reached[y, x] = True
+    while stack:
+        y, x = stack.pop()
+        for ny, nx in ((y - 1, x), (y + 1, x), (y, x - 1), (y, x + 1)):
+            if 0 <= ny < h and 0 <= nx < w and not reached[ny, nx] and g[ny, nx] == bg:
+                reached[ny, nx] = True
+                stack.append((ny, nx))
+    return bg, (g == bg) & ~reached
+
+
+def fill_enclosed_fn(train, g, target):
+    colours = Counter()
+    for a, b in train:
+        if a.shape != b.shape:
+            return None
+        _, mask = enclosed_background(a)
+        if mask is None:
+            return None
+        colours.update(b[mask].tolist())
+    if not colours:
+        return None
+    _, mask = enclosed_background(g)
+    if mask is None or not mask.any():
+        return None
+    out = g.copy()
+    out[mask] = colours.most_common(1)[0][0]
+    return out
+
+
+def build_strategies(train, receipt):
+    """The strategies this task's receipt switches on, in tie-break order."""
+    flags = set(receipt["flags"]) | set(receipt["sometimes"])
+    strategies = []
+
+    def add(name, fn, mode):
+        strategies.append({"name": name, "fn": fn, "mode": mode, "rank": len(strategies)})
+
+    specs, _ = find_transformations(train)
+    for spec in specs[:MAX_TRANSFORM_CANDIDATES]:
+        if spec["kind"] == "whole_grid":
+            add(f"transform:{spec['name']}", lambda tr, g, t, s=spec: apply_transformation(s, g)[0], "fit")
+        else:
+            add(f"transform:{spec['name']}", strict_local_fn(spec["neighbourhood"]), "loo")
+
+    shift_value = receipt["steps"]["rows_columns"]["consistent_shift"]
+    if shift_value is not None:
+        add("shift_consistent", lambda tr, g, t, s=shift_value: shift(g, s[0], s[1]), "fit")
+    if "SHAPE_HOLES_FILLED_IN" in flags:
+        add("fill_enclosed", fill_enclosed_fn, "loo")
+    if all_same_shape(train):
+        add("colour_map_input", colour_map_fn, "loo")
+        for kind in ("cross_rel", "block3_rel", "cross"):
+            add(f"soft_local_{kind}", soft_local_fn(kind), "loo")
+    for name, _fits in receipt["partial"]:
+        if name in REGISTRY:
+            add(f"partial:{name}", lambda tr, g, t, n=name: REGISTRY[n](g), "fit")
+    if len({b.shape for _, b in train}) == 1:
+        add("majority_output", majority_output_fn, "loo")
+    if any(s is not None for s in receipt["steps"]["sizes"]["predicted_output_sizes"]):
+        add("resize_input", resize_input_fn, "fit")
+    add("copy_input", copy_input_fn, "fit")
+    return strategies
+
+
+# ----------------------------------------------------------------------
+# Evidence (training pairs only)
+# ----------------------------------------------------------------------
+def cell_accuracy(pred, target):
+    return 0.0 if pred is None or pred.shape != target.shape else float((pred == target).mean())
+
+
+def training_evidence(strategy, train):
+    """(share of pairs reproduced exactly, mean cell accuracy) on the training pairs."""
+    exact, cell = [], []
+    learns = strategy["mode"] == "loo" and len(train) >= 2
+    for i, (a, b) in enumerate(train):
+        known = train[:i] + train[i + 1:] if learns else train
+        pred = safe_apply(strategy["fn"], known, a, b.shape)
+        exact.append(1.0 if pred is not None and pred.shape == b.shape and np.array_equal(pred, b) else 0.0)
+        cell.append(cell_accuracy(pred, b))
+    return sum(exact) / len(exact), sum(cell) / len(cell)
+
+
+def size_check(pred, size):
+    if size is None:
+        return 0.5
+    return 1.0 if pred.shape == tuple(size) else 0.0
+
+
+# ----------------------------------------------------------------------
+# Solve one test input
+# ----------------------------------------------------------------------
+def fallback_attempt(train, g, size, avoid):
+    options = [("fallback:majority_output", safe_apply(majority_output_fn, train, g, size)),
+               ("fallback:resize_input", safe_apply(resize_input_fn, train, g, size)),
+               ("fallback:blank_grid", np.full(tuple(size) if size else g.shape,
+                                               background_of(g) if background_of(g) is not None else 0)),
+               ("fallback:flip_h_input", g[:, ::-1]), ("fallback:transpose_input", g.T)]
+    for name, pred in options:
+        if pred is not None and valid(np.asarray(pred)) and not same_grid(np.asarray(pred), avoid):
+            return name, np.asarray(pred, dtype=int)
+    return "fallback:repeat", avoid
+
+
+def same_grid(a, b):
+    return a.shape == b.shape and np.array_equal(a, b)
+
+
+def solve_test_input(train, g, size, strategies, evidence):
+    groups = []                                           # one entry per distinct grid
+    for strategy in strategies:
+        pred = safe_apply(strategy["fn"], train, g, size)
+        if pred is None:
+            continue
+        exact, cell = evidence[strategy["name"]]
+        score = W_EXACT * exact + W_CELL * cell + W_SIZE * size_check(pred, size)
+        for group in groups:
+            if same_grid(group["pred"], pred):
+                group["supporters"].append(strategy["name"])
+                break
+        else:
+            groups.append({"pred": pred, "name": strategy["name"], "score": score, "exact": exact,
+                           "cell": cell, "size_ok": size_check(pred, size), "rank": strategy["rank"],
+                           "supporters": []})
+    for group in groups:
+        group["final"] = group["score"] + min(W_VOTE * len(group["supporters"]), VOTE_CAP)
+    groups.sort(key=lambda gr: (-gr["final"], gr["rank"]))
+
+    attempts = groups[:2]
+    if len(attempts) < 2:
+        avoid = attempts[0]["pred"] if attempts else g
+        name, pred = fallback_attempt(train, g, size, avoid)
+        attempts.append({"pred": pred, "name": name, "final": 0.0, "exact": 0.0, "cell": 0.0,
+                         "size_ok": size_check(pred, size), "supporters": []})
+    return attempts, groups
+
+
+# ----------------------------------------------------------------------
+# One task
+# ----------------------------------------------------------------------
+def solve_task(task, receipt):
+    train = [(to_np(p["input"]), to_np(p["output"])) for p in task["train"]]
+    strategies = build_strategies(train, receipt)
+    evidence = {s["name"]: training_evidence(s, train) for s in strategies}
+    sizes = receipt["steps"]["sizes"]["predicted_output_sizes"]
+
+    submission, test_receipts, predictions = [], [], []
+    for k, t in enumerate(task["test"]):
+        size = sizes[k] if k < len(sizes) else None
+        attempts, ranked = solve_test_input(train, to_np(t["input"]), size, strategies, evidence)
+        submission.append({"attempt_1": attempts[0]["pred"].tolist(), "attempt_2": attempts[1]["pred"].tolist()})
+        predictions.append([a["pred"] for a in attempts])
+        test_receipts.append({
+            "predicted_size": size,
+            "attempts": [{"strategy": a["name"], "score": round(a["final"], 3), "exact": round(a["exact"], 3),
+                          "cell": round(a["cell"], 3), "size_ok": a["size_ok"],
+                          "also_proposed_by": a["supporters"]} for a in attempts],
+            "distinct_attempts": not same_grid(attempts[0]["pred"], attempts[1]["pred"]),
+            "ranked": [{"strategy": g_["name"], "score": round(g_["final"], 3)} for g_ in ranked[:5]]})
+    strategy_log = [{"strategy": s["name"], "mode": s["mode"], "exact": round(evidence[s["name"]][0], 3),
+                     "cell": round(evidence[s["name"]][1], 3)} for s in strategies]
+    return submission, {"test": test_receipts, "strategies": strategy_log}, predictions
+
+
+def check_on_public_test(task, predictions):
+    """Per test input: which attempt (if any) is exactly right. Verification only."""
+    if not all("output" in t for t in task["test"]):
+        return None
+    results = []
+    for t, attempts in zip(task["test"], predictions):
+        target = to_np(t["output"])
+        results.append({"a1": same_grid(attempts[0], target), "a2": same_grid(attempts[1], target),
+                        "a1_shape": attempts[0].shape == target.shape,
+                        "a2_shape": attempts[1].shape == target.shape})
+    return results
+
+
+# ----------------------------------------------------------------------
+# For the Grid Verifier
+# ----------------------------------------------------------------------
+def load_solver_receipts(path=OUT_RECEIPTS):
+    """{dataset: {task_id: receipt}}. Stops with a clear message if the file is missing."""
+    if not Path(path).exists():
+        raise SystemExit(f"Grid solver receipts not found: {path}\n"
+                         f"Run solver/grid_solver/grid_solver.py first.")
+    with Path(path).open("r", encoding="utf-8") as file:
+        return json.load(file)
+
+
+def check_solver_receipts(receipts, dataset, task_ids):
+    """Stop if any task has no solver receipt (every task must have two attempts)."""
+    have = receipts.get(dataset, {})
+    missing = [t for t in task_ids if t not in have]
+    if missing:
+        shown = ", ".join(missing[:10]) + (" ..." if len(missing) > 10 else "")
+        raise SystemExit(f"Grid solver receipt missing for {len(missing)} of {len(task_ids)} "
+                         f"{dataset} tasks: {shown}\nRe-run solver/grid_solver/grid_solver.py.")
+    print(f"Grid solver receipts: {len(task_ids)}/{len(task_ids)} {dataset} tasks covered")
+
+
+# ----------------------------------------------------------------------
+# Tables and CSV
+# ----------------------------------------------------------------------
+def family(name):
+    return name.split(":")[0] if ":" in name else name
+
+
+def csv_row(dataset, task_id, transformation, solver, check):
+    tests = solver["test"]
+    join = lambda values: ";".join(str(v) for v in values)
+    row = {
+        "dataset": dataset, "task_id": task_id, "group": transformation["group"],
+        "story": transformation["story"], "n_test_inputs": len(tests),
+        "n_strategies": len(solver["strategies"]),
+        "attempt_1_strategy": join(t["attempts"][0]["strategy"] for t in tests),
+        "attempt_1_score": join(t["attempts"][0]["score"] for t in tests),
+        "attempt_2_strategy": join(t["attempts"][1]["strategy"] for t in tests),
+        "attempt_2_score": join(t["attempts"][1]["score"] for t in tests),
+        "distinct_attempts": join("yes" if t["distinct_attempts"] else "no" for t in tests),
     }
-
-
-def choose(grid, candidates, flags, selector):
-    kind, name = selector
-    if kind in ("max", "min"):
-        values = [PROPERTIES[name](c, grid) for c in candidates]
-        target = max(values) if kind == "max" else min(values)
-        hits = [i for i, v in enumerate(values) if v == target]
+    if check is None:
+        row.update({"attempt_1_correct": "unknown", "attempt_2_correct": "unknown", "solved": "unknown",
+                    "task_score": "", "attempt_1_shape_ok": "unknown", "solved_by": ""})
     else:
-        wanted = kind == "flag_true"
-        hits = [i for i, f in enumerate(flags[name]) if f == wanted]
-    return hits[0] if len(hits) == 1 else None
+        solved = [c["a1"] or c["a2"] for c in check]
+        row.update({
+            "attempt_1_correct": join("yes" if c["a1"] else "no" for c in check),
+            "attempt_2_correct": join("yes" if c["a2"] else "no" for c in check),
+            "solved": "yes" if all(solved) else "partial" if any(solved) else "no",
+            "task_score": round(sum(solved) / len(solved), 3),
+            "attempt_1_shape_ok": join("yes" if c["a1_shape"] else "no" for c in check),
+            "solved_by": join(t["attempts"][0 if c["a1"] else 1]["strategy"] if (c["a1"] or c["a2"]) else "-"
+                              for t, c in zip(tests, check)),
+        })
+    return row
 
 
-def prepare(grid, family):
-    candidates, bg = make_candidates(grid, family)
-    flags = flag_values(grid, candidates, bg) if candidates else {}
-    return candidates, bg, flags
+def print_summary(dataset, rows):
+    total = len(rows)
+    checked = [r for r in rows if r["solved"] != "unknown"]
+    print(f"\n=== {dataset}: grid solver ({total} tasks, every task has 2 attempts) ===")
+    if not checked:
+        print("No public test outputs to check against.")
+        return
+    score = sum(r["task_score"] for r in checked)
+    solved = sum(r["solved"] == "yes" for r in checked)
+    first = sum(all(v == "yes" for v in r["attempt_1_correct"].split(";")) for r in checked)
+    shape = sum(all(v == "yes" for v in r["attempt_1_shape_ok"].split(";")) for r in checked)
+    print(f"Score (mean over tasks, either attempt): {score:.1f}/{len(checked)} = {100 * score / len(checked):.1f}%")
+    print(f"  tasks fully solved        : {solved}   (attempt_1 alone solves {first})")
+    print(f"  attempt_1 right size      : {shape}/{len(checked)}")
+    print(f"  attempts identical        : {sum('no' in r['distinct_attempts'].split(';') for r in rows)} tasks")
+
+    print("\nWhich strategy made the correct attempt")
+    by_family = Counter()
+    made = Counter()
+    for r in rows:
+        for name in r["attempt_1_strategy"].split(";") + r["attempt_2_strategy"].split(";"):
+            made[family(name)] += 1
+    for r in checked:
+        for name in r["solved_by"].split(";"):
+            if name != "-":
+                by_family[family(name)] += 1
+    header = f"{'Strategy':<22}{'Attempts made':>15}{'Correct':>10}"
+    print(header)
+    print("-" * len(header))
+    for name, n in made.most_common():
+        print(f"{name:<22}{n:>15}{by_family.get(name, 0):>10}")
+
+    print("\nBy task group (size category | palette | shape count), groups with 20+ tasks")
+    header = f"{'Group':<26}{'Tasks':>7}{'Solved':>8}{'Score':>8}"
+    print(header)
+    print("-" * len(header))
+    by_group = defaultdict(list)
+    for r in checked:
+        by_group[r["group"]].append(r)
+    for group, items in sorted(by_group.items(), key=lambda kv: -len(kv[1])):
+        if len(items) >= 20:
+            print(f"{group:<26}{len(items):>7}{sum(r['solved'] == 'yes' for r in items):>8}"
+                  f"{100 * sum(r['task_score'] for r in items) / len(items):>7.1f}%")
 
 
-def select_piece_candidates(train, test_inputs):
-    found = []
-    for family in FAMILIES:
-        prepared = [prepare(i, family) for i, _ in train]
-        if not all(p[0] for p in prepared):
-            continue
-        for variant in VARIANTS:
-            for selector in SELECTORS:
-                ok = True
-                for (grid_in, grid_out), (cands, bg, flags) in zip(train, prepared):
-                    index = choose(grid_in, cands, flags, selector)
-                    if index is None:
-                        ok = False
-                        break
-                    piece = crop(grid_in, cands[index], variant, bg)
-                    if piece.shape != grid_out.shape or not np.array_equal(piece, grid_out):
-                        ok = False
-                        break
-                if not ok:
-                    continue
-                outputs = []
-                for grid in test_inputs:
-                    cands, bg, flags = prepare(grid, family)
-                    index = choose(grid, cands, flags, selector) if cands else None
-                    if index is None:
-                        break
-                    outputs.append(crop(grid, cands[index], variant, bg))
-                else:
-                    label = f"select_piece:{family}/{variant}/{selector[0]} {selector[1]}"
-                    found.append({"family": "select_piece", "method": label,
-                                  "confidence": 2.5 - 0.05 * len(found), "predictions": outputs})
-                    if len(found) >= MAX_SELECT_CANDIDATES:
-                        return found
-    return found
-
-
-# ----------------------------------------------------------------------
-# Method 3: local rule (same-size tasks)
-# ----------------------------------------------------------------------
-def local_rule_candidates(train, test_inputs):
-    if not all(i.shape == o.shape for i, o in train):
-        return []
-    found = []
-    for kind in NEIGHBOUR_KINDS:
-        rule = learn_local_rule(train, kind)
-        if rule is None:
-            continue
-        outputs, coverage = [], []
-        for grid in test_inputs:
-            keys = neighbourhood_keys(grid, kind)
-            coverage.append(sum(k in rule for k in keys) / len(keys))
-            cells = [rule.get(k, c) for k, c in zip(keys, grid.ravel().tolist())]
-            outputs.append(np.array(cells).reshape(grid.shape))
-        found.append({"family": "local_rule", "method": f"local_rule:{kind}",
-                      "confidence": 1.0 + min(coverage), "predictions": outputs})
-    return found
-
-
-# ----------------------------------------------------------------------
-# Fallbacks and ranking
-# ----------------------------------------------------------------------
-def fallback_candidates(train, test_inputs):
-    same_size = all(i.shape == o.shape for i, o in train)
-    options = [("fallback:copy_input", lambda g: g), ("fallback:crop", crop_non_background)]
-    if not same_size:
-        options.reverse()
-    found = []
-    for confidence, (name, fn) in zip((0.1, 0.05), options):
-        outputs = [safe_apply(fn, g) for g in test_inputs]
-        if all(o is not None for o in outputs):
-            found.append({"family": "fallback", "method": name,
-                          "confidence": confidence, "predictions": outputs})
-    return found
-
-
-def signature(candidate):
-    return tuple((p.shape, p.tobytes()) for p in candidate["predictions"])
-
-
-def solve_task(task, group, by_group, dataset, task_id):
-    train, test_inputs = task["train"], task["test_inputs"]
-    learned = (whole_grid_candidates(train, test_inputs)
-               + select_piece_candidates(train, test_inputs)
-               + local_rule_candidates(train, test_inputs))
-    for c in learned:
-        c["score"] = c["confidence"] + (group_bonus(c["family"], group, by_group, dataset, task_id)
-                                        if group else 0.0)
-    learned.sort(key=lambda c: -c["score"])
-
-    chosen, seen = [], set()
-    for c in learned + fallback_candidates(train, test_inputs):
-        key = signature(c)
-        if key not in seen:
-            seen.add(key)
-            c.setdefault("score", c["confidence"])
-            chosen.append(c)
-        if len(chosen) == 2:
-            break
-    while len(chosen) < 2:                       # last resort: repeat what we have
-        chosen.append(chosen[-1])
-    return chosen, len(learned)
-
-
-# ----------------------------------------------------------------------
 def main():
-    name_or_path = sys.argv[1] if len(sys.argv) > 1 else "evaluation"
-    folder = Path(name_or_path) if Path(name_or_path).is_dir() else DATA_DIR / name_or_path
-    dataset = folder.name
-    tasks = load_tasks(folder)
-    profiles, by_group = load_profiles()
+    transformations_in = load_transformations_receipts()
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-    predictions, rows = {}, []
-    for number, (task_id, task) in enumerate(tasks.items(), start=1):
-        profile = profiles.get((dataset, task_id))
-        group = group_of(profile) if profile else ""
-        chosen, n_learned = solve_task(task, group, by_group, dataset, task_id)
-        first, second = chosen
-        predictions[task_id] = [
-            {"attempt_1": first["predictions"][k].tolist(), "attempt_2": second["predictions"][k].tolist()}
-            for k in range(len(task["test_inputs"]))]
-        rows.append({"dataset": dataset, "task_id": task_id, "group": group,
-                     "learned_methods": n_learned,
-                     "attempt_1_method": first["method"], "attempt_1_score": f"{first['score']:.2f}",
-                     "attempt_2_method": second["method"], "attempt_2_score": f"{second['score']:.2f}"})
-        if number % 200 == 0:
-            print(f"  {number}/{len(tasks)} tasks")
+    all_rows, solver_receipts = [], {}
+    for dataset in DATASETS:
+        folder = DATA_DIR / dataset
+        if not folder.is_dir():
+            print(f"Note: {folder} not found, skipping {dataset}")
+            continue
+        tasks = load_tasks(folder)
+        check_transformations_receipts(transformations_in, dataset, list(tasks))
 
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    json_path = OUT_DIR / f"grid_solver_predictions_{dataset}.json"
-    csv_path = OUT_DIR / f"grid_solver_results_{dataset}.csv"
-    with json_path.open("w", encoding="utf-8") as file:
-        json.dump(predictions, file)
-    with csv_path.open("w", newline="", encoding="utf-8") as file:
-        writer = csv.DictWriter(file, fieldnames=list(rows[0].keys()))
+        rows, submission, solver_receipts[dataset] = [], {}, {}
+        for n, (task_id, task) in enumerate(tasks.items(), 1):
+            transformation = transformations_in[dataset][task_id]
+            task_submission, receipt, predictions = solve_task(task, transformation)
+            submission[task_id] = task_submission
+            solver_receipts[dataset][task_id] = receipt
+            rows.append(csv_row(dataset, task_id, transformation, receipt, check_on_public_test(task, predictions)))
+            if n % 200 == 0:
+                print(f"  {dataset}: {n}/{len(tasks)} tasks solved", flush=True)
+
+        check_solver_receipts(solver_receipts, dataset, list(tasks))
+        with (RESULTS_DIR / f"grid_solver_submission_{dataset}.json").open("w", encoding="utf-8") as file:
+            json.dump(submission, file)
+        print_summary(dataset, rows)
+        all_rows += rows
+
+    if not all_rows:
+        raise SystemExit(f"No tasks found under {DATA_DIR}. Expected data/training and data/evaluation.")
+
+    with OUT_CSV.open("w", newline="", encoding="utf-8") as file:
+        writer = csv.DictWriter(file, fieldnames=list(all_rows[0].keys()))
         writer.writeheader()
-        writer.writerows(rows)
-
-    learned = sum(1 for r in rows if r["learned_methods"] > 0)
-    families = Counter(r["attempt_1_method"].split(":")[0] for r in rows)
-    print(f"\n{dataset}: {len(rows)} tasks, a learned method fitted {learned} "
-          f"({100 * learned / len(rows):.0f}%)")
-    print("First attempt comes from: " + ", ".join(f"{k} {v}" for k, v in families.most_common()))
-    print(f"Predictions written to {json_path}")
-    print(f"Per-task results written to {csv_path}")
-    print("Next: python solver/grid_verifier/grid_verifier.py " + dataset)
+        writer.writerows(all_rows)
+    with OUT_RECEIPTS.open("w", encoding="utf-8") as file:
+        json.dump(solver_receipts, file)
+    print(f"\nSubmission files written to {RESULTS_DIR} (grid_solver_submission_<dataset>.json)")
+    print(f"Per-task results written to {OUT_CSV}")
+    print(f"Solver receipts for the verifier written to {OUT_RECEIPTS}")
 
 
 if __name__ == "__main__":
