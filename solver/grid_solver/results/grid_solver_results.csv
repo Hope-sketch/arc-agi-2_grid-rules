@@ -1,0 +1,1121 @@
+dataset,task_id,group,story,n_test_inputs,n_strategies,attempt_1_strategy,attempt_1_score,attempt_2_strategy,attempt_2_score,distinct_attempts,attempt_1_correct,attempt_2_correct,solved,task_score,attempt_1_shape_ok,solved_by
+training,00576224,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.217,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,007bbfb7,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,majority_output,0.327,resize_input,0.319,yes,no,no,no,0.0,yes,-
+training,009d5c81,1|added_and_removed|fewer,"same size, near copy, fewer shapes, colours added and removed",1,7,resize_input,0.429,soft_local_cross,0.416,yes,no,no,no,0.0,yes,-
+training,00d62c1b,1|added|more,"same size, near copy, more shapes, colours added",1,7,fill_enclosed,1.0,soft_local_cross_rel,0.687,yes,yes,no,yes,1.0,yes,fill_enclosed
+training,00dbd492,1|added|more,"same size, near copy, more shapes, colours added",1,7,soft_local_cross,0.52,colour_map_input,0.431,yes,no,no,no,0.0,yes,-
+training,017c7c7b,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",1,3,majority_output,0.333,resize_input,0.286,yes,no,no,no,0.0,yes,-
+training,025d127b,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,8,transform:local_cross,0.459,shift_consistent,0.434,yes,no,no,no,0.0,yes,-
+training,03560426,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,7,majority_output,0.366,soft_local_cross_rel,0.366,yes,no,no,no,0.0,yes,-
+training,045e512c,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.486,soft_local_cross,0.425,yes,no,no,no,0.0,yes,-
+training,0520fde7,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.281,resize_input,0.281,yes,no,no,no,0.0,yes,-
+training,05269061,1|removed|more,"same size, different, more shapes, colours removed",1,7,soft_local_cross_rel,0.226,soft_local_cross,0.224,yes,no,no,no,0.0,yes,-
+training,05a7bcf2,1|added|more,"same size, near copy, more shapes, colours added",1,7,resize_input,0.384,colour_map_input,0.36,yes,no,no,no,0.0,yes,-
+training,05f2a901,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.443,resize_input,0.424,yes,no,no,no,0.0,yes,-
+training,0607ce86,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.478,soft_local_cross,0.421,yes,no,no,no,0.0,yes,-
+training,0692e18c,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.303,majority_output,0.292,yes,no,no,no,0.0,yes,-
+training,06df4c85,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.488,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,070dd51e,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.484,soft_local_cross,0.42,yes,no,no,no,0.0,yes,-
+training,08ed6ac7,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_cross_rel,0.42,colour_map_input,0.39,yes,no,no,no,0.0,yes,-
+training,09629e4f,1|removed|fewer,"same size, partly alike, fewer shapes, colours removed",1,7,colour_map_input,0.376,soft_local_block3_rel,0.333,yes,no,no,no,0.0,yes,-
+training,0962bcdd,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.452,soft_local_block3_rel,0.392,yes,no,no,no,0.0,yes,-
+training,09c534e7,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.486,soft_local_block3_rel,0.431,yes,no,no,no,0.0,yes,-
+training,0a1d4ef5,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,0a2355a6,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,6,soft_local_cross_rel,0.374,soft_local_cross,0.37,yes,no,no,no,0.0,yes,-
+training,0a938d79,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.402,soft_local_block3_rel,0.333,yes,no,no,no,0.0,yes,-
+training,0b148d64,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,0b17323b,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.506,majority_output,0.433,yes,no,no,no,0.0,yes,-
+training,0bb8deee,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.23,majority_output,0.213,yes,no,no,no,0.0,yes,-
+training,0becf7df,1|same|same,"same size, near copy, same shapes, colours kept",1,8,transform:local_block3,0.443,soft_local_cross,0.383,yes,no,no,no,0.0,yes,-
+training,0c786b71,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.207,majority_output,0.119,yes,no,no,no,0.0,yes,-
+training,0c9aba6e,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.29,resize_input,0.173,yes,no,no,no,0.0,yes,-
+training,0ca9ddb6,1|added|more,"same size, near copy, more shapes, colours added",1,8,transform:local_block3,0.628,colour_map_input,0.464,yes,no,no,no,0.0,yes,-
+training,0d3d703e,1|added_and_removed|same,"same size, different, same shapes, colours added and removed",1,10,transform:identity,1.06,soft_local_cross,0.16,yes,yes,no,yes,1.0,yes,transform:identity
+training,0d87d2a6,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.409,soft_local_block3_rel,0.395,yes,no,no,no,0.0,yes,-
+training,0e206a2e,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.45,colour_map_input,0.432,yes,no,no,no,0.0,yes,-
+training,0e671a1a,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.465,soft_local_block3_rel,0.405,yes,no,no,no,0.0,yes,-
+training,0f63c0b9,1|same|more,"same size, partly alike, more shapes, colours kept",1,7,colour_map_input,0.362,soft_local_cross,0.328,yes,no,no,no,0.0,yes,-
+training,103eff5b,1|removed|more,"same size, near copy, more shapes, colours removed",1,6,soft_local_cross_rel,0.438,resize_input,0.424,yes,no,no,no,0.0,yes,-
+training,10fcaaa3,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,11852cab,1|same|more,"same size, near copy, more shapes, colours kept",1,8,transform:local_block3,0.499,majority_output,0.369,yes,no,no,no,0.0,yes,-
+training,1190bc91,1|same|more,"same size, different, more shapes, colours kept",1,6,colour_map_input,0.249,soft_local_cross_rel,0.195,yes,no,no,no,0.0,yes,-
+training,1190e5a7,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,11dc524f,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,resize_input,0.461,colour_map_input,0.438,yes,no,no,no,0.0,yes,-
+training,11e1fe23,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.499,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,12422b43,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.45,soft_local_block3_rel,0.389,yes,no,no,no,0.0,yes,-
+training,12997ef3,3|removed|varies,"size unsolved, different, shape count varies, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,12eac192,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",1,7,soft_local_block3_rel,0.569,soft_local_cross_rel,0.562,yes,no,no,no,0.0,yes,-
+training,13713586,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.382,soft_local_block3_rel,0.318,yes,no,no,no,0.0,yes,-
+training,137eaa0f,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,majority_output,0.191,resize_input,0.139,yes,no,no,no,0.0,yes,-
+training,137f0df0,1|added|more,"same size, mixed similarity, more shapes, colours added",1,7,soft_local_cross,0.336,resize_input,0.335,yes,no,no,no,0.0,yes,-
+training,13f06aa5,1|mixed|more,"same size, near copy, more shapes, colours mixed",1,6,colour_map_input,0.457,soft_local_cross_rel,0.396,yes,no,no,no,0.0,yes,-
+training,140c817e,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,resize_input,0.284,colour_map_input,0.263,yes,no,no,no,0.0,yes,-
+training,14754a24,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.496,soft_local_cross,0.437,yes,no,no,no,0.0,yes,-
+training,1478ab18,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.439,soft_local_block3_rel,0.353,yes,no,no,no,0.0,yes,-
+training,14b8e18c,1|added|more,"same size, near copy, more shapes, colours added",1,8,fill_enclosed,0.473,soft_local_block3_rel,0.422,yes,no,no,no,0.0,yes,-
+training,150deff5,1|added_and_removed|more,"same size, near copy, more shapes, colours added and removed",1,6,soft_local_cross_rel,0.423,soft_local_cross,0.423,yes,no,no,no,0.0,yes,-
+training,15113be4,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.503,soft_local_cross_rel,0.443,yes,no,no,no,0.0,yes,-
+training,15660dd6,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,15663ba9,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.471,soft_local_cross_rel,0.411,yes,no,no,no,0.0,yes,-
+training,15696249,2|added|more,"fixed output size, different, more shapes, colours added",1,3,majority_output,0.308,resize_input,0.303,yes,no,no,no,0.0,yes,-
+training,17829a00,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.442,soft_local_cross_rel,0.382,yes,no,no,no,0.0,yes,-
+training,178fcbfb,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.394,soft_local_cross,0.355,yes,no,no,no,0.0,yes,-
+training,17b80ad2,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.469,soft_local_cross,0.41,yes,no,no,no,0.0,yes,-
+training,17b866bd,1|same|same,"same size, near copy, same shapes, colours kept",2,7,colour_map_input;colour_map_input,0.471;0.471,resize_input;resize_input,0.44;0.44,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,17cae0c1,1|added_and_removed|varies,"same size, different, shape count varies, colours added and removed",1,7,soft_local_block3_rel,0.281,soft_local_cross_rel,0.269,yes,no,no,no,0.0,yes,-
+training,18286ef8,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,colour_map_input,0.507,resize_input,0.471,yes,no,no,no,0.0,yes,-
+training,182e5d0f,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.446,soft_local_cross,0.421,yes,no,no,no,0.0,yes,-
+training,18419cfa,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,fill_enclosed,0.502,soft_local_cross,0.445,yes,no,no,no,0.0,yes,-
+training,18447a8d,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.385,colour_map_input,0.37,yes,no,no,no,0.0,yes,-
+training,184a9768,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,resize_input,0.428,fill_enclosed,0.399,yes,no,no,no,0.0,yes,-
+training,195ba7dc,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.336,resize_input,0.196,yes,no,no,no,0.0,yes,-
+training,1990f7a8,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.324,resize_input,0.276,yes,no,no,no,0.0,yes,-
+training,19bb5feb,2|removed|varies,"fixed output size, different, shape count varies, colours removed",1,3,resize_input,0.188,majority_output,0.158,yes,no,no,no,0.0,yes,-
+training,1a07d186,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,colour_map_input,0.479,soft_local_cross_rel,0.472,yes,no,no,no,0.0,yes,-
+training,1a244afd,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",1,6,colour_map_input,0.471,resize_input,0.46,yes,no,no,no,0.0,yes,-
+training,1a2e2828,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,1a6449f1,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,1acc24af,1|added|same,"same size, near copy, same shapes, colours added",1,7,resize_input,0.458,colour_map_input,0.439,yes,no,no,no,0.0,yes,-
+training,1b2d62fb,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.333,resize_input,0.189,yes,no,no,no,0.0,yes,-
+training,1b59e163,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.452,resize_input,0.433,yes,no,no,no,0.0,yes,-
+training,1b60fb0c,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.477,soft_local_block3_rel,0.404,yes,no,no,no,0.0,yes,-
+training,1b8318e3,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.463,resize_input,0.446,yes,no,no,no,0.0,yes,-
+training,1be83260,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,1bfc4729,1|same|more,"same size, partly alike, more shapes, colours kept",1,7,colour_map_input,0.335,soft_local_block3_rel,0.275,yes,no,no,no,0.0,yes,-
+training,1c02dbbe,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,resize_input,0.384,colour_map_input,0.355,yes,no,no,no,0.0,yes,-
+training,1c0d0a4b,1|added_and_removed|more,"same size, partly alike, more shapes, colours added and removed",1,6,soft_local_cross,0.41,soft_local_cross_rel,0.397,yes,no,no,no,0.0,yes,-
+training,1c56ad9f,1|same|more,"same size, near copy, more shapes, colours kept",1,7,fill_enclosed,0.474,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,1c786137,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,1caeab9d,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.424,colour_map_input,0.401,yes,no,no,no,0.0,yes,-
+training,1cf80156,3|same|more,"size unsolved, different, more shapes, colours kept",1,2,transform:crop_non_background,0.95,copy_input,0.05,yes,yes,no,yes,1.0,yes,transform:crop_non_background
+training,1d0a4b61,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,resize_input,0.44,colour_map_input,0.427,yes,no,no,no,0.0,yes,-
+training,1d398264,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.445;0.445,soft_local_block3_rel;soft_local_block3_rel,0.387;0.387,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,1d61978c,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,colour_map_input,0.494,resize_input,0.443,yes,no,no,no,0.0,yes,-
+training,1da012fc,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,soft_local_cross_rel,0.474,colour_map_input,0.414,yes,no,no,no,0.0,yes,-
+training,1e0a9b12,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.377,soft_local_cross,0.364,yes,no,no,no,0.0,yes,-
+training,1e32b0e9,1|same|more,"same size, near copy, more shapes, colours kept",1,8,fill_enclosed,0.463,soft_local_cross_rel,0.384,yes,no,no,no,0.0,yes,-
+training,1e5d6875,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.461,soft_local_cross,0.398,yes,no,no,no,0.0,yes,-
+training,1e81d6f9,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.498,soft_local_block3_rel,0.438,yes,no,no,no,0.0,yes,-
+training,1efba499,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.446,resize_input,0.446,yes,no,no,no,0.0,yes,-
+training,1f0c79e5,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,resize_input,0.388,colour_map_input,0.358,yes,no,no,no,0.0,yes,-
+training,1f642eb9,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.494,soft_local_cross_rel,0.492,yes,no,no,no,0.0,yes,-
+training,1f85a75f,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,1f876c06,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.477,soft_local_block3_rel,0.416,yes,no,no,no,0.0,yes,-
+training,1fad071e,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.54,resize_input,0.24,yes,no,no,no,0.0,yes,-
+training,2013d3e2,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",1,3,resize_input,0.236,majority_output,0.178,yes,no,no,no,0.0,yes,-
+training,2037f2c7,3|added_and_removed|fewer,"size unsolved, different, fewer shapes, colours added and removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,2072aba6,2|added_and_removed|more,"fixed output size, different, more shapes, colours added and removed",1,3,majority_output,0.217,resize_input,0.188,yes,no,no,no,0.0,yes,-
+training,20818e16,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,20981f0e,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.451,resize_input,0.448,yes,no,no,no,0.0,yes,-
+training,20fb2937,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.24,majority_output,0.2,yes,no,no,no,0.0,yes,-
+training,212895b5,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.47,soft_local_cross,0.407,yes,no,no,no,0.0,yes,-
+training,21f83797,1|added|same,"same size, near copy, same shapes, colours added",1,7,colour_map_input,0.372,soft_local_block3_rel,0.329,yes,no,no,no,0.0,yes,-
+training,2204b7a8,1|removed|same,"same size, near copy, same shapes, colours removed",1,7,colour_map_input,0.494,resize_input,0.464,yes,no,no,no,0.0,yes,-
+training,22168020,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.461,soft_local_cross,0.401,yes,no,no,no,0.0,yes,-
+training,22208ba4,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.423,soft_local_block3_rel,0.363,yes,no,no,no,0.0,yes,-
+training,22233c11,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.496,majority_output,0.393,yes,no,no,no,0.0,yes,-
+training,22425bda,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,22806e14,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,soft_local_cross_rel,0.456,colour_map_input,0.443,yes,no,no,no,0.0,yes,-
+training,2281f1f4,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.466,soft_local_block3_rel,0.406,yes,no,no,no,0.0,yes,-
+training,228f6490,1|same|same,"same size, near copy, same shapes, colours kept",1,8,soft_local_cross_rel,0.448,colour_map_input,0.386,yes,no,no,no,0.0,yes,-
+training,22a4bbc2,1|added|varies,"same size, near copy, shape count varies, colours added",1,6,colour_map_input,0.423,soft_local_cross,0.336,yes,no,no,no,0.0,yes,-
+training,22eb0ac0,1|same|varies,"same size, near copy, shape count varies, colours kept",1,9,colour_map_input,0.665,majority_output,0.344,yes,no,no,no,0.0,yes,-
+training,230f2e48,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.449,resize_input,0.448,yes,no,no,no,0.0,yes,-
+training,234bbc79,3|removed|fewer,"size unsolved, mixed similarity, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,23581191,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.38,soft_local_cross,0.346,yes,no,no,no,0.0,yes,-
+training,239be575,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",2,3,majority_output;resize_input,0.13;0.55,copy_input;majority_output,0.0;0.1,yes;yes,yes;no,no;no,partial,0.5,yes;yes,majority_output;-
+training,23b5c85d,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,25094a63,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.465,soft_local_cross_rel,0.416,yes,no,no,no,0.0,yes,-
+training,252143c9,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,resize_input,0.358,colour_map_input,0.346,yes,no,no,no,0.0,yes,-
+training,253bf280,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,9,colour_map_input,0.626,partial:rotate_180,0.546,yes,no,no,no,0.0,yes,-
+training,2546ccf6,1|same|more,"same size, near copy, more shapes, colours kept",1,7,fill_enclosed,0.502,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,256b0a75,1|same|varies,"same size, different, shape count varies, colours kept",1,6,colour_map_input,0.322,soft_local_cross_rel,0.261,yes,no,no,no,0.0,yes,-
+training,25c199f5,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",2,3,majority_output;majority_output,0.318;0.318,resize_input;resize_input,0.299;0.299,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,25d487eb,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.492,soft_local_block3_rel,0.43,yes,no,no,no,0.0,yes,-
+training,25d8a9c8,1|added_and_removed|fewer,"same size, different, fewer shapes, colours added and removed",1,8,transform:local_cross_rel,0.267,majority_output,0.188,yes,no,no,no,0.0,yes,-
+training,25e02866,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,25ff71a9,1|same|same,"same size, mixed similarity, same shapes, colours kept",2,10,transform:shift_dy1_dx0;transform:shift_dy1_dx0,1.03;1.03,soft_local_block3_rel;transform:local_cross,0.374;0.374,yes;yes,yes;yes,no;no,yes,1.0,yes;yes,transform:shift_dy1_dx0;transform:shift_dy1_dx0
+training,2601afb7,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.381,resize_input,0.379,yes,no,no,no,0.0,yes,-
+training,264363fd,1|same|more,"same size, near copy, more shapes, colours kept",1,7,soft_local_cross_rel,0.417,soft_local_block3_rel,0.417,yes,no,no,no,0.0,yes,-
+training,2685904e,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.481,majority_output,0.385,yes,no,no,no,0.0,yes,-
+training,2697da3f,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,272f95fa,1|added|more,"same size, partly alike, more shapes, colours added",1,6,colour_map_input,0.363,soft_local_cross,0.266,yes,no,no,no,0.0,yes,-
+training,2753e76c,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,278e5215,3|removed|more,"size unsolved, different, more shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,27a28665,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",3,3,majority_output;majority_output;majority_output,0.1;0.1;0.1,resize_input;resize_input;resize_input,0.1;0.1;0.1,yes;yes;yes,no;no;no,no;no;yes,partial,0.333,yes;yes;yes,-;-;resize_input
+training,27a77e38,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.49,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,27f8ce4f,2|added|more,"fixed output size, different, more shapes, colours added",1,3,majority_output,0.258,resize_input,0.257,yes,no,no,no,0.0,yes,-
+training,281123b4,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.249,resize_input,0.173,yes,no,no,no,0.0,yes,-
+training,28bf18c6,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.249,majority_output,0.152,yes,no,no,no,0.0,yes,-
+training,28e73c20,1|added|more,"same size, different, more shapes, colours added",1,6,soft_local_cross_rel,0.421,colour_map_input,0.312,yes,no,no,no,0.0,yes,-
+training,292dd178,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.468,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,29623171,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.464,soft_local_block3_rel,0.395,yes,no,no,no,0.0,yes,-
+training,29700607,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.445,soft_local_cross,0.389,yes,no,no,no,0.0,yes,-
+training,29c11459,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.453,soft_local_block3_rel,0.393,yes,no,no,no,0.0,yes,-
+training,2a28add5,1|mixed|fewer,"same size, mixed similarity, fewer shapes, colours mixed",1,8,transform:local_cross,0.375,colour_map_input,0.364,yes,no,no,no,0.0,yes,-
+training,2a5f8217,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,soft_local_cross_rel,0.436,resize_input,0.433,yes,no,no,no,0.0,yes,-
+training,2b01abd0,1|same|more,"same size, near copy, more shapes, colours kept",1,6,soft_local_block3_rel,0.467,colour_map_input,0.407,yes,no,no,no,0.0,yes,-
+training,2b9ef948,1|removed|more,"same size, different, more shapes, colours removed",2,6,resize_input;resize_input,0.132;0.132,colour_map_input;colour_map_input,0.101;0.101,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,2bcee788,1|added_and_removed|fewer,"same size, different, fewer shapes, colours added and removed",1,7,colour_map_input,0.435,soft_local_cross_rel,0.435,yes,no,no,no,0.0,yes,-
+training,2bee17df,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_block3_rel,0.394,soft_local_cross,0.382,yes,no,no,no,0.0,yes,-
+training,2c0b0aff,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,2c608aff,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.499,soft_local_cross,0.438,yes,no,no,no,0.0,yes,-
+training,2c737e39,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.486,soft_local_cross,0.425,yes,no,no,no,0.0,yes,-
+training,2ccd9fef,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,2dc579da,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,2dd70a9a,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.488,soft_local_block3_rel,0.426,yes,no,no,no,0.0,yes,-
+training,2de01db2,1|mixed|varies,"same size, different, shape count varies, colours mixed",1,8,colour_map_input,0.337,soft_local_cross_rel,0.256,yes,no,no,no,0.0,yes,-
+training,2dee498d,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,2e65ae53,1|same|more,"same size, near copy, more shapes, colours kept",1,8,colour_map_input,0.454,fill_enclosed,0.394,yes,no,no,no,0.0,yes,-
+training,2f0c5170,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,2f767503,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.493,soft_local_cross_rel,0.455,yes,no,no,no,0.0,yes,-
+training,2faf500b,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,soft_local_cross_rel,0.398,soft_local_block3_rel,0.396,yes,no,no,no,0.0,yes,-
+training,305b1341,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,7,colour_map_input,0.378,soft_local_cross,0.346,yes,no,no,no,0.0,yes,-
+training,30f42897,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.448,soft_local_block3_rel,0.408,yes,no,no,no,0.0,yes,-
+training,310f3251,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,3194b014,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.113,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,319f2597,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,8,transform:local_block3,0.455,soft_local_cross,0.395,yes,no,no,no,0.0,yes,-
+training,31aa019c,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.443,soft_local_cross_rel,0.401,yes,no,no,no,0.0,yes,-
+training,31adaf00,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.426,soft_local_cross_rel,0.41,yes,no,no,no,0.0,yes,-
+training,31d5ba1a,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.235;0.235,resize_input;resize_input,0.203;0.203,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,320afe60,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",2,6,soft_local_cross_rel;colour_map_input,0.444;0.444,colour_map_input;soft_local_cross,0.414;0.413,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,321b1fc6,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.427,resize_input,0.417,yes,no,no,no,0.0,yes,-
+training,32597951,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.497,transform:local_cross,0.471,yes,no,no,no,0.0,yes,-
+training,32e9702f,1|added_and_removed|same,"same size, different, same shapes, colours added and removed",1,8,transform:shift_dy0_dx-1,1.0,colour_map_input,0.418,yes,yes,no,yes,1.0,yes,transform:shift_dy0_dx-1
+training,33067df9,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.274,resize_input,0.268,yes,no,no,no,0.0,yes,-
+training,332202d5,1|removed|more,"same size, different, more shapes, colours removed",1,8,shift_consistent,0.162,soft_local_cross_rel,0.151,yes,no,no,no,0.0,yes,-
+training,332efdb3,1|added|more,"same size, different, more shapes, colours added",1,6,colour_map_input,0.447,resize_input,0.193,yes,no,no,no,0.0,yes,-
+training,3345333e,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.491,majority_output,0.379,yes,no,no,no,0.0,yes,-
+training,337b420f,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",2,3,resize_input;resize_input,0.317;0.317,majority_output;majority_output,0.202;0.202,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,3391f8c0,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.451,soft_local_cross_rel,0.379,yes,no,no,no,0.0,yes,-
+training,33b52de3,1|removed|same,"same size, near copy, same shapes, colours removed",1,7,colour_map_input,0.413,soft_local_cross_rel,0.411,yes,no,no,no,0.0,yes,-
+training,3428a4f5,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.281;0.281,resize_input;resize_input,0.182;0.182,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,342ae2ed,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.491,soft_local_block3_rel,0.431,yes,no,no,no,0.0,yes,-
+training,342dd610,1|same|same,"same size, near copy, same shapes, colours kept",1,10,partial:shift_dy-2_dx0,0.579,partial:shift_dy0_dx-2,0.579,yes,no,no,no,0.0,yes,-
+training,3490cc26,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.479,soft_local_cross,0.42,yes,no,no,no,0.0,yes,-
+training,34b99a2b,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.266,resize_input,0.196,yes,no,no,no,0.0,yes,-
+training,34cfa167,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.43;0.43,soft_local_block3_rel;fallback:blank_grid,0.37;0.0,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,351d6448,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.387,majority_output,0.36,yes,no,no,no,0.0,yes,-
+training,358ba94e,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",1,3,resize_input,0.243,majority_output,0.128,yes,no,no,no,0.0,yes,-
+training,3618c87e,1|same|more,"same size, near copy, more shapes, colours kept",1,9,transform:local_cross_rel,0.872,resize_input,0.433,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,363442ee,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,resize_input,0.363,soft_local_block3_rel,0.336,yes,no,no,no,0.0,yes,-
+training,36d67576,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.493,majority_output,0.257,yes,no,no,no,0.0,yes,-
+training,36fdfd69,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_block3,0.492,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,37ce87bb,1|added|more,"same size, near copy, more shapes, colours added",1,6,soft_local_block3_rel,0.648,colour_map_input,0.488,yes,no,no,no,0.0,yes,-
+training,37d3e8b2,1|added_and_removed|same,"same size, mixed similarity, same shapes, colours added and removed",1,6,resize_input,0.349,soft_local_cross,0.348,yes,no,no,no,0.0,yes,-
+training,3906de3d,1|same|same,"same size, near copy, same shapes, colours kept",1,7,resize_input,0.436,colour_map_input,0.427,yes,no,no,no,0.0,yes,-
+training,396d80d7,1|same|more,"same size, near copy, more shapes, colours kept",1,8,transform:local_block3,0.492,soft_local_block3_rel,0.432,yes,no,no,no,0.0,yes,-
+training,3979b1a8,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.243,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,39a8645d,2|removed|varies,"fixed output size, different, shape count varies, colours removed",1,3,resize_input,0.269,majority_output,0.204,yes,no,no,no,0.0,yes,-
+training,39e1d7f9,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.476,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,3a301edc,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.424,soft_local_block3_rel,0.37,yes,no,no,no,0.0,yes,-
+training,3aa6fb7a,1|added|more,"same size, near copy, more shapes, colours added",1,8,transform:local_block3_rel,0.781,colour_map_input,0.492,yes,no,no,no,0.0,yes,-
+training,3ac3eb23,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.43,soft_local_cross_rel,0.386,yes,no,no,no,0.0,yes,-
+training,3ad05f52,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.438,soft_local_block3_rel,0.375,yes,no,no,no,0.0,yes,-
+training,3af2c5a8,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,4,transform:mirror_both,1.0,resize_input,0.341,yes,yes,no,yes,1.0,yes,transform:mirror_both
+training,3b4c2228,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.403;0.403,resize_input;resize_input,0.256;0.256,yes;yes,no;yes,no;no,partial,0.5,yes;yes,-;majority_output
+training,3bd292e8,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,6,colour_map_input,0.358,soft_local_cross_rel,0.337,yes,no,no,no,0.0,yes,-
+training,3bd67248,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_cross_rel,0.448,colour_map_input,0.415,yes,no,no,no,0.0,yes,-
+training,3bdb4ada,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.486,soft_local_cross_rel,0.486,yes,no,no,no,0.0,yes,-
+training,3befdf3e,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,7,soft_local_cross,0.373,colour_map_input,0.314,yes,no,no,no,0.0,yes,-
+training,3c9b0459,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,9,transform:rotate_180,1.0,transform:local_cross,0.277,yes,yes,no,yes,1.0,yes,transform:rotate_180
+training,3cd86f4f,3|added|varies,"size unsolved, different, shape count varies, colours added",3,1,copy_input;copy_input;copy_input,0.05;0.05;0.05,fallback:blank_grid;fallback:blank_grid;fallback:blank_grid,0.0;0.0;0.0,yes;yes;yes,no;no;no,no;no;no,no,0.0,no;no;no,-;-;-
+training,3d31c5b3,2|mixed|fewer,"fixed output size, different, fewer shapes, colours mixed",1,3,resize_input,0.314,majority_output,0.269,yes,no,no,no,0.0,yes,-
+training,3d588dc9,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.502,soft_local_cross_rel,0.47,yes,no,no,no,0.0,yes,-
+training,3d6c6e23,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.493,resize_input,0.453,yes,no,no,no,0.0,yes,-
+training,3de23699,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,3e980e27,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.492,soft_local_block3_rel,0.429,yes,no,no,no,0.0,yes,-
+training,3eda0437,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.464,soft_local_cross_rel,0.432,yes,no,no,no,0.0,yes,-
+training,3ee1011a,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,3f23242b,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.433,soft_local_block3_rel,0.406,yes,no,no,no,0.0,yes,-
+training,3f7978a0,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,4093f84a,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.481,soft_local_block3_rel,0.418,yes,no,no,no,0.0,yes,-
+training,40f6cd08,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.477,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,412b6263,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,414297c0,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,41ace6b5,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_block3_rel,0.404,soft_local_cross,0.393,yes,no,no,no,0.0,yes,-
+training,41e4d17e,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.453,fill_enclosed,0.396,yes,no,no,no,0.0,yes,-
+training,423a55dc,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,soft_local_cross_rel,0.435,fill_enclosed,0.396,yes,no,no,no,0.0,yes,-
+training,4258a5f9,1|added|more,"same size, near copy, more shapes, colours added",1,8,transform:local_block3_rel,0.456,colour_map_input,0.389,yes,no,no,no,0.0,yes,-
+training,4290ef0e,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,2,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,42918530,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,fill_enclosed,0.499,soft_local_cross,0.439,yes,no,no,no,0.0,yes,-
+training,42a15761,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.488,colour_map_input,0.487,yes,no,no,no,0.0,yes,-
+training,42a50994,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,transform:local_block3_rel,0.491,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,42f14c03,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,42f83767,3|removed|varies,"size unsolved, different, shape count varies, colours removed",2,2,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,4347f46a,1|same|same,"same size, near copy, same shapes, colours kept",1,7,transform:local_cross_rel,0.468,colour_map_input,0.468,yes,no,no,no,0.0,yes,-
+training,4364c1c4,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.47,soft_local_block3_rel,0.389,yes,no,no,no,0.0,yes,-
+training,444801d8,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.449,soft_local_block3_rel,0.396,yes,no,no,no,0.0,yes,-
+training,445eab21,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.158,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,447fd412,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.473,soft_local_block3_rel,0.411,yes,no,no,no,0.0,yes,-
+training,44d8ac46,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,10,fill_enclosed,0.477,soft_local_cross,0.429,yes,no,no,no,0.0,yes,-
+training,44f52bb0,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.1;0.1,resize_input;resize_input,0.1;0.1,yes;yes,no;yes,no;no,partial,0.5,yes;yes,-;majority_output
+training,4522001f,2|removed|same,"fixed output size, different, same shapes, colours removed",1,3,majority_output,0.338,resize_input,0.325,yes,no,no,no,0.0,yes,-
+training,456873bc,1|added_and_removed|more,"same size, near copy, more shapes, colours added and removed",1,6,colour_map_input,0.487,soft_local_cross,0.413,yes,no,no,no,0.0,yes,-
+training,45737921,1|same|same,"same size, near copy, same shapes, colours kept",1,7,transform:local_cross,0.405,resize_input,0.405,yes,no,no,no,0.0,yes,-
+training,458e3a53,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,45bbe264,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.408,soft_local_cross,0.357,yes,no,no,no,0.0,yes,-
+training,4612dd53,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.482,soft_local_cross_rel,0.45,yes,no,no,no,0.0,yes,-
+training,46442a0e,3|same|more,"size unsolved, different, more shapes, colours kept",1,2,partial:mirror_both,0.741,copy_input,0.05,yes,no,no,no,0.0,yes,-
+training,465b7d93,1|same|same,"same size, near copy, same shapes, colours kept",1,8,colour_map_input,0.481,soft_local_block3_rel,0.417,yes,no,no,no,0.0,yes,-
+training,469497ad,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,46c35fc7,1|same|varies,"same size, near copy, shape count varies, colours kept",1,8,transform:local_block3,0.431,soft_local_block3_rel,0.369,yes,no,no,no,0.0,yes,-
+training,46f33fce,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.37,majority_output,0.329,yes,no,no,no,0.0,yes,-
+training,470c91de,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,resize_input,0.367,colour_map_input,0.343,yes,no,no,no,0.0,yes,-
+training,47c1f68c,3|removed|more,"size unsolved, mixed similarity, more shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,48131b3c,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,484b58aa,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,resize_input,0.447,soft_local_cross,0.426,yes,no,no,no,0.0,yes,-
+training,4852f2fa,3|removed|varies,"size unsolved, different, shape count varies, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,48634b99,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.505,resize_input,0.472,yes,no,no,no,0.0,yes,-
+training,48d8fb45,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.243,majority_output,0.178,yes,no,no,no,0.0,yes,-
+training,48f8583b,2|added|varies,"fixed output size, different, shape count varies, colours added",1,3,majority_output,0.364,resize_input,0.339,yes,no,no,no,0.0,yes,-
+training,4938f0c2,1|same|varies,"same size, near copy, shape count varies, colours kept",1,8,colour_map_input,0.666,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,494ef9d7,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.443,colour_map_input,0.441,yes,no,no,no,0.0,yes,-
+training,496994bd,1|same|more,"same size, near copy, more shapes, colours kept",1,6,soft_local_cross_rel,0.457,colour_map_input,0.422,yes,no,no,no,0.0,yes,-
+training,49d1d64f,3|mixed|more,"size unsolved, different, more shapes, colours mixed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,4a1cacc2,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.462,soft_local_cross_rel,0.402,yes,no,no,no,0.0,yes,-
+training,4acc7107,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,7,majority_output,0.353,resize_input,0.352,yes,no,no,no,0.0,yes,-
+training,4b6b68e5,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,7,colour_map_input,0.44,fill_enclosed,0.38,yes,no,no,no,0.0,yes,-
+training,4be741c5,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,4c177718,2|removed|fewer,"fixed output size, partly alike, fewer shapes, colours removed",2,3,majority_output;majority_output,0.414;0.414,resize_input;resize_input,0.346;0.346,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,4c4377d9,2|same|varies,"fixed output size, partly alike, shape count varies, colours kept",1,4,transform:mirror_v_reversed,1.0,resize_input,0.279,yes,yes,no,yes,1.0,yes,transform:mirror_v_reversed
+training,4c5c2cf0,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.467,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,4cd1b7b2,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,8,transform:local_cross,0.393,colour_map_input,0.348,yes,no,no,no,0.0,yes,-
+training,4df5b0ae,1|mixed|varies,"same size, mixed similarity, shape count varies, colours mixed",1,7,majority_output,0.375,colour_map_input,0.353,yes,no,no,no,0.0,yes,-
+training,4e45f183,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.42,soft_local_cross,0.404,yes,no,no,no,0.0,yes,-
+training,4e469f39,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.455,soft_local_block3_rel,0.417,yes,no,no,no,0.0,yes,-
+training,4e7e0eb9,1|mixed|same,"same size, mixed similarity, same shapes, colours mixed",2,7,partial:flip_h;partial:flip_h,0.487;0.487,colour_map_input;resize_input,0.363;0.349,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,4f537728,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.47,majority_output,0.195,yes,no,no,no,0.0,yes,-
+training,4ff4c9da,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.498,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,5034a0b5,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,transform:local_block3,0.447,soft_local_block3_rel,0.378,yes,no,no,no,0.0,yes,-
+training,505fff84,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,506d28a5,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.336,resize_input,0.17,yes,no,no,no,0.0,yes,-
+training,50846271,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.502,soft_local_cross,0.442,yes,no,no,no,0.0,yes,-
+training,508bd3b6,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.487,soft_local_block3_rel,0.426,yes,no,no,no,0.0,yes,-
+training,50a16a69,1|removed|more,"same size, different, more shapes, colours removed",1,6,colour_map_input,0.181,soft_local_cross_rel,0.181,yes,no,no,no,0.0,yes,-
+training,50aad11f,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,50c07299,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.506,resize_input,0.473,yes,no,no,no,0.0,yes,-
+training,50cb2852,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_cross_rel,1.06,colour_map_input,0.468,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,50f325b5,1|same|more,"same size, near copy, more shapes, colours kept",1,7,transform:local_block3,0.498,soft_local_cross_rel,0.44,yes,no,no,no,0.0,yes,-
+training,5117e062,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.204,majority_output,0.165,yes,no,no,no,0.0,yes,-
+training,5168d44c,1|same|same,"same size, near copy, same shapes, colours kept",1,7,partial:flip_v,0.608,resize_input,0.431,yes,no,no,no,0.0,yes,-
+training,516b51b7,1|added|more,"same size, near copy, more shapes, colours added",1,6,soft_local_cross_rel,0.492,colour_map_input,0.443,yes,no,no,no,0.0,yes,-
+training,5207a7b5,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,colour_map_input,0.394,soft_local_cross,0.383,yes,no,no,no,0.0,yes,-
+training,522fdd07,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,7,soft_local_cross_rel,0.514,soft_local_block3_rel,0.514,yes,no,no,no,0.0,yes,-
+training,52364a65,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.47,soft_local_cross_rel,0.442,yes,no,no,no,0.0,yes,-
+training,5289ad53,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,majority_output,0.348,resize_input,0.115,yes,no,no,no,0.0,yes,-
+training,52df9849,1|same|same,"same size, near copy, same shapes, colours kept",2,7,colour_map_input;colour_map_input,0.504;0.504,soft_local_cross_rel;majority_output,0.474;0.371,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,52fd389e,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.409,soft_local_block3_rel,0.349,yes,no,no,no,0.0,yes,-
+training,538b439f,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.457,soft_local_cross,0.397,yes,no,no,no,0.0,yes,-
+training,539a4f51,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,resize_input,0.167,majority_output,0.126,yes,no,no,no,0.0,yes,-
+training,53b68214,2|same|varies,"fixed output size, mixed similarity, shape count varies, colours kept",2,3,resize_input;resize_input,0.434;0.434,majority_output;majority_output,0.369;0.369,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,543a7ed5,1|added|more,"same size, near copy, more shapes, colours added",1,8,soft_local_cross,0.411,colour_map_input,0.4,yes,no,no,no,0.0,yes,-
+training,54d82841,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.495,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,54d9e175,1|added_and_removed|varies,"same size, different, shape count varies, colours added and removed",1,7,transform:local_block3,0.394,soft_local_cross,0.33,yes,no,no,no,0.0,yes,-
+training,54db823b,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.478,soft_local_block3_rel,0.41,yes,no,no,no,0.0,yes,-
+training,54dc2872,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.44,soft_local_cross_rel,0.41,yes,no,no,no,0.0,yes,-
+training,55059096,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.5,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,551d5bf1,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.451,fill_enclosed,0.406,yes,no,no,no,0.0,yes,-
+training,5521c0d9,1|same|same,"same size, near copy, same shapes, colours kept",1,7,soft_local_cross_rel,0.429,soft_local_cross,0.408,yes,no,no,no,0.0,yes,-
+training,5582e5ca,1|removed|fewer,"same size, different, fewer shapes, colours removed",1,8,transform:local_cross,0.277,soft_local_block3_rel,0.165,yes,no,no,no,0.0,yes,-
+training,5587a8d0,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,2,copy_input,0.052,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,5614dbcf,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.236,majority_output,0.178,yes,no,no,no,0.0,yes,-
+training,5623160b,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.424,colour_map_input,0.41,yes,no,no,no,0.0,yes,-
+training,56dc2b01,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.416,resize_input,0.374,yes,no,no,no,0.0,yes,-
+training,56ff96f3,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.421,soft_local_block3_rel,0.356,yes,no,no,no,0.0,yes,-
+training,5751f35e,1|mixed|fewer,"same size, mixed similarity, fewer shapes, colours mixed",1,8,transform:local_block3,0.375,soft_local_block3_rel,0.306,yes,no,no,no,0.0,yes,-
+training,575b1a71,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",1,7,soft_local_cross_rel,0.449,resize_input,0.444,yes,no,no,no,0.0,yes,-
+training,5783df64,2|removed|same,"fixed output size, different, same shapes, colours removed",1,3,resize_input,0.113,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,5792cb4d,1|same|same,"same size, near copy, same shapes, colours kept",1,8,transform:local_cross,0.482,soft_local_cross_rel,0.449,yes,no,no,no,0.0,yes,-
+training,57aa92db,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.482,soft_local_block3_rel,0.421,yes,no,no,no,0.0,yes,-
+training,57edb29d,3|removed|fewer,"size unsolved, mixed similarity, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,5833af48,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,58743b76,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.451,soft_local_cross,0.421,yes,no,no,no,0.0,yes,-
+training,58c02a16,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,6,colour_map_input,0.361,soft_local_cross,0.296,yes,no,no,no,0.0,yes,-
+training,58e15b12,1|mixed|more,"same size, near copy, more shapes, colours mixed",1,6,colour_map_input,0.456,soft_local_block3_rel,0.396,yes,no,no,no,0.0,yes,-
+training,59341089,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,majority_output,0.265,resize_input,0.241,yes,no,no,no,0.0,yes,-
+training,5a5a2103,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,fill_enclosed,0.408,colour_map_input,0.348,yes,no,no,no,0.0,yes,-
+training,5a719d11,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,6,resize_input,0.421,soft_local_cross,0.391,yes,no,no,no,0.0,yes,-
+training,5ad4f10b,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.307,majority_output,0.204,yes,no,no,no,0.0,yes,-
+training,5ad8a7c0,1|same|varies,"same size, near copy, shape count varies, colours kept",1,10,colour_map_input,0.683,soft_local_block3_rel,0.549,yes,no,no,no,0.0,yes,-
+training,5adee1b2,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.409,soft_local_block3_rel,0.356,yes,no,no,no,0.0,yes,-
+training,5af49b42,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.485,soft_local_block3_rel,0.424,yes,no,no,no,0.0,yes,-
+training,5b37cb25,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.5,soft_local_block3_rel,0.44,yes,no,no,no,0.0,yes,-
+training,5b526a93,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.469,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,5b692c0f,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.487,soft_local_cross,0.427,yes,no,no,no,0.0,yes,-
+training,5b6cbef5,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.333,resize_input,0.297,yes,no,no,no,0.0,yes,-
+training,5bd6f4ac,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.207,majority_output,0.197,yes,no,no,no,0.0,yes,-
+training,5c0a986e,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.484,soft_local_block3_rel,0.418,yes,no,no,no,0.0,yes,-
+training,5c2c9af4,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,7,colour_map_input,0.394,majority_output,0.123,yes,no,no,no,0.0,yes,-
+training,5d2a5c43,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.354;0.354,resize_input;resize_input,0.167;0.167,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,5d588b4d,3|same|more,"size unsolved, different, more shapes, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;yes,-;-
+training,5daaa586,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,5e6bbc0b,1|added|varies,"same size, mixed similarity, shape count varies, colours added",1,6,colour_map_input,0.327,soft_local_block3_rel,0.292,yes,no,no,no,0.0,yes,-
+training,5ecac7f7,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",3,3,resize_input;resize_input;resize_input,0.315;0.315;0.315,majority_output;majority_output;majority_output,0.193;0.193;0.193,yes;yes;yes,no;no;no,no;no;no,no,0.0,yes;yes;no,-;-;-
+training,5ffb2104,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.367,resize_input,0.35,yes,no,no,no,0.0,yes,-
+training,60a26a3e,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.495,soft_local_block3_rel,0.465,yes,no,no,no,0.0,yes,-
+training,60b61512,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.486,soft_local_block3_rel,0.431,yes,no,no,no,0.0,yes,-
+training,60c09cac,3|same|same,"size unsolved, different, same shapes, colours kept",1,2,transform:upscale_2,0.95,copy_input,0.05,yes,yes,no,yes,1.0,yes,transform:upscale_2
+training,60d73be6,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.452,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,6150a2bd,1|same|same,"same size, different, same shapes, colours kept",1,9,transform:rotate_180,1.0,majority_output,0.217,yes,yes,no,yes,1.0,yes,transform:rotate_180
+training,6165ea8f,3|added|more,"size unsolved, different, more shapes, colours added",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,623ea044,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.465,soft_local_block3_rel,0.404,yes,no,no,no,0.0,yes,-
+training,626c0bcc,1|added_and_removed|more,"same size, near copy, more shapes, colours added and removed",1,7,colour_map_input,0.386,soft_local_cross_rel,0.371,yes,no,no,no,0.0,yes,-
+training,62ab2642,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.436,soft_local_block3_rel,0.379,yes,no,no,no,0.0,yes,-
+training,62b74c02,1|removed|varies,"same size, different, shape count varies, colours removed",1,6,soft_local_cross_rel,0.278,soft_local_cross,0.248,yes,no,no,no,0.0,yes,-
+training,62c24649,2|same|more,"fixed output size, different, more shapes, colours kept",1,4,transform:mirror_both,1.0,resize_input,0.265,yes,yes,no,yes,1.0,yes,transform:mirror_both
+training,6350f1f4,1|mixed|fewer,"same size, mixed similarity, fewer shapes, colours mixed",1,6,resize_input,0.355,soft_local_cross_rel,0.325,yes,no,no,no,0.0,yes,-
+training,63613498,1|removed|same,"same size, near copy, same shapes, colours removed",1,7,soft_local_block3_rel,0.495,soft_local_cross_rel,0.462,yes,no,no,no,0.0,yes,-
+training,639f5a19,1|added_and_removed|more,"same size, mixed similarity, more shapes, colours added and removed",1,7,soft_local_cross_rel,0.452,colour_map_input,0.365,yes,no,no,no,0.0,yes,-
+training,642248e4,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.491,soft_local_block3_rel,0.427,yes,no,no,no,0.0,yes,-
+training,642d658d,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,6430c8c4,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.373,resize_input,0.16,yes,no,no,no,0.0,yes,-
+training,6455b5f5,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_cross_rel,0.376,soft_local_cross,0.359,yes,no,no,no,0.0,yes,-
+training,64a7c07e,1|same|same,"same size, near copy, same shapes, colours kept",1,7,partial:shift_dy0_dx2,0.609,soft_local_cross,0.408,yes,no,no,no,0.0,yes,-
+training,652646ff,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,662c240a,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,4,partial:crop_box_colour_1,0.325,resize_input,0.325,yes,no,yes,yes,1.0,yes,resize_input
+training,668eec9a,2|mixed|fewer,"fixed output size, different, fewer shapes, colours mixed",1,3,resize_input,0.17,majority_output,0.147,yes,no,no,no,0.0,yes,-
+training,66ac4c3b,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.485,majority_output,0.104,yes,no,no,no,0.0,yes,-
+training,66e6c45b,1|same|same,"same size, partly alike, same shapes, colours kept",1,8,majority_output,0.362,soft_local_cross_rel,0.349,yes,no,no,no,0.0,yes,-
+training,66f2d22f,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.322,resize_input,0.194,yes,no,no,no,0.0,yes,-
+training,67385a82,1|added|varies,"same size, mixed similarity, shape count varies, colours added",1,7,transform:local_cross_rel,0.742,soft_local_cross,0.523,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,673ef223,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.433,resize_input,0.43,yes,no,no,no,0.0,yes,-
+training,67636eac,3|same|same,"size unsolved, different, same shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,6773b310,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.372,resize_input,0.314,yes,no,no,no,0.0,yes,-
+training,67a3c6ac,1|same|same,"same size, different, same shapes, colours kept",1,8,transform:flip_h,1.0,transform:local_block3,0.244,yes,yes,no,yes,1.0,yes,transform:flip_h
+training,67a423a3,1|added|more,"same size, mixed similarity, more shapes, colours added",1,7,transform:local_block3,0.411,colour_map_input,0.351,yes,no,no,no,0.0,yes,-
+training,67c52801,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.391,soft_local_cross,0.351,yes,no,no,no,0.0,yes,-
+training,67e8384a,2|same|more,"fixed output size, different, more shapes, colours kept",1,4,transform:mirror_both,1.0,resize_input,0.29,yes,yes,no,yes,1.0,yes,transform:mirror_both
+training,681b3aeb,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,6855a6e4,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,resize_input,0.456,colour_map_input,0.438,yes,no,no,no,0.0,yes,-
+training,689c358e,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.487,majority_output,0.366,yes,no,no,no,0.0,yes,-
+training,68b16354,1|same|same,"same size, different, same shapes, colours kept",1,8,transform:flip_v,1.0,transform:local_cross,0.237,yes,yes,no,yes,1.0,yes,transform:flip_v
+training,68b67ca3,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.269,majority_output,0.139,yes,no,no,no,0.0,yes,-
+training,68bc2e87,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,692cd3b6,1|added|more,"same size, mixed similarity, more shapes, colours added",1,7,colour_map_input,0.396,soft_local_cross_rel,0.342,yes,no,no,no,0.0,yes,-
+training,694f12f3,1|added|more,"same size, near copy, more shapes, colours added",1,7,soft_local_cross_rel,0.499,colour_map_input,0.47,yes,no,no,no,0.0,yes,-
+training,695367ec,2|added|more,"fixed output size, different, more shapes, colours added",1,3,resize_input,0.249,majority_output,0.2,yes,no,no,no,0.0,yes,-
+training,696d4842,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.498,soft_local_block3_rel,0.44,yes,no,no,no,0.0,yes,-
+training,69889d6e,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.456,soft_local_cross,0.404,yes,no,no,no,0.0,yes,-
+training,6a11f6da,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.232,majority_output,0.223,yes,no,no,no,0.0,yes,-
+training,6a1e5592,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_cross_rel,0.408,colour_map_input,0.406,yes,no,no,no,0.0,yes,-
+training,6a980be1,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.364,soft_local_cross,0.296,yes,no,no,no,0.0,yes,-
+training,6aa20dc0,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.485,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,6ad5bdfd,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.368,resize_input,0.351,yes,no,no,no,0.0,yes,-
+training,6b9890af,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,6bcdb01e,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,soft_local_cross,0.408,colour_map_input,0.404,yes,no,no,no,0.0,yes,-
+training,6c434453,1|added|same,"same size, near copy, same shapes, colours added",1,8,colour_map_input,0.447,soft_local_block3_rel,0.447,yes,no,no,no,0.0,yes,-
+training,6ca952ad,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.448,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,6cbe9eb8,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,6cdd2623,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,soft_local_cross_rel,0.399,resize_input,0.393,yes,no,no,no,0.0,yes,-
+training,6cf79266,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.499,soft_local_cross_rel,0.47,yes,no,no,no,0.0,yes,-
+training,6d0160f0,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,8,colour_map_input,0.5,soft_local_block3_rel,0.438,yes,no,no,no,0.0,yes,-
+training,6d0aefbc,2|same|varies,"fixed output size, partly alike, shape count varies, colours kept",1,4,transform:mirror_h,1.0,resize_input,0.367,yes,yes,no,yes,1.0,yes,transform:mirror_h
+training,6d1d5c90,2|removed|fewer,"fixed output size, mixed similarity, fewer shapes, colours removed",1,3,resize_input,0.158,majority_output,0.136,yes,no,no,no,0.0,yes,-
+training,6d58a25d,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.49,soft_local_block3_rel,0.428,yes,no,no,no,0.0,yes,-
+training,6d75e8bb,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.464,soft_local_cross,0.402,yes,no,no,no,0.0,yes,-
+training,6df30ad6,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.528,resize_input,0.42,yes,no,no,no,0.0,yes,-
+training,6e02f1e3,1|added_and_removed|varies,"same size, different, shape count varies, colours added and removed",1,7,colour_map_input,0.326,majority_output,0.326,yes,no,no,no,0.0,yes,-
+training,6e19193c,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.485,majority_output,0.373,yes,no,no,no,0.0,yes,-
+training,6e82a1ae,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,resize_input,0.427,colour_map_input,0.421,yes,no,no,no,0.0,yes,-
+training,6ea4a07e,1|added_and_removed|same,"same size, different, same shapes, colours added and removed",2,8,colour_map_input;colour_map_input,0.602;0.602,soft_local_cross_rel;soft_local_cross_rel,0.249;0.249,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,6ecd11f4,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,6f473927,3|added|more,"size unsolved, partly alike, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,6f8cd79b,1|added|more,"same size, different, more shapes, colours added",1,7,transform:local_cross_rel,1.06,colour_map_input,0.364,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,6fa7a44f,2|same|more,"fixed output size, partly alike, more shapes, colours kept",1,4,transform:mirror_v,1.0,resize_input,0.333,yes,yes,no,yes,1.0,yes,transform:mirror_v
+training,6ffe8f07,1|added|more,"same size, mixed similarity, more shapes, colours added",2,6,colour_map_input;colour_map_input,0.4;0.4,soft_local_cross;soft_local_cross,0.34;0.34,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,7039b2d7,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,705a3229,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.479,soft_local_cross,0.422,yes,no,no,no,0.0,yes,-
+training,712bf12e,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.438,soft_local_cross_rel,0.376,yes,no,no,no,0.0,yes,-
+training,72207abc,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.488,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,72322fa7,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.499,soft_local_cross_rel,0.439,yes,no,no,no,0.0,yes,-
+training,72a961c9,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.485,soft_local_cross,0.432,yes,no,no,no,0.0,yes,-
+training,72ca375d,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,73182012,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",1,3,resize_input,0.466,majority_output,0.253,yes,no,no,no,0.0,yes,-
+training,73c3b0d8,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.441,resize_input,0.427,yes,no,no,no,0.0,yes,-
+training,73ccf9c2,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,7447852a,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.428,soft_local_block3_rel,0.412,yes,no,no,no,0.0,yes,-
+training,7468f01a,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,746b3537,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,74dd1130,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,9,transform:transpose,1.0,transform:local_cross,0.335,yes,yes,no,yes,1.0,yes,transform:transpose
+training,753ea09b,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.441,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,758abdf0,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.483,soft_local_cross_rel,0.424,yes,no,no,no,0.0,yes,-
+training,759f3fd3,1|added|more,"same size, partly alike, more shapes, colours added",1,6,resize_input,0.328,colour_map_input,0.303,yes,no,no,no,0.0,yes,-
+training,75b8110e,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,majority_output,0.214,resize_input,0.166,yes,no,no,no,0.0,yes,-
+training,760b3cac,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.475,soft_local_block3_rel,0.415,yes,no,no,no,0.0,yes,-
+training,762cd429,1|same|more,"same size, different, more shapes, colours kept",1,6,colour_map_input,0.295,soft_local_block3_rel,0.238,yes,no,no,no,0.0,yes,-
+training,770cc55f,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.458,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,776ffc46,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.499,soft_local_cross_rel,0.467,yes,no,no,no,0.0,yes,-
+training,77fdfe62,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,780d0b14,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,782b5218,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,7,colour_map_input,0.318,soft_local_block3_rel,0.285,yes,no,no,no,0.0,yes,-
+training,7837ac64,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.226,majority_output,0.197,yes,no,no,no,0.0,yes,-
+training,78e78cff,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.373,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,79369cc6,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,transform:local_block3,0.502,soft_local_block3_rel,0.442,yes,no,no,no,0.0,yes,-
+training,794b24be,1|added_and_removed|varies,"same size, mixed similarity, shape count varies, colours added and removed",2,7,soft_local_block3_rel;soft_local_cross_rel,0.482;0.434,soft_local_cross_rel;majority_output,0.404;0.392,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,7953d61e,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.21,majority_output,0.139,yes,no,no,no,0.0,yes,-
+training,79cce52d,2|removed|fewer,"fixed output size, mixed similarity, fewer shapes, colours removed",1,3,resize_input,0.175,majority_output,0.162,yes,no,no,no,0.0,yes,-
+training,7acdf6d3,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,soft_local_block3_rel,0.504,colour_map_input,0.445,yes,no,no,no,0.0,yes,-
+training,7b6016b9,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,7,colour_map_input,0.465,soft_local_cross,0.321,yes,no,no,no,0.0,yes,-
+training,7b7f7511,3|same|fewer,"size unsolved, partly alike, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,7bb29440,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,7c008303,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.213,majority_output,0.21,yes,no,no,no,0.0,yes,-
+training,7c8af763,1|removed|fewer,"same size, mixed similarity, fewer shapes, colours removed",1,7,colour_map_input,0.378,soft_local_cross,0.334,yes,no,no,no,0.0,yes,-
+training,7c9b52a0,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,7d18a6fb,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.267,resize_input,0.221,yes,no,no,no,0.0,yes,-
+training,7d1f7ee8,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,6,resize_input,0.437,soft_local_cross_rel,0.398,yes,no,no,no,0.0,yes,-
+training,7d419a02,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.42,soft_local_cross,0.371,yes,no,no,no,0.0,yes,-
+training,7d7772cc,1|same|same,"same size, near copy, same shapes, colours kept",1,7,soft_local_cross,0.491,soft_local_cross_rel,0.457,yes,no,no,no,0.0,yes,-
+training,7ddcd7ec,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.494,majority_output,0.381,yes,no,no,no,0.0,yes,-
+training,7df24a62,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.491,soft_local_cross,0.431,yes,no,no,no,0.0,yes,-
+training,7e02026e,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.478,soft_local_cross_rel,0.451,yes,no,no,no,0.0,yes,-
+training,7e0986d6,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,transform:local_cross,0.485,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,7e2bad24,1|same|more,"same size, near copy, more shapes, colours kept",2,7,colour_map_input;colour_map_input,0.496;0.496,majority_output;majority_output,0.374;0.374,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,7e4d4f7c,3|mixed|varies,"size unsolved, different, shape count varies, colours mixed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,7e576d6e,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.483,soft_local_block3_rel,0.453,yes,no,no,no,0.0,yes,-
+training,7ec998c9,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.419,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,7ee1c6ea,1|same|same,"same size, near copy, same shapes, colours kept",1,8,transform:local_cross,0.433,majority_output,0.152,yes,no,no,no,0.0,yes,-
+training,7f4411dc,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,transform:local_cross_rel,0.49,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,7fe24cdd,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.285,majority_output,0.126,yes,no,no,no,0.0,yes,-
+training,80214e03,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,80af3007,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.29,majority_output,0.269,yes,no,no,no,0.0,yes,-
+training,810b9b61,1|added|same,"same size, near copy, same shapes, colours added",1,6,soft_local_cross_rel,0.44,resize_input,0.437,yes,no,no,no,0.0,yes,-
+training,817e6c09,1|added|same,"same size, near copy, same shapes, colours added",1,6,colour_map_input,0.44,resize_input,0.43,yes,no,no,no,0.0,yes,-
+training,81c0276b,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,825aa9e9,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,soft_local_cross_rel,0.457,colour_map_input,0.404,yes,no,no,no,0.0,yes,-
+training,82819916,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.463,soft_local_cross_rel,0.43,yes,no,no,no,0.0,yes,-
+training,83302e8f,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,7,colour_map_input,0.389,soft_local_block3_rel,0.347,yes,no,no,no,0.0,yes,-
+training,833966f4,1|same|same,"same size, different, same shapes, colours kept",1,8,transform:local_cross,0.23,colour_map_input,0.195,yes,no,no,no,0.0,yes,-
+training,833dafe3,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,834ec97d,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.4,soft_local_block3_rel,0.37,yes,no,no,no,0.0,yes,-
+training,83b6b474,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,83eb0a57,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8403a5d5,1|added|more,"same size, mixed similarity, more shapes, colours added",1,7,colour_map_input,0.375,soft_local_cross_rel,0.302,yes,no,no,no,0.0,yes,-
+training,84551f4c,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,soft_local_cross;soft_local_cross_rel,0.398;0.42,soft_local_cross_rel;soft_local_cross,0.39;0.398,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,845d6e51,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,resize_input,0.433,colour_map_input,0.414,yes,no,no,no,0.0,yes,-
+training,846bdb03,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,84ba50d3,1|same|more,"same size, near copy, more shapes, colours kept",1,6,resize_input,0.436,colour_map_input,0.425,yes,no,no,no,0.0,yes,-
+training,84db8fc4,1|added_and_removed|varies,"same size, mixed similarity, shape count varies, colours added and removed",1,8,colour_map_input,0.391,soft_local_cross_rel,0.391,yes,no,no,no,0.0,yes,-
+training,84f2aca1,1|added|more,"same size, near copy, more shapes, colours added",1,8,soft_local_cross_rel,0.611,fill_enclosed,0.583,yes,no,no,no,0.0,yes,-
+training,855e0971,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.487,soft_local_cross_rel,0.427,yes,no,no,no,0.0,yes,-
+training,8597cfd7,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.775,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,85b81ff1,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.483,soft_local_cross_rel,0.452,yes,no,no,no,0.0,yes,-
+training,85c4e7cd,1|same|same,"same size, different, same shapes, colours kept",1,7,transform:local_block3,0.207,colour_map_input,0.146,yes,no,no,no,0.0,yes,-
+training,85fa5666,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.417,resize_input,0.405,yes,no,no,no,0.0,yes,-
+training,8618d23e,3|added|varies,"size unsolved, different, shape count varies, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,868de0fa,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.452,fill_enclosed,0.419,yes,no,no,no,0.0,yes,-
+training,8719f442,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.373,resize_input,0.318,yes,no,no,no,0.0,yes,-
+training,8731374e,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,878187ab,3|added_and_removed|varies,"size unsolved, near copy, shape count varies, colours added and removed",1,2,majority_output,0.371,copy_input,0.183,yes,no,no,no,0.0,yes,-
+training,87ab05b8,1|removed|fewer,"same size, mixed similarity, fewer shapes, colours removed",1,8,majority_output,0.517,colour_map_input,0.37,yes,no,no,no,0.0,yes,-
+training,880c1354,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,7,resize_input,0.318,soft_local_cross_rel,0.291,yes,no,no,no,0.0,yes,-
+training,88207623,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.48,soft_local_cross_rel,0.419,yes,no,no,no,0.0,yes,-
+training,8886d717,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.482,soft_local_cross_rel,0.418,yes,no,no,no,0.0,yes,-
+training,88a10436,1|removed|more,"same size, near copy, more shapes, colours removed",1,6,colour_map_input,0.449,resize_input,0.449,yes,no,no,no,0.0,yes,-
+training,88a62173,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",1,3,resize_input,0.333,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,890034e9,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.498,soft_local_cross,0.437,yes,no,no,no,0.0,yes,-
+training,891232d6,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.476,soft_local_cross,0.418,yes,no,no,no,0.0,yes,-
+training,896d5239,1|added|varies,"same size, near copy, shape count varies, colours added",1,6,colour_map_input,0.48,soft_local_cross,0.421,yes,no,no,no,0.0,yes,-
+training,8a004b2b,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8a371977,1|added_and_removed|varies,"same size, mixed similarity, shape count varies, colours added and removed",1,6,colour_map_input,0.424,resize_input,0.346,yes,no,no,no,0.0,yes,-
+training,8a6d367c,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8abad3cf,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8b28cd80,2|same|varies,"fixed output size, different, shape count varies, colours kept",2,3,resize_input;resize_input,0.25;0.25,majority_output;majority_output,0.232;0.232,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,8ba14f53,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.236,majority_output,0.223,yes,no,no,no,0.0,yes,-
+training,8be77c9e,2|same|varies,"fixed output size, partly alike, shape count varies, colours kept",1,4,transform:mirror_v,1.0,resize_input,0.385,yes,yes,no,yes,1.0,yes,transform:mirror_v
+training,8cb8642d,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.419,soft_local_cross_rel,0.397,yes,no,no,no,0.0,yes,-
+training,8d5021e8,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.314,majority_output,0.139,yes,no,no,no,0.0,yes,-
+training,8d510a79,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.468,soft_local_cross_rel,0.438,yes,no,no,no,0.0,yes,-
+training,8dab14c2,1|same|same,"same size, near copy, same shapes, colours kept",4,6,colour_map_input;colour_map_input;colour_map_input;colour_map_input,0.505;0.505;0.505;0.505,fallback:blank_grid;fallback:blank_grid;fallback:blank_grid;fallback:blank_grid,0.0;0.0;0.0;0.0,yes;yes;yes;yes,no;no;no;no,no;no;no;no,no,0.0,yes;yes;yes;yes,-;-;-;-
+training,8dae5dfc,1|same|same,"same size, partly alike, same shapes, colours kept",1,6,resize_input,0.321,colour_map_input,0.295,yes,no,no,no,0.0,yes,-
+training,8e1813be,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8e2edd66,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,majority_output,0.348,resize_input,0.221,yes,no,no,no,0.0,yes,-
+training,8e301a54,1|same|same,"same size, near copy, same shapes, colours kept",1,7,resize_input,0.425,colour_map_input,0.423,yes,no,no,no,0.0,yes,-
+training,8e5a5113,1|removed|more,"same size, different, more shapes, colours removed",1,7,soft_local_cross_rel,0.289,resize_input,0.289,yes,no,no,no,0.0,yes,-
+training,8eb1be9a,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,6,colour_map_input,0.272,soft_local_cross,0.24,yes,no,no,no,0.0,yes,-
+training,8ee62060,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.412,resize_input,0.384,yes,no,no,no,0.0,yes,-
+training,8efcae92,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,8f2ea7aa,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.447,soft_local_cross_rel,0.384,yes,no,no,no,0.0,yes,-
+training,8fbca751,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.45,soft_local_cross_rel,0.396,yes,no,no,no,0.0,yes,-
+training,8fff9e47,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.138,majority_output,0.1,yes,no,no,no,0.0,no,-
+training,902510d5,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,resize_input,0.435,soft_local_cross_rel,0.43,yes,no,no,no,0.0,yes,-
+training,90347967,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,7,partial:rotate_180,0.799,colour_map_input,0.365,yes,no,no,no,0.0,yes,-
+training,90c28cc7,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,90f3ed37,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.474,majority_output,0.326,yes,no,no,no,0.0,yes,-
+training,9110e3c5,2|mixed|fewer,"fixed output size, different, fewer shapes, colours mixed",2,3,majority_output;majority_output,0.535;0.535,resize_input;resize_input,0.211;0.211,yes;yes,no;yes,no;no,partial,0.5,yes;yes,-;majority_output
+training,913fb3ed,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_block3,0.578,colour_map_input,0.451,yes,no,no,no,0.0,yes,-
+training,91413438,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,91714a58,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,8,transform:local_block3_rel,0.461,colour_map_input,0.459,yes,no,no,no,0.0,yes,-
+training,9172f3a0,2|same|same,"fixed output size, different, same shapes, colours kept",1,4,transform:upscale_3,1.0,resize_input,0.264,yes,yes,no,yes,1.0,yes,transform:upscale_3
+training,917bccba,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.422,soft_local_block3_rel,0.371,yes,no,no,no,0.0,yes,-
+training,928ad970,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.447,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,92e50de0,1|same|more,"same size, near copy, more shapes, colours kept",1,7,fill_enclosed,0.487,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,9344f635,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.381,soft_local_cross_rel,0.325,yes,no,no,no,0.0,yes,-
+training,9356391f,1|same|more,"same size, near copy, more shapes, colours kept",1,7,resize_input,0.394,colour_map_input,0.364,yes,no,no,no,0.0,yes,-
+training,93b4f4b3,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,93b581b8,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,7,colour_map_input,0.377,soft_local_cross_rel,0.324,yes,no,no,no,0.0,yes,-
+training,93c31fbe,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.497,soft_local_block3_rel,0.437,yes,no,no,no,0.0,yes,-
+training,94133066,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,941d9a10,1|added|varies,"same size, near copy, shape count varies, colours added",1,8,colour_map_input,0.461,soft_local_cross,0.397,yes,no,no,no,0.0,yes,-
+training,94414823,1|same|more,"same size, near copy, more shapes, colours kept",1,8,colour_map_input,0.454,fill_enclosed,0.394,yes,no,no,no,0.0,yes,-
+training,9473c6fb,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,6,colour_map_input,0.483,resize_input,0.438,yes,no,no,no,0.0,yes,-
+training,94be5b80,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.436,colour_map_input,0.406,yes,no,no,no,0.0,yes,-
+training,94f9d214,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.379,resize_input,0.209,yes,no,no,no,0.0,yes,-
+training,952a094c,1|same|same,"same size, near copy, same shapes, colours kept",1,7,soft_local_cross,0.482,soft_local_cross_rel,0.431,yes,no,no,no,0.0,yes,-
+training,9565186b,1|added_and_removed|varies,"same size, mixed similarity, shape count varies, colours added and removed",1,8,colour_map_input,0.5,transform:local_cross,0.345,yes,no,no,no,0.0,yes,-
+training,95755ff2,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.45,soft_local_cross,0.389,yes,no,no,no,0.0,yes,-
+training,95990924,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_block3_rel,1.03,colour_map_input,0.488,yes,no,no,no,0.0,yes,-
+training,95a58926,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.462,soft_local_cross_rel,0.432,yes,no,no,no,0.0,yes,-
+training,963c33f8,1|same|more,"same size, near copy, more shapes, colours kept",1,6,resize_input,0.452,colour_map_input,0.435,yes,no,no,no,0.0,yes,-
+training,963e52fc,3|same|more,"size unsolved, partly alike, more shapes, colours kept",1,2,partial:tile_1x2,0.559,copy_input,0.05,yes,yes,no,yes,1.0,yes,partial:tile_1x2
+training,963f59bc,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.485,soft_local_cross,0.424,yes,no,no,no,0.0,yes,-
+training,96a8c0cd,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.465,soft_local_cross,0.409,yes,no,no,no,0.0,yes,-
+training,9720b24f,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,7,colour_map_input,0.709,transform:local_block3,0.493,yes,no,no,no,0.0,yes,-
+training,97239e3d,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.45,soft_local_cross_rel,0.386,yes,no,no,no,0.0,yes,-
+training,973e499e,3|added|more,"size unsolved, different, more shapes, colours added",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,9772c176,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.486,soft_local_cross,0.429,yes,no,no,no,0.0,yes,-
+training,97999447,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.465,soft_local_block3_rel,0.44,yes,no,no,no,0.0,yes,-
+training,97a05b5b,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,97c75046,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.504,resize_input,0.469,yes,no,no,no,0.0,yes,-
+training,981add89,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.465,soft_local_cross,0.405,yes,no,no,no,0.0,yes,-
+training,9841fdad,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.479,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,984d8a3e,1|same|more,"same size, near copy, more shapes, colours kept",1,7,soft_local_block3_rel,0.362,colour_map_input,0.359,yes,no,no,no,0.0,yes,-
+training,985ae207,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.46,soft_local_block3_rel,0.394,yes,no,no,no,0.0,yes,-
+training,98c475bf,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,7,resize_input,0.438,soft_local_block3_rel,0.407,yes,no,no,no,0.0,yes,-
+training,98cf29f8,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.437,soft_local_cross_rel,0.397,yes,no,no,no,0.0,yes,-
+training,992798f6,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.492,soft_local_block3_rel,0.434,yes,no,no,no,0.0,yes,-
+training,99306f82,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.433,soft_local_cross_rel,0.403,yes,no,no,no,0.0,yes,-
+training,995c5fa3,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,9968a131,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,transform:local_cross,0.401,soft_local_cross_rel,0.341,yes,no,no,no,0.0,yes,-
+training,996ec1f3,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.113,resize_input,0.113,yes,no,no,no,0.0,yes,-
+training,99b1bc43,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",1,3,majority_output,0.27,resize_input,0.171,yes,no,no,no,0.0,yes,-
+training,99caaf76,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.398,resize_input,0.34,yes,no,no,no,0.0,yes,-
+training,99fa7670,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.419,soft_local_block3_rel,0.377,yes,no,no,no,0.0,yes,-
+training,9a4bb226,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.113,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,9aec4887,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,9af7a82c,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,9b2a60aa,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.49,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,9b30e358,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.443,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,9b365c51,1|removed|fewer,"same size, mixed similarity, fewer shapes, colours removed",1,6,colour_map_input,0.361,soft_local_cross,0.36,yes,no,no,no,0.0,yes,-
+training,9b4c17c4,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,soft_local_cross;soft_local_cross,0.41;0.41,resize_input;resize_input,0.405;0.405,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,9b5080bb,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.502,soft_local_block3_rel,0.442,yes,no,no,no,0.0,yes,-
+training,9ba4a9aa,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,9bebae7a,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,6,resize_input,0.429,colour_map_input,0.415,yes,no,no,no,0.0,yes,-
+training,9c1e755f,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,7,colour_map_input,0.4,soft_local_cross,0.336,yes,no,no,no,0.0,yes,-
+training,9c56f360,1|same|more,"same size, near copy, more shapes, colours kept",1,6,resize_input,0.436,colour_map_input,0.416,yes,no,no,no,0.0,yes,-
+training,9caba7c3,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.488,soft_local_cross,0.428,yes,no,no,no,0.0,yes,-
+training,9caf5b84,1|added_and_removed|fewer,"same size, mixed similarity, fewer shapes, colours added and removed",1,7,transform:local_cross,0.368,soft_local_block3_rel,0.322,yes,no,no,no,0.0,yes,-
+training,9d9215db,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.481,majority_output,0.394,yes,no,no,no,0.0,yes,-
+training,9ddd00f0,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.422,soft_local_block3_rel,0.329,yes,no,no,no,0.0,yes,-
+training,9def23fe,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.417,soft_local_cross,0.363,yes,no,no,no,0.0,yes,-
+training,9dfd6313,1|same|same,"same size, near copy, same shapes, colours kept",1,8,transform:transpose,1.0,resize_input,0.364,yes,yes,no,yes,1.0,yes,transform:transpose
+training,9edfc990,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,6,soft_local_cross_rel,0.432,colour_map_input,0.424,yes,no,no,no,0.0,yes,-
+training,9f236235,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,9f27f097,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.43,resize_input,0.427,yes,no,no,no,0.0,yes,-
+training,9f41bd9c,1|added|more,"same size, near copy, more shapes, colours added",1,6,soft_local_cross_rel,0.446,resize_input,0.408,yes,no,no,no,0.0,yes,-
+training,9f5f939b,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.507,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,9f669b64,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.466,soft_local_block3_rel,0.396,yes,no,no,no,0.0,yes,-
+training,9f8de559,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.508,majority_output,0.297,yes,no,no,no,0.0,yes,-
+training,a04b2602,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.445,soft_local_block3_rel,0.426,yes,no,no,no,0.0,yes,-
+training,a096bf4d,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.507,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,a09f6c25,1|added_and_removed|fewer,"same size, near copy, fewer shapes, colours added and removed",2,6,resize_input;resize_input,0.428;0.428,colour_map_input;colour_map_input,0.425;0.425,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,a1570a43,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.408,colour_map_input,0.391,yes,no,no,no,0.0,yes,-
+training,a1aa0c1e,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,majority_output,0.256,resize_input,0.193,yes,no,no,no,0.0,yes,-
+training,a2d730bd,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.48,soft_local_cross_rel,0.45,yes,no,no,no,0.0,yes,-
+training,a2fd1cf0,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.48,soft_local_cross,0.421,yes,no,no,no,0.0,yes,-
+training,a3325580,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,a3f84088,1|mixed|varies,"same size, mixed similarity, shape count varies, colours mixed",1,7,soft_local_cross,0.504,soft_local_block3_rel,0.473,yes,no,no,no,0.0,yes,-
+training,a406ac07,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.445,soft_local_cross_rel,0.415,yes,no,no,no,0.0,yes,-
+training,a416b8f3,3|same|more,"size unsolved, partly alike, more shapes, colours kept",1,2,transform:tile_1x2,0.95,copy_input,0.05,yes,yes,no,yes,1.0,yes,transform:tile_1x2
+training,a416fc5b,3|mixed|varies,"size unsolved, mixed similarity, shape count varies, colours mixed",1,1,copy_input,0.268,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,a48eeaf7,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.468,resize_input,0.456,yes,no,no,no,0.0,yes,-
+training,a5313dff,1|added|more,"same size, near copy, more shapes, colours added",1,7,fill_enclosed,1.0,soft_local_cross,0.617,yes,yes,no,yes,1.0,yes,fill_enclosed
+training,a57f2f04,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.434,soft_local_block3_rel,0.38,yes,no,no,no,0.0,yes,-
+training,a59b95c0,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,a5f85a15,1|added|same,"same size, near copy, same shapes, colours added",1,6,colour_map_input,0.478,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,a61ba2ce,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,majority_output,0.188,resize_input,0.188,yes,no,no,no,0.0,yes,-
+training,a61f2674,1|added_and_removed|fewer,"same size, near copy, fewer shapes, colours added and removed",1,7,soft_local_cross_rel,0.432,colour_map_input,0.402,yes,no,no,no,0.0,yes,-
+training,a644e277,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,a64e4611,1|added|more,"same size, near copy, more shapes, colours added",1,7,soft_local_block3_rel,0.439,soft_local_cross,0.419,yes,no,no,no,0.0,yes,-
+training,a65b410d,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.418,soft_local_cross,0.4,yes,no,no,no,0.0,yes,-
+training,a680ac02,3|removed|same,"size unsolved, different, same shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,a68b268e,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.315,majority_output,0.213,yes,no,no,no,0.0,yes,-
+training,a6953f00,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.7,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,a699fb00,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_block3_rel,0.688,colour_map_input,0.487,yes,yes,no,yes,1.0,yes,transform:local_block3_rel
+training,a740d043,3|mixed|varies,"size unsolved, different, shape count varies, colours mixed",1,2,transform:crop_non_background,0.95,copy_input,0.05,yes,yes,no,yes,1.0,yes,transform:crop_non_background
+training,a78176bb,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,colour_map_input,0.45,resize_input,0.424,yes,no,no,no,0.0,yes,-
+training,a79310a0,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,8,transform:shift_dy1_dx0,1.0,transform:local_cross,0.46,yes,yes,no,yes,1.0,yes,transform:shift_dy1_dx0
+training,a834deea,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.49,soft_local_cross_rel,0.458,yes,no,no,no,0.0,yes,-
+training,a85d4709,1|added_and_removed|varies,"same size, different, shape count varies, colours added and removed",1,8,soft_local_cross_rel,0.285,transform:local_cross,0.247,yes,no,no,no,0.0,yes,-
+training,a8610ef7,1|added_and_removed|more,"same size, mixed similarity, more shapes, colours added and removed",1,7,colour_map_input,0.358,soft_local_cross_rel,0.314,yes,no,no,no,0.0,yes,-
+training,a87f7484,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.354,majority_output,0.149,yes,no,no,no,0.0,yes,-
+training,a8c38be5,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.342,resize_input,0.167,yes,no,no,no,0.0,yes,-
+training,a8d7556c,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.488,soft_local_block3_rel,0.438,yes,no,no,no,0.0,yes,-
+training,a934301b,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,resize_input,0.41,soft_local_block3_rel,0.4,yes,no,no,no,0.0,yes,-
+training,a9f96cdd,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",1,8,colour_map_input,0.446,soft_local_cross,0.428,yes,no,no,no,0.0,yes,-
+training,aa18de87,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.42,soft_local_block3_rel,0.359,yes,no,no,no,0.0,yes,-
+training,aa300dc3,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.485,soft_local_block3_rel,0.419,yes,no,no,no,0.0,yes,-
+training,aa62e3f4,1|removed|varies,"same size, mixed similarity, shape count varies, colours removed",1,7,transform:local_block3,0.38,colour_map_input,0.376,yes,no,no,no,0.0,yes,-
+training,aab50785,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,aabf363d,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,10,transform:identity,1.06,transform:local_cross_rel,0.417,yes,no,no,no,0.0,yes,-
+training,aaecdb9a,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,aaef0977,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,7,colour_map_input,0.152,majority_output,0.144,yes,no,no,no,0.0,yes,-
+training,aba27056,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,resize_input,0.336,soft_local_cross_rel,0.331,yes,no,no,no,0.0,yes,-
+training,abbfd121,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ac0a08a4,3|same|same,"size unsolved, different, same shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ac0c2ac3,1|removed|varies,"same size, different, shape count varies, colours removed",1,6,resize_input,0.153,colour_map_input,0.152,yes,no,no,no,0.0,yes,-
+training,ac0c5833,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.499,soft_local_cross_rel,0.469,yes,no,no,no,0.0,yes,-
+training,ac2e8ecf,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.369,soft_local_cross_rel,0.364,yes,no,no,no,0.0,yes,-
+training,ac3e2b04,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.462,soft_local_block3_rel,0.402,yes,no,no,no,0.0,yes,-
+training,ac605cbb,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.48,soft_local_cross,0.427,yes,no,no,no,0.0,yes,-
+training,ac6f9922,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ad173014,1|same|same,"same size, near copy, same shapes, colours kept",1,7,transform:local_block3_rel,0.47,resize_input,0.468,yes,no,no,no,0.0,yes,-
+training,ad38a9d0,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_block3_rel,0.422,soft_local_cross_rel,0.394,yes,no,no,no,0.0,yes,-
+training,ad3b40cf,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.497,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,ad7e01d0,3|mixed|more,"size unsolved, different, more shapes, colours mixed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ae3edfdc,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.5,resize_input,0.46,yes,no,no,no,0.0,yes,-
+training,ae4f1146,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.333,resize_input,0.197,yes,no,no,no,0.0,yes,-
+training,ae58858e,1|added|same,"same size, near copy, same shapes, colours added",1,6,soft_local_cross_rel,0.427,resize_input,0.427,yes,no,no,no,0.0,yes,-
+training,aedd82e4,1|added|varies,"same size, near copy, shape count varies, colours added",1,7,transform:local_cross_rel,1.03,soft_local_block3_rel,0.696,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,aee291af,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,af24b4cc,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.345,resize_input,0.275,yes,no,no,no,0.0,yes,-
+training,af726779,1|added|more,"same size, near copy, more shapes, colours added",3,6,colour_map_input;colour_map_input;colour_map_input,0.491;0.491;0.491,fallback:blank_grid;fallback:blank_grid;fallback:blank_grid,0.0;0.0;0.0,yes;yes;yes,no;no;no,no;no;no,no,0.0,yes;yes;yes,-;-;-
+training,af902bf9,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.48,majority_output,0.368,yes,no,no,no,0.0,yes,-
+training,afe3afe9,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b0722778,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b0c4d837,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.398,resize_input,0.294,yes,no,no,no,0.0,yes,-
+training,b0f4d537,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b15fca0b,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_block3_rel,0.499,soft_local_cross_rel,0.366,yes,no,no,no,0.0,yes,-
+training,b190f7f5,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b1948b0a,1|added_and_removed|same,"same size, partly alike, same shapes, colours added and removed",1,10,transform:identity,1.06,resize_input,0.316,yes,yes,no,yes,1.0,yes,transform:identity
+training,b1986d4b,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b1fc8b8e,2|same|varies,"fixed output size, different, shape count varies, colours kept",2,3,majority_output;majority_output,0.394;0.394,resize_input;resize_input,0.226;0.226,yes;yes,yes;no,no;no,partial,0.5,yes;yes,majority_output;-
+training,b20f7c8b,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,7,resize_input,0.4,soft_local_cross,0.374,yes,no,no,no,0.0,yes,-
+training,b230c067,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,colour_map_input,0.427,soft_local_cross_rel,0.402,yes,no,no,no,0.0,yes,-
+training,b25e450b,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,6,colour_map_input,0.356,soft_local_block3_rel,0.341,yes,no,no,no,0.0,yes,-
+training,b27ca6d3,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.49,soft_local_block3_rel,0.429,yes,no,no,no,0.0,yes,-
+training,b2862040,1|added|same,"same size, near copy, same shapes, colours added",1,6,resize_input,0.428,soft_local_block3_rel,0.421,yes,no,no,no,0.0,yes,-
+training,b2bc3ffd,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.457,majority_output,0.372,yes,no,no,no,0.0,yes,-
+training,b457fec5,1|removed|more,"same size, near copy, more shapes, colours removed",1,6,resize_input,0.399,soft_local_cross_rel,0.389,yes,no,no,no,0.0,yes,-
+training,b4a43f3b,2|removed|more,"fixed output size, different, more shapes, colours removed",1,3,majority_output,0.407,resize_input,0.386,yes,no,no,no,0.0,yes,-
+training,b527c5c6,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.419,soft_local_cross,0.356,yes,no,no,no,0.0,yes,-
+training,b548a754,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,colour_map_input,0.417,resize_input,0.417,yes,no,no,no,0.0,yes,-
+training,b5bb5719,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.449,soft_local_block3_rel,0.406,yes,no,no,no,0.0,yes,-
+training,b60334d2,1|added|more,"same size, mixed similarity, more shapes, colours added",1,9,transform:local_block3_rel,0.738,soft_local_cross,0.366,yes,no,no,no,0.0,yes,-
+training,b6afb2da,1|added_and_removed|more,"same size, mixed similarity, more shapes, colours added and removed",1,8,transform:local_cross_rel,1.06,soft_local_cross,0.429,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,b71a7747,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b7249182,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.463,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,b7256dcd,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,resize_input,0.373,soft_local_block3_rel,0.358,yes,no,no,no,0.0,yes,-
+training,b745798f,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.307,resize_input,0.301,yes,no,no,no,0.0,yes,-
+training,b74ca5d1,1|same|more,"same size, near copy, more shapes, colours kept",2,7,resize_input;soft_local_cross,0.451;0.481,soft_local_cross;soft_local_block3_rel,0.421;0.421,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,b775ac94,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.487,soft_local_cross,0.424,yes,no,no,no,0.0,yes,-
+training,b782dc8a,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.439,soft_local_cross_rel,0.367,yes,no,no,no,0.0,yes,-
+training,b7955b3c,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",2,7,soft_local_cross_rel;soft_local_cross_rel,0.454;0.454,resize_input;resize_input,0.453;0.453,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,b7999b51,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b7cb93ac,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.139,resize_input,0.11,yes,no,no,no,0.0,yes,-
+training,b7f8a4d8,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.493,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,b7fb29bc,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.435,majority_output,0.424,yes,no,no,no,0.0,yes,-
+training,b8825c91,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.456,resize_input,0.453,yes,no,no,no,0.0,yes,-
+training,b8cdaf2b,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.462,soft_local_block3_rel,0.402,yes,no,no,no,0.0,yes,-
+training,b91ae062,3|same|same,"size unsolved, different, same shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b942fd60,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.408,soft_local_cross,0.36,yes,no,no,no,0.0,yes,-
+training,b94a9452,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,b9630600,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.492,majority_output,0.359,yes,no,no,no,0.0,yes,-
+training,b9b7f026,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,ba1aa698,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ba26e723,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.423,soft_local_block3_rel,0.401,yes,no,no,no,0.0,yes,-
+training,ba97ae07,1|same|same,"same size, near copy, same shapes, colours kept",1,7,transform:local_cross,0.501,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,ba9d41b8,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.47,soft_local_cross_rel,0.47,yes,no,no,no,0.0,yes,-
+training,bae5c565,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,resize_input,0.334,soft_local_block3_rel,0.327,yes,no,no,no,0.0,yes,-
+training,baf41dbf,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.453,soft_local_cross_rel,0.42,yes,no,no,no,0.0,yes,-
+training,bb43febb,1|added|more,"same size, near copy, more shapes, colours added",1,8,transform:local_cross_rel,1.06,colour_map_input,0.464,yes,yes,no,yes,1.0,yes,transform:local_cross_rel
+training,bb52a14b,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.504,soft_local_block3_rel,0.444,yes,no,no,no,0.0,yes,-
+training,bbb1b8b6,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",2,5,partial:left_half;partial:left_half,0.631;0.661,partial:crop_box_colour_1;majority_output,0.501;0.325,yes;yes,yes;no,no;no,partial,0.5,yes;yes,partial:left_half;-
+training,bbc9ae5d,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,bc1d5164,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.318,majority_output,0.186,yes,no,no,no,0.0,yes,-
+training,bc4146bd,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.288,majority_output,0.155,yes,no,no,no,0.0,yes,-
+training,bc93ec48,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.45,soft_local_cross_rel,0.386,yes,no,no,no,0.0,yes,-
+training,bcb3040b,1|added|varies,"same size, near copy, shape count varies, colours added",1,6,colour_map_input,0.486,soft_local_block3_rel,0.423,yes,no,no,no,0.0,yes,-
+training,bd14c3bf,1|same|same,"same size, near copy, same shapes, colours kept",1,6,soft_local_cross_rel,0.446,resize_input,0.437,yes,no,no,no,0.0,yes,-
+training,bd283c4a,1|same|fewer,"same size, different, fewer shapes, colours kept",1,7,soft_local_cross,0.27,soft_local_cross_rel,0.207,yes,no,no,no,0.0,yes,-
+training,bd4472b8,1|removed|more,"same size, different, more shapes, colours removed",1,6,soft_local_cross_rel,0.316,resize_input,0.221,yes,no,no,no,0.0,yes,-
+training,bd5af378,1|added|more,"same size, different, more shapes, colours added",1,6,soft_local_cross,0.247,colour_map_input,0.195,yes,no,no,no,0.0,yes,-
+training,bda2d7a6,1|same|same,"same size, different, same shapes, colours kept",2,7,transform:local_cross;transform:local_cross,0.13;0.16,resize_input;colour_map_input,0.13;0.16,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,bdad9b1f,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.442,soft_local_block3_rel,0.402,yes,no,no,no,0.0,yes,-
+training,be03b35f,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.275,majority_output,0.246,yes,no,no,no,0.0,yes,-
+training,be94b721,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,beb8660c,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.339,soft_local_cross_rel,0.318,yes,no,no,no,0.0,yes,-
+training,bf32578f,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.379,soft_local_block3_rel,0.267,yes,no,no,no,0.0,yes,-
+training,bf699163,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,4,partial:crop_box_colour_1,0.569,majority_output,0.139,yes,no,no,no,0.0,yes,-
+training,bf89d739,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.485,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,c074846d,1|added|more,"same size, near copy, more shapes, colours added",2,6,resize_input;resize_input,0.438;0.438,colour_map_input;colour_map_input,0.429;0.429,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,c0f76784,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.477,fill_enclosed,0.439,yes,no,no,no,0.0,yes,-
+training,c1990cce,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c1d99e64,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.457,soft_local_cross_rel,0.412,yes,no,no,no,0.0,yes,-
+training,c3202e5a,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c35c1b4c,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,8,transform:local_block3,0.48,soft_local_block3_rel,0.418,yes,no,no,no,0.0,yes,-
+training,c3e719e8,2|added|more,"fixed output size, different, more shapes, colours added",1,3,resize_input,0.27,majority_output,0.198,yes,no,no,no,0.0,yes,-
+training,c3fa4749,1|same|fewer,"same size, near copy, fewer shapes, colours kept",2,7,transform:local_cross;colour_map_input,0.501;0.501,colour_map_input;transform:local_cross,0.501;0.471,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,c444b776,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.485,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,c48954c1,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.156,majority_output,0.139,yes,no,no,no,0.0,yes,-
+training,c4d1a9ae,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,8,transform:local_block3,0.377,majority_output,0.109,yes,no,no,no,0.0,yes,-
+training,c59eb873,3|same|same,"size unsolved, different, same shapes, colours kept",1,2,transform:upscale_2,0.95,copy_input,0.05,yes,yes,no,yes,1.0,yes,transform:upscale_2
+training,c6141b15,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,soft_local_block3_rel,0.459,colour_map_input,0.402,yes,no,no,no,0.0,yes,-
+training,c61be7dc,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.35,resize_input,0.333,yes,no,no,no,0.0,yes,-
+training,c62e2108,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,resize_input,0.412,soft_local_cross_rel,0.384,yes,no,no,no,0.0,yes,-
+training,c64f1187,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c658a4bd,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,2,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c6e1b8da,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.447,soft_local_block3_rel,0.387,yes,no,no,no,0.0,yes,-
+training,c7d4e6ad,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.436,resize_input,0.436,yes,no,no,no,0.0,yes,-
+training,c803e39c,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c87289bb,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.419,soft_local_cross,0.373,yes,no,no,no,0.0,yes,-
+training,c8b7cc0f,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.256,resize_input,0.243,yes,no,no,no,0.0,yes,-
+training,c8cbb738,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c8f0f002,1|added_and_removed|same,"same size, mixed similarity, same shapes, colours added and removed",1,8,transform:identity,1.03,transform:local_cross_rel,0.634,yes,yes,no,yes,1.0,yes,transform:identity
+training,c909285e,2|mixed|fewer,"fixed output size, different, fewer shapes, colours mixed",1,3,resize_input,0.14,majority_output,0.102,yes,no,no,no,0.0,no,-
+training,c920a713,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c92b942c,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,c9680e90,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,colour_map_input,0.432,soft_local_cross_rel,0.424,yes,no,no,no,0.0,yes,-
+training,c97c0139,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.447,soft_local_cross,0.401,yes,no,no,no,0.0,yes,-
+training,c9e6f938,2|same|varies,"fixed output size, partly alike, shape count varies, colours kept",1,4,transform:mirror_h,1.0,resize_input,0.405,yes,yes,no,yes,1.0,yes,transform:mirror_h
+training,c9f8e694,1|removed|more,"same size, mixed similarity, more shapes, colours removed",1,7,resize_input,0.345,colour_map_input,0.315,yes,no,no,no,0.0,yes,-
+training,ca8de6ea,2|removed|same,"fixed output size, different, same shapes, colours removed",1,3,resize_input,0.139,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,caa06a1f,1|removed|more,"same size, different, more shapes, colours removed",1,7,shift_consistent,0.318,colour_map_input,0.178,yes,no,no,no,0.0,yes,-
+training,cad67732,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,cb227835,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.474,soft_local_cross,0.413,yes,no,no,no,0.0,yes,-
+training,cbded52d,1|same|more,"same size, near copy, more shapes, colours kept",1,8,fill_enclosed,0.497,soft_local_block3_rel,0.434,yes,no,no,no,0.0,yes,-
+training,cc9053aa,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,resize_input,0.401,soft_local_cross,0.392,yes,no,no,no,0.0,yes,-
+training,ccd554ac,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,cce03e0d,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.375,resize_input,0.33,yes,no,no,no,0.0,yes,-
+training,cd3c21df,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,cdecee7f,2|mixed|varies,"fixed output size, different, shape count varies, colours mixed",1,3,majority_output,0.178,resize_input,0.152,yes,no,no,no,0.0,yes,-
+training,ce039d91,1|added|more,"same size, near copy, more shapes, colours added",1,7,soft_local_cross_rel,0.436,soft_local_cross,0.436,yes,no,no,no,0.0,yes,-
+training,ce22a75a,1|added_and_removed|varies,"same size, mixed similarity, shape count varies, colours added and removed",1,8,transform:local_block3_rel,0.469,soft_local_cross,0.381,yes,no,no,no,0.0,yes,-
+training,ce4f8723,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.357,resize_input,0.171,yes,no,no,no,0.0,yes,-
+training,ce602527,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ce8d95cc,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ce9e57f2,1|added|more,"same size, near copy, more shapes, colours added",1,6,soft_local_cross_rel,0.486,colour_map_input,0.466,yes,no,no,no,0.0,yes,-
+training,cf133acc,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.473,soft_local_block3_rel,0.418,yes,no,no,no,0.0,yes,-
+training,cf5fd0ad,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.357,majority_output,0.23,yes,no,no,no,0.0,yes,-
+training,cf98881b,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.367,majority_output,0.275,yes,no,no,no,0.0,yes,-
+training,cfb2ce5a,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,7,colour_map_input,0.373,soft_local_cross,0.328,yes,no,no,no,0.0,yes,-
+training,d017b73f,3|same|varies,"size unsolved, mixed similarity, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d037b0a7,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,8,transform:local_block3,0.38,soft_local_cross_rel,0.281,yes,no,no,no,0.0,yes,-
+training,d06dbe63,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.472,soft_local_block3_rel,0.445,yes,no,no,no,0.0,yes,-
+training,d07ae81c,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.459,soft_local_cross,0.399,yes,no,no,no,0.0,yes,-
+training,d0f5fe59,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d10ecb37,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",1,3,resize_input,1.0,majority_output,0.1,yes,yes,no,yes,1.0,yes,resize_input
+training,d13f3404,2|same|more,"fixed output size, different, more shapes, colours kept",1,3,resize_input,0.337,majority_output,0.246,yes,no,no,no,0.0,yes,-
+training,d19f7514,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.322,resize_input,0.198,yes,no,no,no,0.0,yes,-
+training,d22278a0,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,6,colour_map_input,0.356,soft_local_block3_rel,0.322,yes,no,no,no,0.0,yes,-
+training,d23f8c26,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,soft_local_cross_rel,0.367,soft_local_block3_rel,0.367,yes,no,no,no,0.0,yes,-
+training,d255d7a7,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,6,colour_map_input,0.393,soft_local_cross,0.349,yes,no,no,no,0.0,yes,-
+training,d282b262,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.435,resize_input,0.396,yes,no,no,no,0.0,yes,-
+training,d2abd087,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_cross_rel,0.404,colour_map_input,0.395,yes,no,no,no,0.0,yes,-
+training,d2acf2cb,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.45,soft_local_block3_rel,0.386,yes,no,no,no,0.0,yes,-
+training,d304284e,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.455,majority_output,0.379,yes,no,no,no,0.0,yes,-
+training,d364b489,1|added|more,"same size, near copy, more shapes, colours added",1,8,transform:local_block3_rel,0.494,colour_map_input,0.445,yes,no,no,no,0.0,yes,-
+training,d37a1ef5,1|same|same,"same size, near copy, same shapes, colours kept",1,7,fill_enclosed,0.435,colour_map_input,0.431,yes,no,no,no,0.0,yes,-
+training,d406998b,1|added|same,"same size, near copy, same shapes, colours added",1,6,colour_map_input,0.423,resize_input,0.421,yes,no,no,no,0.0,yes,-
+training,d43fd935,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.487,soft_local_block3_rel,0.423,yes,no,no,no,0.0,yes,-
+training,d4469b4b,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",2,3,majority_output;majority_output,0.339;0.339,resize_input;resize_input,0.189;0.189,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,d47aa2ff,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,resize_input,0.438,majority_output,0.39,yes,no,no,no,0.0,yes,-
+training,d492a647,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.464,soft_local_cross,0.397,yes,no,no,no,0.0,yes,-
+training,d4a91cb9,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.472,soft_local_cross,0.413,yes,no,no,no,0.0,yes,-
+training,d4b1c2b1,3|same|same,"size unsolved, mixed similarity, same shapes, colours kept",1,1,copy_input,0.307,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d4c90558,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d4f3cd78,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.445,soft_local_cross,0.369,yes,no,no,no,0.0,yes,-
+training,d511f180,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,8,transform:identity,1.03,transform:local_cross_rel,0.6,yes,yes,no,yes,1.0,yes,transform:identity
+training,d56f2372,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d5c634a2,2|added_and_removed|same,"fixed output size, mixed similarity, same shapes, colours added and removed",2,3,majority_output;majority_output,0.411;0.411,resize_input;resize_input,0.281;0.281,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,d5d6de2d,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",2,6,colour_map_input;soft_local_cross,0.465;0.437,soft_local_cross;colour_map_input,0.437;0.435,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,d631b094,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d6542281,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.492;0.492,soft_local_cross_rel;soft_local_cross_rel,0.434;0.434,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,d687bc17,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,soft_local_cross_rel,0.496,colour_map_input,0.475,yes,no,no,no,0.0,yes,-
+training,d6ad076f,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.469,majority_output,0.213,yes,no,no,no,0.0,yes,-
+training,d6e50e54,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,6,colour_map_input,0.47,soft_local_block3_rel,0.438,yes,no,no,no,0.0,yes,-
+training,d749d46f,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,d753a70b,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.454,resize_input,0.43,yes,no,no,no,0.0,yes,-
+training,d89b689b,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,soft_local_cross_rel,0.491,resize_input,0.452,yes,no,no,no,0.0,yes,-
+training,d8c310e9,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.454,soft_local_block3_rel,0.421,yes,no,no,no,0.0,yes,-
+training,d90796e8,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,7,colour_map_input,0.681,transform:local_cross,0.434,yes,no,no,no,0.0,yes,-
+training,d931c21c,1|mixed|varies,"same size, mixed similarity, shape count varies, colours mixed",1,9,colour_map_input,0.564,soft_local_cross,0.349,yes,no,no,no,0.0,yes,-
+training,d93c6891,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,6,colour_map_input,0.627,soft_local_cross_rel,0.471,yes,no,no,no,0.0,yes,-
+training,d94c3b52,1|added|same,"same size, near copy, same shapes, colours added",1,7,colour_map_input,0.463,soft_local_cross_rel,0.416,yes,no,no,no,0.0,yes,-
+training,d968ffd4,1|same|more,"same size, different, more shapes, colours kept",2,6,soft_local_block3_rel;soft_local_cross,0.265;0.295,resize_input;colour_map_input,0.265;0.235,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,d9f24cd1,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.412,soft_local_cross,0.361,yes,no,no,no,0.0,yes,-
+training,d9fac9be,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.775,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,da2b0fe3,1|added|more,"same size, near copy, more shapes, colours added",2,7,colour_map_input;colour_map_input,0.475;0.475,soft_local_block3_rel;soft_local_cross,0.413;0.415,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,da6e95e5,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,dae9d2b5,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",2,3,majority_output;majority_output,0.326;0.326,resize_input;resize_input,0.24;0.24,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,db118e2a,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,majority_output,0.401,resize_input,0.311,yes,no,no,no,0.0,yes,-
+training,db3e9e38,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.397,soft_local_cross,0.389,yes,no,no,no,0.0,yes,-
+training,db615bd4,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,resize_input,0.441,colour_map_input,0.436,yes,no,no,no,0.0,yes,-
+training,db7260a4,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.451,resize_input,0.448,yes,no,no,no,0.0,yes,-
+training,db93a21d,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,soft_local_cross,0.323,colour_map_input,0.309,yes,no,no,no,0.0,yes,-
+training,dbc1a6ce,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.455,soft_local_cross_rel,0.398,yes,no,no,no,0.0,yes,-
+training,dc1df850,1|added|more,"same size, mixed similarity, more shapes, colours added",1,7,colour_map_input,0.392,transform:local_block3,0.378,yes,no,yes,yes,1.0,yes,transform:local_block3
+training,dc2aa30b,1|same|same,"same size, near copy, same shapes, colours kept",1,7,resize_input,0.362,majority_output,0.352,yes,no,no,no,0.0,yes,-
+training,dc2e9a9d,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.482,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,dc433765,1|same|same,"same size, near copy, same shapes, colours kept",2,6,soft_local_cross;colour_map_input,0.475;0.492,colour_map_input;resize_input,0.462;0.443,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,dc46ea44,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,soft_local_cross_rel,0.48,resize_input,0.436,yes,no,no,no,0.0,yes,-
+training,dce56571,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.454,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,dd2401ed,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.448,resize_input,0.425,yes,no,no,no,0.0,yes,-
+training,ddf7fa4f,1|removed|same,"same size, near copy, same shapes, colours removed",1,7,resize_input,0.373,soft_local_cross,0.351,yes,no,no,no,0.0,yes,-
+training,de1cd16c,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,de493100,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ded97339,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.476,majority_output,0.367,yes,no,no,no,0.0,yes,-
+training,df8cc377,1|same|same,"same size, near copy, same shapes, colours kept",1,7,fill_enclosed,0.489,soft_local_cross_rel,0.431,yes,no,no,no,0.0,yes,-
+training,df978a02,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.502,soft_local_cross_rel,0.47,yes,no,no,no,0.0,yes,-
+training,df9fd884,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.476,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,e048c9ed,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.488,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,e0fb7511,1|added|same,"same size, near copy, same shapes, colours added",1,8,transform:local_cross_rel,0.474,resize_input,0.443,yes,no,no,no,0.0,yes,-
+training,e133d23d,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.364,resize_input,0.193,yes,no,no,no,0.0,yes,-
+training,e179c5f4,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,6,soft_local_cross_rel,0.348,colour_map_input,0.336,yes,no,no,no,0.0,yes,-
+training,e1baa8a4,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e1d2900e,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.504,resize_input,0.471,yes,no,no,no,0.0,yes,-
+training,e2092e0c,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.485,soft_local_cross_rel,0.425,yes,no,no,no,0.0,yes,-
+training,e21a174a,1|same|same,"same size, mixed similarity, same shapes, colours kept",2,6,resize_input;resize_input,0.349;0.349,soft_local_cross;soft_local_cross,0.327;0.327,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,e21d9049,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.47,soft_local_block3_rel,0.411,yes,no,no,no,0.0,yes,-
+training,e26a3af2,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,transform:local_cross,0.427,resize_input,0.423,yes,no,no,no,0.0,yes,-
+training,e345f17b,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",2,3,majority_output;majority_output,0.33;0.33,resize_input;resize_input,0.182;0.182,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,e3497940,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.415,majority_output,0.307,yes,no,no,no,0.0,yes,-
+training,e39e9282,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,resize_input,0.445,colour_map_input,0.436,yes,no,no,no,0.0,yes,-
+training,e3f79277,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.428,majority_output,0.417,yes,no,no,no,0.0,yes,-
+training,e3fe1151,1|same|more,"same size, near copy, more shapes, colours kept",1,8,transform:local_cross,0.454,soft_local_cross_rel,0.433,yes,no,no,no,0.0,yes,-
+training,e4075551,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.435,soft_local_cross,0.378,yes,no,no,no,0.0,yes,-
+training,e40b9e2f,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.492,soft_local_block3_rel,0.425,yes,no,no,no,0.0,yes,-
+training,e41c6fd3,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.417,colour_map_input,0.403,yes,no,no,no,0.0,yes,-
+training,e45ef808,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.475,soft_local_cross_rel,0.398,yes,no,no,no,0.0,yes,-
+training,e4888269,1|same|same,"same size, near copy, same shapes, colours kept",2,7,colour_map_input;colour_map_input,0.505;0.505,soft_local_block3_rel;soft_local_cross,0.444;0.448,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,e48d4e1a,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.391,majority_output,0.362,yes,no,no,no,0.0,yes,-
+training,e4941b18,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.505,resize_input,0.466,yes,no,no,no,0.0,yes,-
+training,e5062a87,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.473,soft_local_block3_rel,0.407,yes,no,no,no,0.0,yes,-
+training,e509e548,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,6,resize_input,0.418,colour_map_input,0.414,yes,no,no,no,0.0,yes,-
+training,e50d258f,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e57337a4,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.359,majority_output,0.113,yes,no,no,no,0.0,yes,-
+training,e5790162,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.46,soft_local_cross,0.407,yes,no,no,no,0.0,yes,-
+training,e5c44e8f,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,7,colour_map_input,0.389,soft_local_block3_rel,0.313,yes,no,no,no,0.0,yes,-
+training,e619ca6e,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.467,soft_local_block3_rel,0.408,yes,no,no,no,0.0,yes,-
+training,e633a9e5,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.161,majority_output,0.147,yes,no,no,no,0.0,yes,-
+training,e6721834,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e681b708,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.493,soft_local_cross_rel,0.439,yes,no,no,no,0.0,yes,-
+training,e69241bd,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.412,soft_local_cross_rel,0.339,yes,no,no,no,0.0,yes,-
+training,e6de6e8f,2|added|fewer,"fixed output size, different, fewer shapes, colours added",1,3,majority_output,0.379,resize_input,0.194,yes,no,no,no,0.0,yes,-
+training,e729b7be,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.452,soft_local_cross,0.391,yes,no,no,no,0.0,yes,-
+training,e73095fd,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.485,soft_local_block3_rel,0.428,yes,no,no,no,0.0,yes,-
+training,e734a0e8,1|same|same,"same size, near copy, same shapes, colours kept",1,7,fill_enclosed,0.482,soft_local_cross_rel,0.452,yes,no,no,no,0.0,yes,-
+training,e74e1818,1|same|same,"same size, near copy, same shapes, colours kept",1,6,resize_input,0.406,soft_local_cross,0.378,yes,no,no,no,0.0,yes,-
+training,e760a62e,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,7,soft_local_block3_rel,0.391,soft_local_cross_rel,0.389,yes,no,no,no,0.0,yes,-
+training,e7639916,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.439,soft_local_block3_rel,0.414,yes,no,no,no,0.0,yes,-
+training,e76a88a6,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.406,resize_input,0.406,yes,no,no,no,0.0,yes,-
+training,e78887d1,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e7a25a18,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e7b06bea,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,6,soft_local_cross_rel,0.383,colour_map_input,0.35,yes,no,no,no,0.0,yes,-
+training,e7dd8335,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.456,soft_local_cross_rel,0.408,yes,no,no,no,0.0,yes,-
+training,e84fef15,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,resize_input,0.408,majority_output,0.315,yes,no,no,no,0.0,yes,-
+training,e8593010,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_cross_rel,0.425,soft_local_block3_rel,0.418,yes,no,no,no,0.0,yes,-
+training,e872b94a,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e88171ec,1|added|more,"same size, near copy, more shapes, colours added",1,7,transform:local_block3_rel,1.03,colour_map_input,0.5,yes,no,no,no,0.0,yes,-
+training,e8dc4411,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.485,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,e9614598,1|added|more,"same size, near copy, more shapes, colours added",2,7,colour_map_input;colour_map_input,0.492;0.492,majority_output;majority_output,0.315;0.315,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,e98196ab,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.408,majority_output,0.31,yes,no,no,no,0.0,yes,-
+training,e99362f0,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.231,resize_input,0.223,yes,no,no,no,0.0,yes,-
+training,e9ac8c9e,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,soft_local_cross_rel,0.413,resize_input,0.401,yes,no,no,no,0.0,yes,-
+training,e9afcf9a,1|same|more,"same size, partly alike, more shapes, colours kept",1,7,colour_map_input,0.335,majority_output,0.1,yes,no,no,no,0.0,yes,-
+training,e9b4f6fc,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,e9bb6954,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.447,soft_local_cross_rel,0.387,yes,no,no,no,0.0,yes,-
+training,e9c9d9a1,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,colour_map_input,0.384,soft_local_cross,0.32,yes,no,no,no,0.0,yes,-
+training,e9fc42f2,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,ea32f347,1|added_and_removed|same,"same size, near copy, same shapes, colours added and removed",1,7,soft_local_cross_rel,0.443,resize_input,0.431,yes,no,no,no,0.0,yes,-
+training,ea786f4a,1|same|more,"same size, mixed similarity, more shapes, colours kept",1,6,colour_map_input,0.392,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,ea959feb,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.475,soft_local_cross,0.425,yes,no,no,no,0.0,yes,-
+training,ea9794b1,2|mixed|fewer,"fixed output size, different, fewer shapes, colours mixed",1,3,majority_output,0.273,resize_input,0.151,yes,no,no,no,0.0,yes,-
+training,eb281b96,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,eb5a1d5d,3|same|same,"size unsolved, different, same shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ec883f72,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.495,soft_local_block3_rel,0.435,yes,no,no,no,0.0,yes,-
+training,ecaa0ec1,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,resize_input,0.453,soft_local_block3_rel,0.439,yes,no,no,no,0.0,yes,-
+training,ecb67b6d,1|added|same,"same size, near copy, same shapes, colours added",1,6,colour_map_input,0.451,soft_local_block3_rel,0.396,yes,no,no,no,0.0,yes,-
+training,ecdecbb3,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.472,soft_local_block3_rel,0.442,yes,no,no,no,0.0,yes,-
+training,ed36ccf7,1|same|same,"same size, mixed similarity, same shapes, colours kept",1,9,transform:rotate_270,1.0,transform:local_cross,0.335,yes,yes,no,yes,1.0,yes,transform:rotate_270
+training,ed74f2f2,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",1,3,majority_output,0.191,resize_input,0.191,yes,no,no,no,0.0,yes,-
+training,ed98d772,2|same|varies,"fixed output size, different, shape count varies, colours kept",1,3,resize_input,0.345,majority_output,0.232,yes,no,no,no,0.0,yes,-
+training,edcc2ff0,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,colour_map_input,0.494,soft_local_cross_rel,0.458,yes,no,no,no,0.0,yes,-
+training,ef135b50,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.471,soft_local_cross,0.416,yes,no,no,no,0.0,yes,-
+training,ef26cbf6,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,resize_input,0.407,soft_local_block3_rel,0.391,yes,no,no,no,0.0,yes,-
+training,f0100645,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.413,soft_local_cross,0.353,yes,no,no,no,0.0,yes,-
+training,f0afb749,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,f0df5ff0,1|same|varies,"same size, near copy, shape count varies, colours kept",1,8,transform:local_block3,0.462,soft_local_cross,0.403,yes,no,no,no,0.0,yes,-
+training,f0f8a26d,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.408,soft_local_block3_rel,0.335,yes,no,no,no,0.0,yes,-
+training,f15e1fac,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.427,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,f18ec8cc,1|same|same,"same size, different, same shapes, colours kept",2,6,resize_input;resize_input,0.19;0.19,soft_local_cross;soft_local_cross,0.152;0.152,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,f1bcbc2c,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,7,resize_input,0.437,soft_local_cross,0.435,yes,no,no,no,0.0,yes,-
+training,f1cefba8,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.464,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,f21745ec,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,7,fill_enclosed,0.476,soft_local_block3_rel,0.419,yes,no,no,no,0.0,yes,-
+training,f25fbde4,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,f25ffba3,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.409,soft_local_block3_rel,0.354,yes,no,no,no,0.0,yes,-
+training,f2829549,2|added_and_removed|fewer,"fixed output size, different, fewer shapes, colours added and removed",1,3,majority_output,0.292,resize_input,0.199,yes,no,no,no,0.0,yes,-
+training,f28a3cbb,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,8,transform:local_block3,0.432,soft_local_block3_rel,0.361,yes,no,no,no,0.0,yes,-
+training,f341894c,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.49,soft_local_block3_rel,0.43,yes,no,no,no,0.0,yes,-
+training,f35d900a,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.446,soft_local_block3_rel,0.386,yes,no,no,no,0.0,yes,-
+training,f3b10344,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.481,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+training,f3cdc58f,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,7,majority_output,0.415,colour_map_input,0.382,yes,no,no,no,0.0,yes,-
+training,f3e14006,1|same|more,"same size, mixed similarity, more shapes, colours kept",2,6,soft_local_cross_rel;soft_local_cross_rel,0.381;0.381,resize_input;resize_input,0.36;0.36,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,f3e62deb,1|same|same,"same size, near copy, same shapes, colours kept",2,8,partial:shift_dy-3_dx0;partial:shift_dy-3_dx0,0.503;0.503,colour_map_input;colour_map_input,0.477;0.477,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,f45f5ca7,1|same|same,"same size, near copy, same shapes, colours kept",1,7,colour_map_input,0.454,resize_input,0.429,yes,no,no,no,0.0,yes,-
+training,f5aa3634,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,f5b8619d,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,f5c89df1,1|removed|varies,"same size, near copy, shape count varies, colours removed",1,7,resize_input,0.428,colour_map_input,0.418,yes,no,no,no,0.0,yes,-
+training,f76d97a5,1|added_and_removed|same,"same size, different, same shapes, colours added and removed",1,7,soft_local_cross,0.16,transform:local_block3_rel,0.13,yes,no,no,no,0.0,yes,-
+training,f823c43c,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,transform:local_block3,0.451,colour_map_input,0.394,yes,no,no,no,0.0,yes,-
+training,f83cb3f6,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.465,soft_local_cross_rel,0.402,yes,no,no,no,0.0,yes,-
+training,f8a8fe49,1|same|same,"same size, near copy, same shapes, colours kept",1,7,soft_local_block3_rel,0.493,soft_local_cross_rel,0.468,yes,no,no,no,0.0,yes,-
+training,f8b3ba0a,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,f8be4b64,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.438,soft_local_block3_rel,0.407,yes,no,no,no,0.0,yes,-
+training,f8c80d96,1|added_and_removed|more,"same size, different, more shapes, colours added and removed",1,7,colour_map_input,0.41,soft_local_cross,0.235,yes,no,no,no,0.0,yes,-
+training,f8cc533f,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,colour_map_input;colour_map_input,0.499;0.499,soft_local_cross;soft_local_cross,0.439;0.439,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,f8f52ecc,1|same|fewer,"same size, near copy, fewer shapes, colours kept",2,6,colour_map_input;colour_map_input,0.48;0.48,soft_local_cross_rel;soft_local_cross_rel,0.42;0.42,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,f8ff0b80,2|removed|varies,"fixed output size, different, shape count varies, colours removed",1,3,majority_output,0.1,resize_input,0.1,yes,no,no,no,0.0,yes,-
+training,f9012d9b,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,f9a67cb5,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.434,soft_local_cross_rel,0.383,yes,no,no,no,0.0,yes,-
+training,f9d67f8b,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,resize_input,0.462,soft_local_cross,0.433,yes,no,no,no,0.0,yes,-
+training,fafd9572,1|removed|same,"same size, near copy, same shapes, colours removed",1,6,resize_input,0.438,colour_map_input,0.422,yes,no,no,no,0.0,yes,-
+training,fafffa47,2|added_and_removed|varies,"fixed output size, different, shape count varies, colours added and removed",1,3,majority_output,0.302,resize_input,0.147,yes,no,no,no,0.0,yes,-
+training,fb791726,3|added|more,"size unsolved, different, more shapes, colours added",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,fbf15a0b,3|removed|fewer,"size unsolved, mixed similarity, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+training,fc10701f,1|added_and_removed|more,"same size, near copy, more shapes, colours added and removed",1,6,resize_input,0.456,colour_map_input,0.44,yes,no,no,no,0.0,yes,-
+training,fc4aaf52,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.464,majority_output,0.406,yes,no,no,no,0.0,yes,-
+training,fc754716,1|same|same,"same size, different, same shapes, colours kept",1,6,soft_local_block3_rel,0.205,colour_map_input,0.172,yes,no,no,no,0.0,yes,-
+training,fcb5c309,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,fcc82909,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.468,soft_local_block3_rel,0.454,yes,no,no,no,0.0,yes,-
+training,fd02da9e,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,soft_local_cross,0.485,colour_map_input,0.455,yes,no,no,no,0.0,yes,-
+training,fd096ab6,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.5,soft_local_cross,0.438,yes,no,no,no,0.0,yes,-
+training,fd4b2b02,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.458,soft_local_cross_rel,0.427,yes,no,no,no,0.0,yes,-
+training,fe45cba4,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,colour_map_input,0.422,soft_local_cross_rel,0.362,yes,no,no,no,0.0,yes,-
+training,fe9372f3,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.417,soft_local_block3_rel,0.412,yes,no,no,no,0.0,yes,-
+training,fea12743,1|added|same,"same size, near copy, same shapes, colours added",1,7,colour_map_input,0.444,soft_local_cross_rel,0.415,yes,no,no,no,0.0,yes,-
+training,feca6190,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+training,ff2825db,1|same|fewer,"same size, different, fewer shapes, colours kept",2,7,resize_input;resize_input,0.293;0.293,soft_local_cross_rel;soft_local_cross_rel,0.254;0.254,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+training,ff28f65a,3|added_and_removed|varies,"size unsolved, different, shape count varies, colours added and removed",3,2,majority_output;majority_output;majority_output,0.332;0.332;0.332,copy_input;copy_input;copy_input,0.069;0.069;0.069,yes;yes;yes,no;no;no,no;no;no,no,0.0,yes;yes;yes,-;-;-
+training,ff72ca3e,1|added|more,"same size, mixed similarity, more shapes, colours added",1,6,colour_map_input,0.411,soft_local_block3_rel,0.361,yes,no,no,no,0.0,yes,-
+training,ff805c23,2|removed|fewer,"fixed output size, different, fewer shapes, colours removed",1,3,resize_input,0.203,majority_output,0.119,yes,no,no,no,0.0,yes,-
+evaluation,0934a4d8,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,135a2760,1|same|more,"same size, near copy, more shapes, colours kept",1,8,transform:local_cross,0.504,soft_local_cross_rel,0.444,yes,no,no,no,0.0,yes,-
+evaluation,136b0064,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,13e47133,1|mixed|varies,"same size, different, shape count varies, colours mixed",2,7,soft_local_cross_rel;resize_input,0.192;0.222,colour_map_input;soft_local_cross_rel,0.189;0.192,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,142ca369,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.476;0.476,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,16b78196,1|same|same,"same size, near copy, same shapes, colours kept",1,7,resize_input,0.448,soft_local_block3_rel,0.415,yes,no,no,no,0.0,yes,-
+evaluation,16de56c4,1|mixed|more,"same size, near copy, more shapes, colours mixed",2,6,soft_local_cross_rel;resize_input,0.465;0.438,resize_input;soft_local_cross_rel,0.438;0.435,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,1818057f,1|added|more,"same size, near copy, more shapes, colours added",1,6,colour_map_input,0.476,soft_local_block3_rel,0.425,yes,no,no,no,0.0,yes,-
+evaluation,195c6913,1|same|more,"same size, near copy, more shapes, colours kept",2,6,soft_local_block3_rel;soft_local_cross,0.398;0.465,soft_local_cross_rel;soft_local_block3_rel,0.376;0.398,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,1ae2feb7,1|same|more,"same size, near copy, more shapes, colours kept",3,6,colour_map_input;colour_map_input;colour_map_input,0.474;0.474;0.474,fallback:blank_grid;fallback:blank_grid;fallback:blank_grid,0.0;0.0;0.0,yes;yes;yes,no;no;no,no;no;no,no,0.0,yes;yes;yes,-;-;-
+evaluation,20270e3b,3|removed|fewer,"size unsolved, mixed similarity, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,20a9e565,3|removed|varies,"size unsolved, different, shape count varies, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,21897d95,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,221dfab4,1|added|more,"same size, near copy, more shapes, colours added",2,7,colour_map_input;colour_map_input,0.461;0.461,soft_local_block3_rel;soft_local_cross_rel,0.383;0.39,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,247ef758,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,colour_map_input;colour_map_input,0.431;0.431,soft_local_block3_rel;soft_local_cross_rel,0.395;0.411,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,269e22fb,2|same|varies,"fixed output size, different, shape count varies, colours kept",2,3,resize_input;resize_input,0.317;0.317,majority_output;majority_output,0.246;0.246,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,271d71e2,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,resize_input,0.357,colour_map_input,0.31,yes,no,no,no,0.0,yes,-
+evaluation,28a6681f,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.477,soft_local_cross_rel,0.421,yes,no,no,no,0.0,yes,-
+evaluation,291dc1e1,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,2b83f449,1|added_and_removed|fewer,"same size, near copy, fewer shapes, colours added and removed",1,6,soft_local_cross_rel,0.433,soft_local_cross,0.404,yes,no,no,no,0.0,yes,-
+evaluation,2ba387bc,3|same|more,"size unsolved, different, more shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,2c181942,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,6,resize_input,0.445,colour_map_input,0.424,yes,no,no,no,0.0,yes,-
+evaluation,2d0172a1,3|same|varies,"size unsolved, different, shape count varies, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,31f7f899,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.481,soft_local_cross,0.416,yes,no,no,no,0.0,yes,-
+evaluation,332f06d7,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",1,6,colour_map_input,0.499,resize_input,0.464,yes,no,no,no,0.0,yes,-
+evaluation,35ab12c3,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.435,soft_local_cross,0.372,yes,no,no,no,0.0,yes,-
+evaluation,36a08778,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,colour_map_input;colour_map_input,0.409;0.409,soft_local_cross;soft_local_cross,0.4;0.4,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,38007db0,2|same|fewer,"fixed output size, different, fewer shapes, colours kept",2,3,resize_input;resize_input,0.443;0.443,majority_output;majority_output,0.111;0.111,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,3a25b0d8,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,3dc255db,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,soft_local_cross,0.483,colour_map_input,0.433,yes,no,no,no,0.0,yes,-
+evaluation,3e6067c3,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.496;0.496,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,409aa875,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.501,majority_output,0.401,yes,no,no,no,0.0,yes,-
+evaluation,446ef5d2,1|removed|fewer,"same size, mixed similarity, fewer shapes, colours removed",2,6,soft_local_cross;resize_input,0.336;0.324,colour_map_input;colour_map_input,0.301;0.301,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,45a5af55,3|same|varies,"size unsolved, different, shape count varies, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,4a21e3da,1|same|more,"same size, near copy, more shapes, colours kept",1,8,colour_map_input,0.442,resize_input,0.42,yes,no,no,no,0.0,yes,-
+evaluation,4c3d4a41,1|same|same,"same size, near copy, same shapes, colours kept",2,8,majority_output;majority_output,0.43;0.43,soft_local_block3_rel;soft_local_block3_rel,0.415;0.415,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,4c416de3,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.493,soft_local_cross_rel,0.461,yes,no,no,no,0.0,yes,-
+evaluation,4c7dc4dd,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,4e34c42c,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,53fb4810,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.491,soft_local_block3_rel,0.431,yes,no,no,no,0.0,yes,-
+evaluation,5545f144,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,581f7754,1|same|same,"same size, near copy, same shapes, colours kept",2,6,resize_input;soft_local_cross,0.409;0.439,soft_local_cross;soft_local_block3_rel,0.379;0.373,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,58490d8a,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,58f5dbd5,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,5961cc34,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,6,resize_input,0.424,colour_map_input,0.418,yes,no,no,no,0.0,yes,-
+evaluation,5dbc8537,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,62593bfd,1|same|same,"same size, near copy, same shapes, colours kept",2,6,resize_input;soft_local_cross,0.448;0.478,soft_local_block3_rel;soft_local_block3_rel,0.418;0.418,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,64efde09,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.463,soft_local_block3_rel,0.403,yes,no,no,no,0.0,yes,-
+evaluation,65b59efc,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,67e490f4,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,6e453dd6,1|added|more,"same size, near copy, more shapes, colours added",1,6,resize_input,0.378,soft_local_block3_rel,0.361,yes,no,no,no,0.0,yes,-
+evaluation,6e4f6532,1|same|fewer,"same size, near copy, fewer shapes, colours kept",2,6,soft_local_cross;soft_local_cross,0.466;0.466,colour_map_input;colour_map_input,0.405;0.405,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,6ffbe589,3|same|fewer,"size unsolved, different, fewer shapes, colours kept",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,71e489b6,1|added|varies,"same size, near copy, shape count varies, colours added",2,7,fill_enclosed;fill_enclosed,0.459;0.459,soft_local_block3_rel;soft_local_block3_rel,0.429;0.429,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,7491f3cf,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.488,majority_output,0.148,yes,no,no,no,0.0,yes,-
+evaluation,7666fa5d,1|added|more,"same size, near copy, more shapes, colours added",1,7,colour_map_input,0.418,soft_local_block3_rel,0.298,yes,no,no,no,0.0,yes,-
+evaluation,78332cb0,3|same|varies,"size unsolved, different, shape count varies, colours kept",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;yes,-;-
+evaluation,7b0280bc,1|added|same,"same size, near copy, same shapes, colours added",1,6,colour_map_input,0.48,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,7b3084d4,3|removed|same,"size unsolved, different, same shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,7b5033c1,3|removed|same,"size unsolved, different, same shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,7b80bb43,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,colour_map_input,0.501,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,7c66cb00,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.474,soft_local_cross,0.414,yes,no,no,no,0.0,yes,-
+evaluation,7ed72f31,1|same|more,"same size, near copy, more shapes, colours kept",2,7,colour_map_input;colour_map_input,0.491;0.491,soft_local_block3_rel;soft_local_cross,0.431;0.431,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,800d221b,1|same|varies,"same size, near copy, shape count varies, colours kept",1,6,colour_map_input,0.35,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,80a900e0,1|same|same,"same size, near copy, same shapes, colours kept",1,6,colour_map_input,0.484,soft_local_block3_rel,0.415,yes,no,no,no,0.0,yes,-
+evaluation,8698868d,3|removed|more,"size unsolved, different, more shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,88bcf3b4,1|same|varies,"same size, near copy, shape count varies, colours kept",2,6,soft_local_cross;soft_local_cross,0.473;0.473,soft_local_block3_rel;soft_local_block3_rel,0.414;0.414,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,88e364bc,1|same|same,"same size, near copy, same shapes, colours kept",2,8,colour_map_input;colour_map_input,0.507;0.507,fill_enclosed;fill_enclosed,0.504;0.504,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,89565ca0,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,898e7135,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,8b7bacbf,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.492;0.492,fallback:blank_grid;soft_local_cross,0.0;0.432,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,8b9c3697,1|added|fewer,"same size, near copy, fewer shapes, colours added",1,7,resize_input,0.457,colour_map_input,0.43,yes,no,no,no,0.0,yes,-
+evaluation,8e5c0c38,1|same|varies,"same size, near copy, shape count varies, colours kept",2,8,transform:local_block3;transform:local_block3,0.505;0.505,soft_local_block3_rel;soft_local_block3_rel,0.444;0.444,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,8f215267,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,fill_enclosed,0.434,soft_local_block3_rel,0.419,yes,no,no,no,0.0,yes,-
+evaluation,8f3a5a89,1|added|varies,"same size, mixed similarity, shape count varies, colours added",1,6,colour_map_input,0.395,soft_local_cross_rel,0.364,yes,no,no,no,0.0,yes,-
+evaluation,9385bd28,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",2,6,colour_map_input;soft_local_block3_rel,0.418;0.412,soft_local_block3_rel;colour_map_input,0.352;0.358,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,97d7923e,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,6,soft_local_cross_rel,0.495,colour_map_input,0.491,yes,no,no,no,0.0,yes,-
+evaluation,981571dc,1|removed|more,"same size, near copy, more shapes, colours removed",1,7,soft_local_cross_rel,0.446,resize_input,0.444,yes,no,no,no,0.0,yes,-
+evaluation,9aaea919,1|added_and_removed|varies,"same size, near copy, shape count varies, colours added and removed",1,7,resize_input,0.459,soft_local_cross,0.354,yes,no,no,no,0.0,yes,-
+evaluation,9bbf930d,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.501,soft_local_cross_rel,0.441,yes,no,no,no,0.0,yes,-
+evaluation,a251c730,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,a25697e4,1|same|same,"same size, near copy, same shapes, colours kept",2,7,resize_input;soft_local_cross,0.46;0.497,colour_map_input;colour_map_input,0.437;0.437,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,a32d8b75,2|removed|more,"fixed output size, mixed similarity, more shapes, colours removed",2,3,resize_input;resize_input,0.206;0.206,majority_output;majority_output,0.15;0.15,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,a395ee82,1|same|fewer,"same size, near copy, fewer shapes, colours kept",1,7,soft_local_cross,0.395,soft_local_cross_rel,0.363,yes,no,no,no,0.0,yes,-
+evaluation,a47bf94d,1|same|more,"same size, near copy, more shapes, colours kept",1,6,soft_local_cross_rel,0.494,resize_input,0.455,yes,no,no,no,0.0,yes,-
+evaluation,a6f40cea,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,aa4ec2a5,1|added|more,"same size, near copy, more shapes, colours added",1,7,soft_local_cross,0.398,colour_map_input,0.387,yes,no,no,no,0.0,yes,-
+evaluation,abc82100,1|removed|varies,"same size, mixed similarity, shape count varies, colours removed",1,6,colour_map_input,0.374,resize_input,0.366,yes,no,no,no,0.0,yes,-
+evaluation,b0039139,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;no,-;-
+evaluation,b10624e5,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.49,soft_local_block3_rel,0.429,yes,no,no,no,0.0,yes,-
+evaluation,b5ca7ac4,1|same|fewer,"same size, mixed similarity, fewer shapes, colours kept",1,7,resize_input,0.307,soft_local_cross,0.204,yes,no,no,no,0.0,yes,-
+evaluation,b6f77b65,1|same|varies,"same size, near copy, shape count varies, colours kept",2,9,partial:identity;partial:identity,0.535;0.535,soft_local_block3_rel;soft_local_block3_rel,0.347;0.347,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,b99e7126,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.5,majority_output,0.239,yes,no,no,no,0.0,yes,-
+evaluation,b9e38dc0,1|same|varies,"same size, mixed similarity, shape count varies, colours kept",1,6,colour_map_input,0.39,soft_local_cross_rel,0.33,yes,no,no,no,0.0,yes,-
+evaluation,bf45cf4b,3|removed|more,"size unsolved, different, more shapes, colours removed",1,1,copy_input,0.084,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,c4d067a0,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.491,majority_output,0.208,yes,no,no,no,0.0,yes,-
+evaluation,c7f57c3e,1|same|same,"same size, near copy, same shapes, colours kept",1,7,soft_local_cross,0.489,soft_local_block3_rel,0.407,yes,no,no,no,0.0,yes,-
+evaluation,cb2d8a2c,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",2,6,colour_map_input;colour_map_input,0.475;0.445,resize_input;resize_input,0.44;0.44,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,cbebaa4b,1|same|fewer,"same size, near copy, fewer shapes, colours kept",2,7,resize_input;resize_input,0.416;0.416,colour_map_input;colour_map_input,0.412;0.412,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,d35bdbdc,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",3,8,transform:local_block3;soft_local_cross_rel;soft_local_cross_rel,0.419;0.413;0.413,colour_map_input;colour_map_input;colour_map_input,0.392;0.392;0.392,yes;yes;yes,no;no;no,no;no;no,no,0.0,yes;yes;yes,-;-;-
+evaluation,d59b0160,1|mixed|fewer,"same size, near copy, fewer shapes, colours mixed",1,7,resize_input,0.396,soft_local_cross,0.358,yes,no,no,no,0.0,yes,-
+evaluation,d8e07eb2,1|added|more,"same size, near copy, more shapes, colours added",2,8,fill_enclosed;fill_enclosed,0.432;0.432,soft_local_cross;soft_local_cross,0.364;0.364,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,da515329,1|same|varies,"same size, partly alike, shape count varies, colours kept",1,6,colour_map_input,0.345,soft_local_block3_rel,0.285,yes,no,no,no,0.0,yes,-
+evaluation,db0c5428,1|same|more,"same size, near copy, more shapes, colours kept",1,7,colour_map_input,0.418,fill_enclosed,0.358,yes,no,no,no,0.0,yes,-
+evaluation,db695cfb,1|same|more,"same size, near copy, more shapes, colours kept",1,6,colour_map_input,0.482,fallback:blank_grid,0.0,yes,no,no,no,0.0,yes,-
+evaluation,dbff022c,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,fill_enclosed,0.48,soft_local_cross,0.432,yes,no,no,no,0.0,yes,-
+evaluation,dd6b8c4b,1|mixed|varies,"same size, near copy, shape count varies, colours mixed",2,7,resize_input;resize_input,0.451;0.451,soft_local_cross_rel;soft_local_cross_rel,0.428;0.428,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,de809cff,1|added|more,"same size, near copy, more shapes, colours added",1,8,colour_map_input,0.406,soft_local_cross_rel,0.356,yes,no,no,no,0.0,yes,-
+evaluation,dfadab01,1|mixed|varies,"same size, mixed similarity, shape count varies, colours mixed",1,6,colour_map_input,0.343,resize_input,0.33,yes,no,no,no,0.0,yes,-
+evaluation,e12f9a14,1|same|more,"same size, near copy, more shapes, colours kept",2,6,colour_map_input;colour_map_input,0.467;0.467,soft_local_cross_rel;soft_local_block3_rel,0.409;0.411,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,e3721c99,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",2,7,resize_input;resize_input,0.393;0.393,soft_local_cross_rel;soft_local_cross_rel,0.368;0.368,yes;yes,no;no,no;no,no,0.0,yes;yes,-;-
+evaluation,e376de54,1|same|varies,"same size, near copy, shape count varies, colours kept",1,7,colour_map_input,0.498,majority_output,0.388,yes,no,no,no,0.0,yes,-
+evaluation,e8686506,3|removed|varies,"size unsolved, different, shape count varies, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,e87109e9,2|removed|varies,"fixed output size, partly alike, shape count varies, colours removed",1,3,resize_input,0.194,majority_output,0.164,yes,no,no,no,0.0,no,-
+evaluation,edb79dae,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,eee78d87,2|added_and_removed|more,"fixed output size, different, more shapes, colours added and removed",1,3,resize_input,0.224,majority_output,0.204,yes,no,no,no,0.0,yes,-
+evaluation,f560132c,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
+evaluation,f931b4a8,3|removed|varies,"size unsolved, different, shape count varies, colours removed",2,1,copy_input;copy_input,0.05;0.05,fallback:blank_grid;fallback:blank_grid,0.0;0.0,yes;yes,no;no,no;no,no,0.0,no;yes,-;-
+evaluation,faa9f03d,1|removed|fewer,"same size, near copy, fewer shapes, colours removed",1,7,resize_input,0.45,soft_local_cross,0.423,yes,no,no,no,0.0,yes,-
+evaluation,fc7cae8d,3|removed|fewer,"size unsolved, different, fewer shapes, colours removed",1,1,copy_input,0.05,fallback:blank_grid,0.0,yes,no,no,no,0.0,no,-
