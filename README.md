@@ -1,73 +1,118 @@
-# ARC-AGI-2 Solver
+# ARC-AGI-2 Grid Rules
 
-## Overview
+A rule-based, explainable solver for [ARC-AGI-2](https://arcprize.org/) that **describes a task before it tries to solve it**.
 
-This repository contains my research and development of a modular solver for ARC-AGI-2.
+Each task passes through six investigation layers (grid sizes, colours, shapes, cells, rows and columns, transformations). The layers describe how the training inputs relate to the training outputs, and the tasks are sorted into named groups. A Grid Solver then always produces an answer from the group's evidence, and a Grid Verifier reports which layer was right or wrong on each task.
 
-The project investigates individual grid properties and their relationships across training examples. Each investigation is organised into its own stage, allowing hypotheses to be tested, results recorded, and findings evaluated before being integrated into the solver.
+This is not a high-scoring solver. The contribution is the layered description of tasks and the per-layer verifier, which shows where an explainable pipeline fails and why.
 
-## Research Website
+- **Writeup (ARC Prize 2026, Paper Track):** [The Golden Grid Sets: Sorting ARC-AGI-2 Tasks by What a Human Sees First](https://www.kaggle.com/competitions/arc-prize-2026-paper-track/writeups/the-golden-grid-sets)
+- **Kaggle notebook:** [notebook7c6dc98add](https://www.kaggle.com/code/njabulohopemakana/notebook7c6dc98add)
 
-**Website:** In development.
+## Results
 
-The website will provide a visual interface for exploring the solver's architecture, investigation stages, experimental results, and progress.
+Results on the 120 public evaluation tasks. Training-set results are not used for the claims below.
 
-<!-- Replace the status above with a link to the deployed website when it is available. -->
+| Set | Result |
+|---|---|
+| Kaggle leaderboard | Rank 3211 |
+| ARC-AGI-2 public evaluation | 0/120 |
 
-## Solver Architecture
+Layer checks from the verifier (evaluation set):
 
-The solver is organised into eight investigation and solving stages.
-
-| Stage | Purpose | Documentation |
+| Layer | Check | Result |
 |---|---|---|
-| 1. Grid Sizes | Investigates input and output dimensions. | [Grid Sizes](solver/grid sizes/README.md) |
-| 2. Grid Colours | Investigates colours added, removed, or maintained. | [Grid Colours](solver/grid colours/README.md) |
-| 3. Grid Shapes | Investigates connected regions of the same colour. | [Grid Shapes](grid%20shapes/README.md) |
-| 4. Grid Cells | Investigates individual grid cells and their properties. | [Grid Cells](grid%20cells/README.md) |
-| 5. Grid Rows and Columns | Investigates row and column patterns and changes. | [Grid Rows and Columns](grid%20rows%20and%20columns/README.md) |
-| 6. Grid Transformations | Investigates transformations between input and output grids. | [Grid Transformations](grid%20transformations/README.md) |
-| 7. Grid Solver | Combines supported findings to generate solutions. | [Grid Solver](grid%20solver/README.md) |
-| 8. Grid Verifier | Evaluates generated solutions and identifies failures. | [Grid Verifier](grid%20verifier/README.md) |
+| Sizes | Rules 1 to 3 predicted the output size | 86 tasks, 83 correct (96.5%) |
+| Colours | Palette holds | 112 of 113 checkable tasks (99%) |
+| Shapes | Every shape flag holds on the test pair | 99 of 120 tasks (82.5%) |
+| Transformations | A transformation fits all training pairs | 4 of 120 tasks (3.3%) |
+| Transformations | Correct on the test pair | 0 |
 
-*Note: Documentation links will become active as the corresponding README files are created. Folder paths should match the actual repository structure.*
+**What the numbers show.** The description layers are mostly reliable, but the transformation layer is the bottleneck. All four fits are local rules, and the whole-grid library (flip, rotate, tile) fitted none of the evaluation tasks.
 
-## Investigation Methodology
+The full per-layer table is in the writeup.
 
-Each investigation stage is designed to examine particular grid properties independently.
+## How it works
 
-The general research process is to:
+| # | Stage | What it investigates | Folder |
+|---|---|---|---|
+| 1 | Grid Sizes | Input and output dimensions, sorted into five size rules | [`solver/grid_sizes`](solver/grid_sizes) |
+| 2 | Grid Colours | Colours kept, added or removed, and background changes | [`solver/grid_colours`](solver/grid_colours) |
+| 3 | Grid Shapes | Connected same-colour regions (4-connectivity) | [`solver/grid_shapes`](solver/grid_shapes) |
+| 4 | Grid Cells | What differs cell by cell between input and output | [`solver/grid_cells`](solver/grid_cells) |
+| 5 | Grid Rows and Columns | How output lines relate to input lines | [`solver/grid_rows_and_columns`](solver/grid_rows_and_columns) |
+| 6 | Grid Transformations | Local rules, cropping, and a whole-grid library, chosen by the groups above | [`solver/grid_transformations`](solver/grid_transformations) |
+| 7 | Grid Solver | Reads the group and evidence, always outputs a prediction | [`solver/grid_solver`](solver/grid_solver) |
+| 8 | Grid Verifier | Compares predictions with answers, PASS or FAIL per layer | [`solver/grid_verifier`](solver/grid_verifier) |
 
-1. Identify a property or propose a hypothesis.
-2. Analyse the available training examples.
-3. Record findings and compare predictions with available answers.
-4. Investigate incorrect predictions and inconsistent patterns.
-5. Determine whether the findings are sufficiently supported for integration into the solver.
+Two design rules:
 
-A pattern observed in a limited number of examples is treated as a hypothesis until further testing provides evidence of its reliability.
+1. Grid size is the only hard-coded layer.
+2. Colours and shapes are never hard-coded. They are discovered from each task's training pairs.
 
-## Experimental Results
+Tasks are grouped by size rule plus palette outcome, with a shape word (`MORE`, `FEWER`, `EVEN`, `VARY`) added to the group name. For example, `2|same|more` is a fixed output size, a different size from the input, more shapes, and colours kept.
 
-Investigation results are stored alongside their corresponding stages, where applicable.
+## Repository layout
 
-CSV files provide structured records of experimental findings and allow individual tasks to be inspected. Python scripts perform the analyses, while stage-specific README files document the methods, assumptions, and limitations.
+```
+.
+├── data/                      # ARC-AGI-2 tasks (not included, see below)
+│   ├── training/
+│   └── evaluation/
+└── solver/
+    └── <stage>/
+        ├── <stage>.py         # the stage's script
+        ├── hypothesis/        # grouping and sorting experiments
+        └── results/           # CSV results and JSON "receipts"
+```
 
-## Current Status
+- **CSV files** are per-task results, one row per task, so any single task can be inspected.
+- **Receipts (`*_receipts.json`)** are the structured findings each stage passes on to the next, so later stages load earlier results instead of recomputing them.
 
-The project is under active development.
+## Running it
 
-The investigation stages may differ in their level of completion. A completed investigation does not automatically mean that its findings have been integrated into the solving pipeline or that the complete solver can solve the corresponding tasks.
+**Requirements:** Python 3 and `numpy` (the sizes, colours and shapes stages use only the standard library).
 
-## Repository Structure
+**Data:** the ARC-AGI-2 tasks are not redistributed here. Download them from the [ARC-AGI-2 repository](https://github.com/arcprize/ARC-AGI-2) and place the task files as:
 
-Each investigation stage maintains its own documentation, Python scripts, and results.
+```
+data/training/<task_id>.json
+data/evaluation/<task_id>.json
+```
 
-The repository is organised to keep the following components distinct:
+**Run the stages in order from the repository root.** Each script finds `data/` relative to its own location and writes into its own `results/` folder:
 
-- **Documentation:** Explains the purpose and methodology of each stage.
-- **Hypotheses:** Contains experiments used to investigate possible patterns.
-- **Implementation:** Contains the Python code for each stage.
-- **Results:** Contains recorded findings used for analysis and verification.
+```bash
+pip install numpy
+
+python solver/grid_sizes/grid_sizes.py
+python solver/grid_colours/grid_colours.py
+python solver/grid_shapes/grid_shapes.py
+python solver/grid_cells/grid_cells.py
+python solver/grid_rows_and_columns/grid_rows_and_columns.py
+python solver/grid_transformations/grid_transformations.py
+python solver/grid_solver/grid_solver.py
+python solver/grid_verifier/grid_verifier.py
+```
+
+The results already committed in each `results/` folder are the ones reported in the writeup.
+
+## Limits
+
+- The layers describe each step separately, but many tasks are only explained by combining them.
+- The solver needs training examples to confirm each rule, and each new task type needs a new rule or probe.
+- Tasks with no counting or size signal remain weak.
+- Predicting the output size when training outputs vary is still unsolved.
+
+## Future work
+
+- Combine layers so that size, colour and shape evidence can decide an answer together.
+- Carry the "describe, then act" idea to ARC-AGI-3.
 
 ## License
 
-See [LICENSE](LICENSE) for the terms governing the use of this repository.
+See [LICENSE](LICENSE).
+
+## Author
+
+Njabulo Hope Makana, developer, South Africa.
